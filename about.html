@@ -59,7 +59,7 @@
       display: flex;
       flex-direction: column;
       gap: var(--space-1);
-      border-radius: 4px;
+      border-radius: 16px;
       transition: transform 120ms var(--ease-spring), box-shadow 120ms var(--ease-out);
     }
     .ab-stamp:hover {
@@ -268,22 +268,28 @@
       position: absolute;
       z-index: 2;
       background: #fff;
-      padding: 6px 6px 26px;
-      box-shadow: 4px 6px 18px rgba(0,0,0,0.22), 1px 2px 4px rgba(0,0,0,0.10);
+      padding: 10px 10px 50px;
+      box-shadow: 6px 10px 30px rgba(0,0,0,0.22), 2px 3px 6px rgba(0,0,0,0.10);
+      border-radius: 2px;
     }
     .tl-polaroid-photo {
-      width: 90px;
-      height: 90px;
+      width: 180px;
+      height: 180px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       overflow: hidden;
     }
+    .tl-polaroid-emoji {
+      font-size: 5rem;
+      line-height: 1;
+      user-select: none;
+    }
     .tl-polaroid-inner {
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: 1.05rem;
+      font-size: 2rem;
       letter-spacing: -0.03em;
       line-height: 1.05;
       text-align: center;
@@ -293,12 +299,12 @@
     .tl-polaroid-label {
       font-family: var(--font-sans);
       font-style: italic;
-      font-size: 0.48rem;
-      letter-spacing: 0.04em;
+      font-size: 0.8rem;
+      letter-spacing: 0.02em;
       color: #3a3028;
       text-align: center;
-      padding-top: 5px;
-      line-height: 1.35;
+      padding-top: 10px;
+      line-height: 1.4;
     }
 
     /* Era content sits on top of ghost */
@@ -348,6 +354,7 @@
       width: 80px; height: 80px;
       border: 2px solid currentColor;
       display: flex; align-items: center; justify-content: center;
+      border-radius: 12px;
     }
     .mv-doodle svg { width: 48px; height: 48px; }
     .mv-quote {
@@ -382,6 +389,7 @@
       box-shadow: var(--shadow-hard-xl);
       background: var(--paper-100);
       padding: var(--space-7);
+      border-radius: 20px;
     }
     .team-portrait-wrap {
       width: 100%;
@@ -394,6 +402,7 @@
       margin-bottom: var(--space-6);
       font-family: var(--font-display); font-weight: 800;
       font-size: 6rem; color: var(--ink-900);
+      border-radius: 12px;
     }
     .team-portrait-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
     .team-card--will { transform: rotate(-1deg); }
@@ -613,7 +622,7 @@
             <span class="tl-ghost" aria-hidden="true">2007</span>
             <div class="tl-polaroid" aria-hidden="true" style="top:var(--space-7);right:var(--space-7);transform:rotate(3deg)">
               <div class="tl-polaroid-photo" style="background:var(--coral-200)">
-                <span class="tl-polaroid-inner">IDOL</span>
+                <span class="tl-polaroid-emoji">🎤</span>
               </div>
               <p class="tl-polaroid-label">American Idol<br>Season 6</p>
             </div>
@@ -630,7 +639,7 @@
             <span class="tl-ghost" aria-hidden="true">2012</span>
             <div class="tl-polaroid" aria-hidden="true" style="top:var(--space-8);right:var(--space-8);transform:rotate(-4deg)">
               <div class="tl-polaroid-photo" style="background:var(--sky-200)">
-                <span class="tl-polaroid-inner">LDN<br>2012</span>
+                <span class="tl-polaroid-emoji">🏃</span>
               </div>
               <p class="tl-polaroid-label">London Olympics<br>Usain Bolt ×3</p>
             </div>
@@ -646,8 +655,8 @@
           <div class="tl-era" style="--era-bg:var(--sky-200)">
             <span class="tl-ghost" aria-hidden="true">2014</span>
             <div class="tl-polaroid" aria-hidden="true" style="top:var(--space-7);right:var(--space-9);transform:rotate(5deg)">
-              <div class="tl-polaroid-photo" style="background:var(--grass-200)">
-                <span class="tl-polaroid-inner">ICE<br>BKT</span>
+              <div class="tl-polaroid-photo" style="background:var(--sky-200)">
+                <span class="tl-polaroid-emoji">🪣</span>
               </div>
               <p class="tl-polaroid-label">Ice Bucket<br>Challenge</p>
             </div>
@@ -663,8 +672,8 @@
           <div class="tl-era" style="--era-bg:var(--grass-400)">
             <span class="tl-ghost" aria-hidden="true">2016</span>
             <div class="tl-polaroid" aria-hidden="true" style="top:var(--space-8);right:var(--space-7);transform:rotate(-2deg)">
-              <div class="tl-polaroid-photo" style="background:var(--grape-200)">
-                <span class="tl-polaroid-inner">PKM<br>GO</span>
+              <div class="tl-polaroid-photo" style="background:var(--grass-200)">
+                <span class="tl-polaroid-emoji">📱</span>
               </div>
               <p class="tl-polaroid-label">Pokémon GO<br>Summer 2016</p>
             </div>
@@ -681,7 +690,7 @@
             <span class="tl-ghost" aria-hidden="true">2019</span>
             <div class="tl-polaroid" aria-hidden="true" style="top:var(--space-7);right:var(--space-8);transform:rotate(4deg)">
               <div class="tl-polaroid-photo" style="background:var(--sun-400)">
-                <span class="tl-polaroid-inner">WE<br>THE<br>NORTH</span>
+                <span class="tl-polaroid-emoji">🏀</span>
               </div>
               <p class="tl-polaroid-label">Raptors NBA<br>Champions</p>
             </div>
@@ -698,7 +707,7 @@
             <span class="tl-ghost" aria-hidden="true">2023</span>
             <div class="tl-polaroid" aria-hidden="true" style="top:var(--space-7);right:var(--space-7);transform:rotate(-3deg)">
               <div class="tl-polaroid-photo" style="background:var(--grape-200)">
-                <span class="tl-polaroid-inner">BAR-<br>BEN-<br>HEIMER</span>
+                <span class="tl-polaroid-emoji">🎬</span>
               </div>
               <p class="tl-polaroid-label">Cinema's<br>biggest weekend</p>
             </div>
@@ -715,7 +724,7 @@
             <span class="tl-ghost" aria-hidden="true">2025</span>
             <div class="tl-polaroid" aria-hidden="true" style="top:var(--space-7);right:var(--space-8);transform:rotate(2deg)">
               <div class="tl-polaroid-photo" style="background:var(--sky-200)">
-                <span class="tl-polaroid-inner">ERAS<br>TOUR</span>
+                <span class="tl-polaroid-emoji">🎸</span>
               </div>
               <p class="tl-polaroid-label">Taylor Swift<br>closes the loop</p>
             </div>
