@@ -1,0 +1,235 @@
+/* ============================================================
+   TOKENS — Good Websites Design System v2
+   Excon (display) + Ranade (body), warm cream + poppy accents
+   ============================================================ */
+
+/* Self-hosted core weights */
+@font-face {
+  font-family: "Excon";
+  src: url("../assets/fonts/Excon-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Ranade";
+  src: url("../assets/fonts/Ranade-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+:root {
+  /* ---- Sun (primary) ---- */
+  --sun-50:  #FFF8E2;
+  --sun-100: #FFEFBF;
+  --sun-200: #FFE08A;
+  --sun-300: #FFD45E;
+  --sun-400: #F7DC41;
+  --sun-500: #FFBE1A;
+  --sun-600: #F2A100;
+  --sun-700: #C97F00;
+
+  /* ---- Ink (warm near-black) ---- */
+  --ink-900: #1A1611;
+  --ink-800: #2A241D;
+  --ink-700: #3C342A;
+  --ink-600: #5A4F41;
+  --ink-500: #7A6E5D;
+  --ink-400: #A99C88;
+
+  /* ---- Paper (warm cream — lifted lighter) ---- */
+  --paper-0:   #FFFFFF;
+  --paper-50:  #FEFCF7;
+  --paper-100: #FBF7EF;
+  --paper-200: #F5EEE1;
+  --paper-300: #ECE2D2;
+  --paper-400: #DCCDB4;
+
+  /* ---- Poppy accents (with new light tints for bento fills) ---- */
+  --coral-100: #FFE7DE;
+  --coral-200: #FFCDBC;
+  --coral-400: #FF7A52;
+  --coral-500: #FF5A36;
+  --coral-600: #E8431F;
+
+  --grass-100: #DBF3E4;
+  --grass-200: #B6E7C9;
+  --grass-400: #2BBE6E;
+  --grass-500: #12A45A;
+  --grass-600: #0B8147;
+
+  --sky-100: #DEE9FF;
+  --sky-200: #BFD3FF;
+  --sky-400: #4D86FF;
+  --sky-500: #2F6BFF;
+  --sky-600: #1B4FD6;
+
+  --grape-100: #E8E2FF;
+  --grape-200: #D2C6FF;
+  --grape-400: #8A6BFF;
+  --grape-500: #6C4CF1;
+  --grape-600: #5436D1;
+
+  /* ---- Semantic surfaces ---- */
+  --surface-page:     var(--paper-50);
+  --surface-page-alt: var(--paper-100);
+  --surface-card:     var(--paper-0);
+  --surface-sunk:     var(--paper-200);
+  --surface-ink:      var(--ink-900);
+  --surface-sun:      var(--sun-400);
+
+  /* Bento tile fills — soft, sunlit tints */
+  --tile-sun:   var(--sun-100);
+  --tile-coral: var(--coral-100);
+  --tile-grass: var(--grass-100);
+  --tile-sky:   var(--sky-100);
+  --tile-grape: var(--grape-100);
+  --tile-cream: var(--paper-100);
+  --tile-ink:   var(--ink-900);
+
+  /* Text */
+  --text-strong:      var(--ink-900);
+  --text-body:        var(--ink-700);
+  --text-muted:       var(--ink-500);
+  --text-on-ink:      var(--paper-50);
+  --text-on-ink-muted:var(--ink-400);
+  --text-on-sun:      var(--ink-900);
+  --text-link:        var(--sky-600);
+
+  /* Lines & borders */
+  --border-soft:      var(--paper-300);
+  --border-strong:    var(--ink-900);
+
+  /* Brand actions */
+  --accent:           var(--sun-400);
+  --accent-hover:     var(--sun-500);
+  --accent-press:     var(--sun-600);
+  --accent-contrast:  var(--ink-900);
+
+  /* Status */
+  --success: var(--grass-500);
+  --info:    var(--sky-500);
+  --warning: var(--sun-600);
+  --danger:  var(--coral-600);
+
+  --focus-ring: var(--sky-500);
+
+  /* ---- Typography ---- */
+  --font-display: "Excon", "Helvetica Neue", Arial, sans-serif;
+  --font-sans:    "Ranade", "Helvetica Neue", Arial, sans-serif;
+  --font-mono:    ui-monospace, "SF Mono", Menlo, monospace;
+
+  --weight-light:   300;
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-bold:    700;
+  --weight-black:   800;
+  --weight-display: 500;
+
+  --text-hero-2xl: clamp(3.5rem, 1.5rem + 8vw, 8rem);
+  --text-hero-xl:  clamp(2.75rem, 1.4rem + 5.4vw, 5.5rem);
+  --text-hero-lg:  clamp(2.25rem, 1.4rem + 3.4vw, 4rem);
+  --text-hero-md:  clamp(1.875rem, 1.3rem + 2.3vw, 3rem);
+
+  --text-h1: 2.5rem;
+  --text-h2: 2rem;
+  --text-h3: 1.5rem;
+  --text-h4: 1.25rem;
+
+  --text-lg:  1.25rem;
+  --text-md:  1.0625rem;
+  --text-sm:  0.9375rem;
+  --text-xs:  0.8125rem;
+  --text-2xs: 0.6875rem;
+
+  --leading-tight:   1.02;
+  --leading-snug:    1.12;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.65;
+
+  --tracking-tighter: -0.03em;
+  --tracking-tight:   -0.015em;
+  --tracking-normal:  0em;
+  --tracking-wide:    0.02em;
+  --tracking-eyebrow: 0.14em;
+
+  /* ---- Spacing ---- */
+  --space-0:  0;
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.5rem;
+  --space-6:  2rem;
+  --space-7:  2.5rem;
+  --space-8:  3rem;
+  --space-9:  4rem;
+  --space-10: 5rem;
+  --space-11: 6rem;
+  --space-12: 8rem;
+
+  --container-max:  1200px;
+  --container-wide: 1360px;
+  --gutter:    clamp(1.25rem, 4vw, 4rem);
+  --section-y: clamp(4rem, 8vw, 8rem);
+
+  /* ---- Radius ---- */
+  --radius-xs:   4px;
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   18px;
+  --radius-xl:   28px;
+  --radius-2xl:  40px;
+  --radius-pill:  999px;
+  --radius-circle: 50%;
+
+  --radius-button: var(--radius-pill);
+  --radius-input:  var(--radius-md);
+  --radius-card:   var(--radius-xl);
+  --radius-chip:   var(--radius-pill);
+
+  /* ---- Shadows ---- */
+  --shadow-hard-sm: 2px 2px 0 0 var(--ink-900);
+  --shadow-hard:    4px 4px 0 0 var(--ink-900);
+  --shadow-hard-lg: 6px 6px 0 0 var(--ink-900);
+  --shadow-hard-xl: 10px 10px 0 0 var(--ink-900);
+
+  --shadow-hard-sun:   4px 4px 0 0 var(--sun-500);
+  --shadow-hard-coral: 4px 4px 0 0 var(--coral-500);
+  --shadow-hard-sky:   4px 4px 0 0 var(--sky-500);
+
+  --shadow-soft-sm: 0 1px 2px rgba(26,22,17,0.06), 0 1px 1px rgba(26,22,17,0.04);
+  --shadow-soft:    0 4px 12px rgba(26,22,17,0.08), 0 2px 4px rgba(26,22,17,0.05);
+  --shadow-soft-lg: 0 12px 32px rgba(26,22,17,0.12), 0 4px 8px rgba(26,22,17,0.06);
+  --shadow-soft-xl: 0 24px 60px rgba(26,22,17,0.16), 0 8px 16px rgba(26,22,17,0.07);
+
+  --ring: 0 0 0 3px rgba(47,107,255,0.35);
+
+  /* ---- Motion ---- */
+  --dur-fast:   120ms;
+  --dur-base:   200ms;
+  --dur-slow:   320ms;
+  --dur-slower: 520ms;
+
+  --ease-out:     cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out:  cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring:  cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-snap:    cubic-bezier(0.5, 0, 0, 1);
+
+  --transition-button: transform var(--dur-fast) var(--ease-spring),
+                       box-shadow var(--dur-fast) var(--ease-out),
+                       background-color var(--dur-base) var(--ease-out);
+  --transition-card:   transform var(--dur-base) var(--ease-spring),
+                       box-shadow var(--dur-base) var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-base: 0ms;
+    --dur-slow: 0ms;
+    --dur-slower: 0ms;
+  }
+}

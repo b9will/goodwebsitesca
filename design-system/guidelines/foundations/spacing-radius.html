@@ -1,0 +1,26 @@
+<!-- @dsCard group="Spacing" viewport="700x180" name="Radius" subtitle="Friendly rounding — pills for buttons, soft cards" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  html,body{margin:0;background:var(--surface-page);color:var(--text-strong);}
+  .wrap{padding:24px 28px;font-family:var(--font-sans);display:flex;gap:16px;align-items:flex-end;}
+  .col{display:flex;flex-direction:column;gap:9px;align-items:center;}
+  .box{width:78px;height:62px;background:var(--surface-card);border:2px solid var(--ink-900);}
+  .name{font-size:var(--text-2xs);font-weight:700;}
+  .v{font-size:var(--text-2xs);color:var(--text-muted);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="col"><div class="box" style="border-radius:var(--radius-xs)"></div><span class="name">xs</span><span class="v">4px</span></div>
+  <div class="col"><div class="box" style="border-radius:var(--radius-sm)"></div><span class="name">sm</span><span class="v">8px</span></div>
+  <div class="col"><div class="box" style="border-radius:var(--radius-md)"></div><span class="name">md</span><span class="v">12px</span></div>
+  <div class="col"><div class="box" style="border-radius:var(--radius-lg)"></div><span class="name">lg</span><span class="v">18px</span></div>
+  <div class="col"><div class="box" style="border-radius:var(--radius-xl)"></div><span class="name">xl · card</span><span class="v">28px</span></div>
+  <div class="col"><div class="box" style="border-radius:var(--radius-pill)"></div><span class="name">pill · btn</span><span class="v">999px</span></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+.wrangler/
+.env
+.env.local
+.DS_Store
+*.DS_Store
+node_modules/
+
+# Reference/research files
+Dr. Rucha Rege, ND.html
+Dr. Rucha Rege, ND_files/
+review-the-current-good-moonlit-ladybug.md
+notiondiea.jpeg
+valueprop-cardidea.jpeg
+playful-retro-text-effect-logo-mockup-1.jpg
+podium_home.png
+doodles/

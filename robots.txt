@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /design-system/
+Disallow: /oand/
+
+Sitemap: https://goodwebsites.ca/sitemap.xml

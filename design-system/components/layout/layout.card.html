@@ -1,0 +1,44 @@
+<!-- @dsCard group="Components" viewport="760x520" name="Bento Grid" subtitle="The house layout motif — outlined, hard-shadow tiles in soft tints" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  html,body{margin:0;background:var(--surface-page);color:var(--text-strong);font-family:var(--font-sans);}
+  #root{padding:30px 32px;}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sun-600);margin:0 0 4px;}
+  .disp{font-family:var(--font-display);font-weight:500;letter-spacing:-.02em;line-height:1.02;}
+  .muted{color:var(--text-muted);}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { Bento, BentoTile, Badge } = window.GoodWebsitesDesignSystem_790400;
+  function Demo(){
+    return (
+      <Bento columns={4} rowHeight={150}>
+        <BentoTile tone="sun" colSpan={2} rowSpan={2} style={{justifyContent:'space-between'}}>
+          <p className="eyebrow">Websites for naturopaths</p>
+          <h3 className="disp" style={{fontSize:34,margin:0}}>Good businesses need good websites.</h3>
+          <span className="muted" style={{fontSize:14}}>One monthly price, no big bill up front.</span>
+        </BentoTile>
+        <BentoTile tone="sky"><Badge variant="solid">Fast</Badge><p style={{margin:'auto 0 0',fontSize:15}}>Properly fast, every page.</p></BentoTile>
+        <BentoTile tone="coral" interactive><p style={{margin:'auto 0 0',fontWeight:700,fontSize:16}}>See plans →</p></BentoTile>
+        <BentoTile tone="ink" colSpan={2}><span className="disp" style={{fontSize:46,color:'var(--sun-400)'}}>4.9★</span><span style={{fontSize:14,color:'var(--paper-100)'}}>Average client rating</span></BentoTile>
+        <BentoTile tone="grass"><p style={{margin:'auto 0 0',fontSize:15}}>Handled for you.</p></BentoTile>
+        <BentoTile tone="grape"><p style={{margin:'auto 0 0',fontSize:15}}>Beautifully designed.</p></BentoTile>
+        <BentoTile tone="cream" colSpan={2}><span className="disp" style={{fontSize:28,margin:0}}>One plan. Everything in.</span></BentoTile>
+        <BentoTile tone="sun-solid"><p style={{margin:'auto 0 0',fontWeight:700,fontSize:15}}>Book a call</p></BentoTile>
+      </Bento>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script>
+</body>
+</html>

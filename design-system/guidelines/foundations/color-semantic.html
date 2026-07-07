@@ -1,0 +1,25 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Semantic & Status" subtitle="Success, info, warning, danger" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  html,body{margin:0;background:var(--surface-page);color:var(--text-strong);}
+  .wrap{padding:22px 28px;font-family:var(--font-sans);display:flex;gap:12px;}
+  .item{flex:1;display:flex;align-items:center;gap:10px;background:var(--surface-card);border:1px solid var(--border-soft);border-radius:var(--radius-md);padding:12px 14px;}
+  .dot{width:18px;height:18px;border-radius:50%;flex:none;}
+  .t{font-size:var(--text-sm);font-weight:700;}
+  .v{font-size:var(--text-2xs);color:var(--text-muted);}
+  .col{display:flex;flex-direction:column;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="item"><span class="dot" style="background:var(--success)"></span><span class="col"><span class="t">Success</span><span class="v">--success</span></span></div>
+  <div class="item"><span class="dot" style="background:var(--info)"></span><span class="col"><span class="t">Info</span><span class="v">--info</span></span></div>
+  <div class="item"><span class="dot" style="background:var(--warning)"></span><span class="col"><span class="t">Warning</span><span class="v">--warning</span></span></div>
+  <div class="item"><span class="dot" style="background:var(--danger)"></span><span class="col"><span class="t">Danger</span><span class="v">--danger</span></span></div>
+</div>
+</body>
+</html>

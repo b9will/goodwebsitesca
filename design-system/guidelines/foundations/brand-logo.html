@@ -1,0 +1,42 @@
+<!-- @dsCard group="Brand" viewport="700x260" name="Logo & Lockup" subtitle="Globe-and-smiley mark + Excon wordmark, three colorways" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  html,body{margin:0;background:var(--surface-page);}
+  .wrap{font-family:var(--font-sans);display:grid;grid-template-columns:1fr 1fr;}
+  .cell{display:flex;align-items:center;gap:14px;padding:30px 32px;}
+  .cell + .cell{border-left:1px solid var(--border-soft);}
+  .cell.b2{border-top:1px solid var(--border-soft);}
+  .cell.b3{border-top:1px solid var(--border-soft);}
+  .lockup{display:flex;align-items:center;gap:12px;}
+  .mark{width:38px;height:38px;}
+  .word{font-family:var(--font-display);font-weight:500;font-size:27px;letter-spacing:-.02em;line-height:1;}
+  .cream{background:var(--surface-page);}
+  .cream .word{color:var(--ink-900);}
+  .dark{background:var(--ink-900);}
+  .dark .word{color:var(--paper-50);}
+  .sun{background:var(--sun-400);}
+  .sun .word{color:var(--ink-900);}
+  .tag{font-size:var(--text-2xs);color:var(--text-muted);font-weight:700;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;}
+  .dark .tag{color:var(--ink-400);}
+  .sun .tag{color:var(--sun-700);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="cell cream">
+    <div class="lockup"><img class="mark" src="../../assets/logo/gw-icon.png" alt="" /><span class="word">Good&nbsp;Websites</span></div>
+  </div>
+  <div class="cell cream" style="justify-content:flex-end;"><span class="tag">Primary lockup</span></div>
+  <div class="cell dark b2">
+    <div class="lockup"><img class="mark" src="../../assets/logo/gw-icon-light.png" alt="" /><span class="word">Good&nbsp;Websites</span></div>
+  </div>
+  <div class="cell sun b3">
+    <div class="lockup"><img class="mark" src="../../assets/logo/gw-icon.png" alt="" /><span class="word">Good&nbsp;Websites</span></div>
+  </div>
+</div>
+</body>
+</html>

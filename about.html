@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About Good Websites — Naturopath Web Design Studio</title>
+  <meta name="description" content="Good Websites was built by two agency veterans who spent years building high-end digital products — and decided to bring that quality to naturopathic practices at a fair monthly price.">
+  <link rel="canonical" href="https://goodwebsites.ca/about.html">
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://goodwebsites.ca/about.html">
+  <meta property="og:title"       content="About Good Websites — Naturopath Web Design Studio">
+  <meta property="og:description" content="Two agency veterans. One niche. We build beautiful, fast websites for naturopathic doctors — and handle everything so you can focus on patients.">
+  <meta name="twitter:card"        content="summary_large_image">
+  <link rel="icon" href="assets/images/icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=excon@400,700,800&f[]=ranade@400,500,700&display=swap">
+  <link rel="preload" href="assets/fonts/Excon-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/Ranade-Light.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/tokens.css?v=10">
+  <link rel="stylesheet" href="css/base.css?v=10">
+  <link rel="stylesheet" href="css/components.css?v=10">
+  <link rel="stylesheet" href="css/pages.css?v=11">
+  <noscript><style>.reveal,.tl-era{opacity:1!important;transform:none!important} #tl-progress{transform:scaleX(1)!important}</style></noscript>
+
+  <style>
+    /* ─────────────────────────────────────────────────────────────────
+       GLOBAL: Page-level overrides
+    ───────────────────────────────────────────────────────────────── */
+    #main .badge  { letter-spacing: 0.06em; }
+
+    /* ─────────────────────────────────────────────────────────────────
+       HERO — left-aligned, poster scale
+    ───────────────────────────────────────────────────────────────── */
+    .ab-hero {
+      padding: clamp(100px, 14vw, 180px) 0 clamp(3rem, 6vw, 6rem);
+      border-bottom: 2px solid var(--ink-900);
+    }
+    .ab-hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: clamp(2rem, 6vw, 5rem);
+      align-items: center;
+    }
+    .ab-hero-eyebrow { margin-bottom: var(--space-4); }
+    .ab-hero-h1      { margin-bottom: var(--space-5); }
+    .ab-hero-lead    { max-width: 42ch; margin-bottom: var(--space-6); }
+    .ab-hero-ctas    { display: flex; gap: var(--space-3); flex-wrap: wrap; }
+
+    /* Stamp blocks */
+    .ab-stamps {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+    }
+    .ab-stamp {
+      border: 2px solid var(--ink-900);
+      box-shadow: var(--shadow-hard);
+      padding: var(--space-5);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+      border-radius: 4px;
+      transition: transform 120ms var(--ease-spring), box-shadow 120ms var(--ease-out);
+    }
+    .ab-stamp:hover {
+      transform: translate(-3px,-3px) !important;
+      box-shadow: var(--shadow-hard-xl);
+    }
+    .ab-stamp-num {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2.4rem, 3.5vw, 3.25rem);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: var(--ink-900);
+    }
+    .ab-stamp-label {
+      font-size: var(--text-2xs);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-600);
+    }
+    .ab-stamp--sun   { background: var(--sun-400); }
+    .ab-stamp--coral { background: var(--coral-200); }
+    .ab-stamp--sky   { background: var(--sky-200); }
+    .ab-stamp--grass { background: var(--grass-200); }
+
+    /* ─────────────────────────────────────────────────────────────────
+       MARQUEE STRIP
+    ───────────────────────────────────────────────────────────────── */
+    .ab-marquee {
+      overflow: hidden;
+      background: var(--ink-900);
+      border-bottom: 2px solid var(--ink-900);
+      padding: 14px 0;
+      user-select: none;
+    }
+    .ab-marquee-track {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-6);
+      animation: ab-marquee 24s linear infinite;
+      will-change: transform;
+    }
+    @keyframes ab-marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ab-marquee-track { animation-play-state: paused; }
+    }
+    .ab-marquee-item {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sun-400);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .ab-marquee-sep {
+      color: var(--ink-600);
+      font-size: 0.6rem;
+      flex-shrink: 0;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────
+       HORIZONTAL TIMELINE
+    ───────────────────────────────────────────────────────────────── */
+    :root { --tl-h: 100vh; }
+
+    #tl-section {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 2px solid var(--ink-900);
+    }
+
+    /* Yellow progress bar at very top of section */
+    #tl-progress-wrap {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: rgba(255,255,255,0.08);
+      z-index: 20;
+    }
+    #tl-progress {
+      height: 100%;
+      background: var(--sun-400);
+      transform: scaleX(0);
+      transform-origin: left center;
+    }
+
+    .tl-outer {
+      overflow: hidden;
+      height: var(--tl-h);
+    }
+
+    .tl-track {
+      display: flex;
+      align-items: stretch;
+      height: var(--tl-h);
+      width: max-content;
+      position: relative;
+    }
+
+    /* ── Intro card (dark slab) ─────────────────────────────────── */
+    .tl-intro-card {
+      width: 320px;
+      flex-shrink: 0;
+      background: var(--ink-900);
+      color: var(--paper-50);
+      border-right: 2px solid var(--paper-200);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: var(--space-8);
+      position: relative;
+      overflow: hidden;
+    }
+    /* "EST. 2007" stamp in top-left of intro card */
+    .tl-intro-stamp {
+      position: absolute;
+      top: var(--space-7);
+      left: var(--space-7);
+      border: 2px solid var(--sun-400);
+      padding: var(--space-2) var(--space-3);
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sun-400);
+      transform: rotate(-3deg);
+    }
+    .tl-intro-card .eyebrow { color: var(--sun-400); margin-bottom: var(--space-3); }
+    .tl-intro-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      color: var(--paper-50);
+      margin-bottom: var(--space-3);
+    }
+    .tl-intro-sub {
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.45);
+      line-height: var(--leading-relaxed);
+    }
+    .tl-scroll-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--sun-400);
+      margin-top: var(--space-5);
+    }
+    .tl-scroll-hint svg { animation: hint-drift 1.8s ease-in-out infinite; }
+    @keyframes hint-drift {
+      0%, 100% { transform: translateX(0); }
+      55%       { transform: translateX(7px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .tl-scroll-hint svg { animation: none; }
+    }
+
+    /* ── Era card — full-height slab ────────────────────────────── */
+    .tl-era {
+      width: 360px;
+      height: 100%;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: var(--space-8);
+      position: relative;
+      overflow: hidden;
+      background: var(--era-bg, var(--paper-100));
+      border-right: 2px solid var(--ink-900);
+    }
+
+    /* Ghost year — very large, behind content */
+    .tl-ghost {
+      position: absolute;
+      left: -0.12em;
+      bottom: -0.1em;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 13rem;
+      letter-spacing: -0.08em;
+      color: var(--ink-900);
+      opacity: 0.07;
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+      z-index: 0;
+      white-space: nowrap;
+    }
+
+    /* ── Polaroid pop-culture cards ─────────────────────────── */
+    .tl-polaroid {
+      position: absolute;
+      z-index: 2;
+      background: #fff;
+      padding: 6px 6px 26px;
+      box-shadow: 4px 6px 18px rgba(0,0,0,0.22), 1px 2px 4px rgba(0,0,0,0.10);
+    }
+    .tl-polaroid-photo {
+      width: 90px;
+      height: 90px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .tl-polaroid-inner {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      text-align: center;
+      color: var(--ink-900);
+      text-transform: uppercase;
+    }
+    .tl-polaroid-label {
+      font-family: var(--font-sans);
+      font-style: italic;
+      font-size: 0.48rem;
+      letter-spacing: 0.04em;
+      color: #3a3028;
+      text-align: center;
+      padding-top: 5px;
+      line-height: 1.35;
+    }
+
+    /* Era content sits on top of ghost */
+    .tl-era-content { position: relative; z-index: 1; }
+
+    .tl-tags  { display: flex; gap: var(--space-2); flex-wrap: wrap; margin-bottom: var(--space-3); }
+    .tl-year  {
+      font-family: var(--font-display); font-weight: 800;
+      font-size: 0.65rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--sun-700);
+      margin-bottom: var(--space-2);
+    }
+    .tl-headline {
+      font-family: var(--font-display); font-weight: 800;
+      font-size: clamp(1rem, 1.5vw, 1.25rem);
+      letter-spacing: var(--tracking-tight);
+      color: var(--text-strong); line-height: 1.2;
+      margin-bottom: var(--space-3);
+    }
+    .tl-body {
+      font-size: var(--text-sm); color: var(--text-body);
+      line-height: var(--leading-relaxed);
+    }
+    /* Vivid-bg cards: keep text legible */
+    .tl-era[style*="coral-400"] .tl-headline,
+    .tl-era[style*="grass-400"] .tl-headline { color: var(--ink-900); }
+    .tl-era[style*="coral-400"] .tl-body,
+    .tl-era[style*="grass-400"] .tl-body     { color: var(--ink-700); }
+    .tl-era[style*="coral-400"] .tl-ghost,
+    .tl-era[style*="grass-400"] .tl-ghost    { opacity: 0.12; }
+
+    /* ─────────────────────────────────────────────────────────────────
+       Mission / Vision (unchanged — will be polished in next pass)
+    ───────────────────────────────────────────────────────────────── */
+    .mv-section {
+      padding: var(--space-11) 0;
+      position: relative; overflow: hidden;
+    }
+    .mv-section--mission { background: var(--surface-sun); border-bottom: 2px solid var(--ink-900); }
+    .mv-section--vision  { background: var(--ink-900); }
+    .mv-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--space-12); align-items: center;
+    }
+    .mv-label-col { display: flex; flex-direction: column; gap: var(--space-5); }
+    .mv-doodle {
+      width: 80px; height: 80px;
+      border: 2px solid currentColor;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .mv-doodle svg { width: 48px; height: 48px; }
+    .mv-quote {
+      font-family: var(--font-display); font-weight: 800;
+      font-size: clamp(1.6rem, 2.8vw, 2.6rem);
+      letter-spacing: var(--tracking-tighter); line-height: 1.12;
+    }
+    .mv-section--mission .mv-quote { color: var(--ink-900); }
+    .mv-section--vision  .mv-quote { color: var(--paper-50); }
+    .mv-section--vision  .mv-label-col { color: var(--paper-50); }
+    .mv-section--vision  .eyebrow { color: var(--sun-400); }
+    .mv-bg-letter {
+      position: absolute; pointer-events: none;
+      font-family: var(--font-display); font-weight: 800;
+      font-size: 28rem; line-height: 1;
+      color: var(--paper-50); opacity: 0.03;
+      bottom: -3rem; right: -2rem;
+      letter-spacing: -0.08em;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────
+       Team section — neo-brutalist portrait blocks
+    ───────────────────────────────────────────────────────────────── */
+    .team-section {
+      background: var(--paper-50);
+      border-bottom: 2px solid var(--ink-900);
+      padding: var(--space-11) 0;
+    }
+    .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); margin-top: var(--space-8); }
+    .team-card {
+      border: 2px solid var(--ink-900);
+      box-shadow: var(--shadow-hard-xl);
+      background: var(--paper-100);
+      padding: var(--space-7);
+    }
+    .team-portrait-wrap {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border: 2px solid var(--ink-900);
+      box-shadow: var(--shadow-hard);
+      background: var(--sun-200);
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: var(--space-6);
+      font-family: var(--font-display); font-weight: 800;
+      font-size: 6rem; color: var(--ink-900);
+    }
+    .team-portrait-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    .team-card--will { transform: rotate(-1deg); }
+    .team-card--will:hover { transform: rotate(-1deg) translate(-2px,-2px); box-shadow: var(--shadow-hard-xl); }
+    .team-card--rylan { transform: rotate(1deg); background: var(--surface-sun); }
+    .team-card--rylan:hover { transform: rotate(1deg) translate(-2px,-2px); box-shadow: var(--shadow-hard-xl); }
+    .team-name {
+      font-family: var(--font-display); font-weight: 800;
+      font-size: clamp(1.25rem, 2vw, 1.6rem);
+      letter-spacing: -0.03em; line-height: 1.1;
+      color: var(--text-strong); margin-bottom: var(--space-1);
+    }
+    .team-role {
+      font-family: var(--font-sans); font-weight: 700;
+      font-size: var(--text-xs); letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--ink-600);
+      margin-bottom: var(--space-4);
+    }
+    .team-bio { font-size: var(--text-sm); color: var(--text-body); line-height: var(--leading-relaxed); }
+    .team-card-inner { display: flex; gap: var(--space-6); align-items: flex-start; }
+
+    /* ─────────────────────────────────────────────────────────────────
+       Responsive
+    ───────────────────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .ab-hero-inner { grid-template-columns: 1fr; }
+      .ab-stamps { grid-template-columns: repeat(4, 1fr); }
+      .mv-inner  { grid-template-columns: 1fr; gap: var(--space-8); }
+    }
+    @media (max-width: 900px) {
+      .team-grid { grid-template-columns: 1fr; max-width: 480px; }
+      .team-card--will, .team-card--rylan { transform: none; }
+      .team-card--will:hover, .team-card--rylan:hover { transform: translate(-2px,-2px); }
+    }
+    @media (max-width: 800px) {
+      /* Disable horizontal scroll — stack vertically */
+      #tl-section { overflow: visible; }
+      .tl-outer   { overflow: visible; height: auto; }
+      #tl-progress-wrap { display: none; }
+      .tl-track {
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+      }
+      .tl-intro-card {
+        width: 100%;
+        border-right: none;
+        border-bottom: 2px solid var(--paper-200);
+        min-height: 260px;
+      }
+      .tl-era {
+        width: 100%;
+        min-height: 380px;
+        border-right: none;
+        border-bottom: 2px solid var(--ink-900);
+      }
+      .tl-ghost { font-size: 8rem; }
+      .tl-scroll-hint { display: none; }
+    }
+    @media (max-width: 640px) {
+      .ab-stamps { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .team-card-inner { flex-direction: column; }
+      .steps-grid { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-transition" id="page-transition"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="site-header">
+    <nav class="nav">
+      <a class="nav-brand" href="/">
+        <img src="assets/images/goodwebsites_logo-icon.png" alt="" width="30" height="30">
+        Good Websites
+      </a>
+      <div class="nav-tabs" id="nav-tabs">
+        <div class="nav-slider" id="nav-slider" aria-hidden="true"></div>
+        <a href="work.html">Work</a>
+        <a href="blog/">Blog</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html" aria-current="page">About</a>
+      </div>
+      <div class="nav-end">
+        <a class="btn btn--primary btn--sm" href="book.html">Book a call</a>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </nav>
+    <div class="nav-links" id="nav-links">
+      <a href="work.html">Work</a>
+      <a href="blog/">Blog</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
+      <a class="btn btn--primary" href="book.html">Book a call</a>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ══════════════════════════════════════════════════════
+         HERO — left-aligned, poster scale, stamp stats
+    ══════════════════════════════════════════════════════ -->
+    <section class="ab-hero">
+      <div class="container">
+        <div class="ab-hero-inner">
+
+          <!-- Type column -->
+          <div class="ab-hero-copy">
+            <p class="eyebrow ab-hero-eyebrow" style="color:var(--sun-600)">We've been at this a while</p>
+            <h1 class="display display-xl ab-hero-h1">
+              We built our<br>first website<br>before the<br>iPhone existed.
+            </h1>
+            <p class="lead ab-hero-lead">
+              Every platform, every algorithm change, every AI search era — we've been in it. We built Good Websites because we got tired of watching good practitioners be invisible online.
+            </p>
+            <div class="ab-hero-ctas">
+              <a class="btn btn--primary btn--lg" href="start.html">Start now <span class="arrow">&rarr;</span></a>
+              <a class="btn btn--dark btn--lg" href="book.html">Book a call</a>
+            </div>
+          </div>
+
+          <!-- Stamp blocks column -->
+          <div class="ab-stamps">
+            <div class="ab-stamp ab-stamp--sun" style="transform:rotate(-3deg)">
+              <span class="ab-stamp-num">2007</span>
+              <span class="ab-stamp-label">Building since</span>
+            </div>
+            <div class="ab-stamp ab-stamp--coral" style="transform:rotate(2deg)">
+              <span class="ab-stamp-num">7</span>
+              <span class="ab-stamp-label">Platform eras</span>
+            </div>
+            <div class="ab-stamp ab-stamp--sky" style="transform:rotate(-1.5deg)">
+              <span class="ab-stamp-num">1</span>
+              <span class="ab-stamp-label">Niche chosen</span>
+            </div>
+            <div class="ab-stamp ab-stamp--grass" style="transform:rotate(3deg)">
+              <span class="ab-stamp-num">CA</span>
+              <span class="ab-stamp-label">Canada-wide</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         MARQUEE STRIP
+    ══════════════════════════════════════════════════════ -->
+    <div class="ab-marquee" aria-hidden="true">
+      <div class="ab-marquee-track">
+        <span class="ab-marquee-item">Building since 2007</span>
+        <span class="ab-marquee-sep">✦</span>
+        <span class="ab-marquee-item">7 platform eras</span>
+        <span class="ab-marquee-sep">✦</span>
+        <span class="ab-marquee-item">Naturopaths only</span>
+        <span class="ab-marquee-sep">✦</span>
+        <span class="ab-marquee-item">Canada-wide</span>
+        <span class="ab-marquee-sep">✦</span>
+        <span class="ab-marquee-item">Agency quality</span>
+        <span class="ab-marquee-sep">✦</span>
+        <span class="ab-marquee-item">Subscription price</span>
+        <span class="ab-marquee-sep">✦</span>
+        <span class="ab-marquee-item">Same-day edits</span>
+        <span class="ab-marquee-sep">✦</span>
+        <span class="ab-marquee-item">No contracts</span>
+        <span class="ab-marquee-sep">✦</span>
+        <!-- duplicate set for seamless loop -->
+        <span class="ab-marquee-item">Building since 2007</span>
+        <span class="ab-marquee-sep">✦</span>
+        <span class="ab-marquee-item">7 platform eras</span>
+        <span class="ab-marquee-sep">✦</span>
+        <span class="ab-marquee-item">Naturopaths only</span>
+        <span class="ab-marquee-sep">✦</span>
+        <span class="ab-marquee-item">Canada-wide</span>
+        <span class="ab-marquee-sep">✦</span>
+        <span class="ab-marquee-item">Agency quality</span>
+        <span class="ab-marquee-sep">✦</span>
+        <span class="ab-marquee-item">Subscription price</span>
+        <span class="ab-marquee-sep">✦</span>
+        <span class="ab-marquee-item">Same-day edits</span>
+        <span class="ab-marquee-sep">✦</span>
+        <span class="ab-marquee-item">No contracts</span>
+        <span class="ab-marquee-sep">✦</span>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════
+         HORIZONTAL TIMELINE
+    ══════════════════════════════════════════════════════ -->
+    <section id="tl-section" aria-label="Our story timeline">
+      <div id="tl-progress-wrap" aria-hidden="true">
+        <div id="tl-progress"></div>
+      </div>
+      <div class="tl-outer">
+        <div class="tl-track">
+
+          <!-- Intro slab -->
+          <div class="tl-intro-card">
+            <div class="tl-intro-stamp" aria-hidden="true">EST. 2007</div>
+            <p class="eyebrow">Our story</p>
+            <h2 class="tl-intro-title">18 years on the web.</h2>
+            <p class="tl-intro-sub">Every era changed the rules. We changed with them.</p>
+            <p class="tl-scroll-hint" aria-hidden="true">
+              Scroll to explore
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 8h12M9 3l5 5-5 5"/>
+              </svg>
+            </p>
+          </div>
+
+          <!-- ── 2007 ─────────────────────────────────────────── -->
+          <div class="tl-era" style="--era-bg:var(--sun-400)">
+            <span class="tl-ghost" aria-hidden="true">2007</span>
+            <div class="tl-polaroid" aria-hidden="true" style="top:var(--space-7);right:var(--space-7);transform:rotate(3deg)">
+              <div class="tl-polaroid-photo" style="background:var(--coral-200)">
+                <span class="tl-polaroid-inner">IDOL</span>
+              </div>
+              <p class="tl-polaroid-label">American Idol<br>Season 6</p>
+            </div>
+            <div class="tl-era-content">
+              <div class="tl-tags"><span class="badge badge--ink">WordPress</span><span class="badge badge--ink">HTML</span></div>
+              <p class="tl-year">2007</p>
+              <h3 class="tl-headline">My first website was for a local business. I was in high school.</h3>
+              <p class="tl-body">WordPress, raw HTML, a small business that needed Google. I had no idea what I was doing — but it ranked, and that clinic got more calls. That was enough to hook me for good.</p>
+            </div>
+          </div>
+
+          <!-- ── 2012 ─────────────────────────────────────────── -->
+          <div class="tl-era" style="--era-bg:var(--coral-400)">
+            <span class="tl-ghost" aria-hidden="true">2012</span>
+            <div class="tl-polaroid" aria-hidden="true" style="top:var(--space-8);right:var(--space-8);transform:rotate(-4deg)">
+              <div class="tl-polaroid-photo" style="background:var(--sky-200)">
+                <span class="tl-polaroid-inner">LDN<br>2012</span>
+              </div>
+              <p class="tl-polaroid-label">London Olympics<br>Usain Bolt ×3</p>
+            </div>
+            <div class="tl-era-content">
+              <div class="tl-tags"><span class="badge badge--ink">Agency</span><span class="badge badge--ink">CMS</span><span class="badge badge--ink">SEO</span></div>
+              <p class="tl-year">2012</p>
+              <h3 class="tl-headline">Agency life. Beautiful work — for clients with big budgets.</h3>
+              <p class="tl-body">I learned what great looked like. I also learned what it cost. The gap between what big clients got and what small practices could afford felt completely arbitrary.</p>
+            </div>
+          </div>
+
+          <!-- ── 2014 ─────────────────────────────────────────── -->
+          <div class="tl-era" style="--era-bg:var(--sky-200)">
+            <span class="tl-ghost" aria-hidden="true">2014</span>
+            <div class="tl-polaroid" aria-hidden="true" style="top:var(--space-7);right:var(--space-9);transform:rotate(5deg)">
+              <div class="tl-polaroid-photo" style="background:var(--grass-200)">
+                <span class="tl-polaroid-inner">ICE<br>BKT</span>
+              </div>
+              <p class="tl-polaroid-label">Ice Bucket<br>Challenge</p>
+            </div>
+            <div class="tl-era-content">
+              <div class="tl-tags"><span class="badge badge--ink">Squarespace</span><span class="badge badge--ink">Templates</span></div>
+              <p class="tl-year">2014</p>
+              <h3 class="tl-headline">Squarespace arrived and every site looked exactly the same.</h3>
+              <p class="tl-body">Templates were a gift and a trap. Suddenly everyone had a website — and nobody ranked for anything because they were all identical.</p>
+            </div>
+          </div>
+
+          <!-- ── 2016 ─────────────────────────────────────────── -->
+          <div class="tl-era" style="--era-bg:var(--grass-400)">
+            <span class="tl-ghost" aria-hidden="true">2016</span>
+            <div class="tl-polaroid" aria-hidden="true" style="top:var(--space-8);right:var(--space-7);transform:rotate(-2deg)">
+              <div class="tl-polaroid-photo" style="background:var(--grape-200)">
+                <span class="tl-polaroid-inner">PKM<br>GO</span>
+              </div>
+              <p class="tl-polaroid-label">Pokémon GO<br>Summer 2016</p>
+            </div>
+            <div class="tl-era-content">
+              <div class="tl-tags"><span class="badge badge--ink">Webflow</span><span class="badge badge--ink">No-code</span></div>
+              <p class="tl-year">2016</p>
+              <h3 class="tl-headline">Webflow. Page builders. No-code promised everything.</h3>
+              <p class="tl-body">The tools got genuinely powerful. But nobody building them was thinking about the patient discovering a naturopath at 11pm who needed to trust someone before booking.</p>
+            </div>
+          </div>
+
+          <!-- ── 2019 ─────────────────────────────────────────── -->
+          <div class="tl-era" style="--era-bg:var(--grape-200)">
+            <span class="tl-ghost" aria-hidden="true">2019</span>
+            <div class="tl-polaroid" aria-hidden="true" style="top:var(--space-7);right:var(--space-8);transform:rotate(4deg)">
+              <div class="tl-polaroid-photo" style="background:var(--sun-400)">
+                <span class="tl-polaroid-inner">WE<br>THE<br>NORTH</span>
+              </div>
+              <p class="tl-polaroid-label">Raptors NBA<br>Champions</p>
+            </div>
+            <div class="tl-era-content">
+              <div class="tl-tags"><span class="badge badge--ink">Mobile-first</span><span class="badge badge--ink">Core Web Vitals</span></div>
+              <p class="tl-year">2019</p>
+              <h3 class="tl-headline">Google went mobile-first. A lot of practices went dark.</h3>
+              <p class="tl-body">Slow on mobile? You dropped. NDs on outdated WordPress themes had no idea until new-patient bookings stopped.</p>
+            </div>
+          </div>
+
+          <!-- ── 2023 ─────────────────────────────────────────── -->
+          <div class="tl-era" style="--era-bg:var(--coral-200)">
+            <span class="tl-ghost" aria-hidden="true">2023</span>
+            <div class="tl-polaroid" aria-hidden="true" style="top:var(--space-7);right:var(--space-7);transform:rotate(-3deg)">
+              <div class="tl-polaroid-photo" style="background:var(--grape-200)">
+                <span class="tl-polaroid-inner">BAR-<br>BEN-<br>HEIMER</span>
+              </div>
+              <p class="tl-polaroid-label">Cinema's<br>biggest weekend</p>
+            </div>
+            <div class="tl-era-content">
+              <div class="tl-tags"><span class="badge badge--ink">ChatGPT</span><span class="badge badge--ink">AI Search</span><span class="badge badge--ink">AEO</span></div>
+              <p class="tl-year">2023</p>
+              <h3 class="tl-headline">ChatGPT started recommending practitioners. The window opened.</h3>
+              <p class="tl-body">Practices with structured content and local markup got cited. The rest got ignored. The window to get ahead was open — briefly.</p>
+            </div>
+          </div>
+
+          <!-- ── 2025 ─────────────────────────────────────────── -->
+          <div class="tl-era" style="--era-bg:var(--sun-400)">
+            <span class="tl-ghost" aria-hidden="true">2025</span>
+            <div class="tl-polaroid" aria-hidden="true" style="top:var(--space-7);right:var(--space-8);transform:rotate(2deg)">
+              <div class="tl-polaroid-photo" style="background:var(--sky-200)">
+                <span class="tl-polaroid-inner">ERAS<br>TOUR</span>
+              </div>
+              <p class="tl-polaroid-label">Taylor Swift<br>closes the loop</p>
+            </div>
+            <div class="tl-era-content">
+              <div class="tl-tags"><span class="badge badge--ink">Good Websites</span><span class="badge badge--ink">Canada</span></div>
+              <p class="tl-year">2025</p>
+              <h3 class="tl-headline">We built what we always wished existed.</h3>
+              <p class="tl-body">Agency-quality sites for naturopaths at a subscription price that works for a solo practice. No big bill, no templates. Just a good website, handled for you.</p>
+            </div>
+          </div>
+
+        </div><!-- /tl-track -->
+      </div><!-- /tl-outer -->
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         MISSION — will be polished in next pass
+    ══════════════════════════════════════════════════════ -->
+    <section class="mv-section mv-section--mission" aria-label="Our mission">
+      <div class="container">
+        <div class="mv-inner reveal">
+          <div class="mv-label-col">
+            <div class="mv-doodle" aria-hidden="true">
+              <svg viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M26 4 L29.5 22.5 L48 26 L29.5 29.5 L26 48 L22.5 29.5 L4 26 L22.5 22.5 Z"/>
+                <path d="M41 10 L42.4 16 L48 17.5 L42.4 19 L41 25 L39.6 19 L34 17.5 L39.6 16 Z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="eyebrow" style="color:var(--sun-700);margin-bottom:var(--space-2)">Our mission</p>
+              <p style="font-size:var(--text-sm);color:var(--ink-600);line-height:var(--leading-relaxed);max-width:200px">Why we show up every day.</p>
+            </div>
+          </div>
+          <blockquote class="mv-quote">
+            Agency-quality websites for every naturopath in Canada — at a price that makes sense for a small practice.
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         VISION — will be polished in next pass
+    ══════════════════════════════════════════════════════ -->
+    <section class="mv-section mv-section--vision" aria-label="Our vision">
+      <div class="mv-bg-letter" aria-hidden="true">V</div>
+      <div class="container" style="position:relative;z-index:1">
+        <div class="mv-inner reveal">
+          <div class="mv-label-col">
+            <div class="mv-doodle" aria-hidden="true" style="border-color:var(--paper-50);color:var(--paper-50)">
+              <svg viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="26" cy="26" r="9"/>
+                <circle cx="26" cy="26" r="3.5" fill="currentColor"/>
+                <line x1="26" y1="4"  x2="26" y2="11"/>
+                <line x1="26" y1="41" x2="26" y2="48"/>
+                <line x1="4"  y1="26" x2="11" y2="26"/>
+                <line x1="41" y1="26" x2="48" y2="26"/>
+                <line x1="9.8"  y1="9.8"  x2="14.8" y2="14.8"/>
+                <line x1="37.2" y1="37.2" x2="42.2" y2="42.2"/>
+                <line x1="42.2" y1="9.8"  x2="37.2" y2="14.8"/>
+                <line x1="14.8" y1="37.2" x2="9.8"  y2="42.2"/>
+              </svg>
+            </div>
+            <div>
+              <p class="eyebrow" style="color:var(--sun-400);margin-bottom:var(--space-2)">Our vision</p>
+              <p style="font-size:var(--text-sm);color:rgba(255,255,255,0.45);line-height:var(--leading-relaxed);max-width:200px">Where we're taking this.</p>
+            </div>
+          </div>
+          <blockquote class="mv-quote">
+            Every naturopath who does great work has a website that shows it — so the right patients can find them, trust them, and book.
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         TEAM
+    ══════════════════════════════════════════════════════ -->
+    <section class="team-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="eyebrow">The team</p>
+          <h2 class="heading h1">Two people. Both obsessed.</h2>
+          <p class="lead">We're small by design. Every site we build gets our full attention.</p>
+        </div>
+        <div class="team-grid reveal">
+          <div class="team-card team-card--will">
+            <div class="team-portrait-wrap">
+              <img src="assets/images/will-robinson.jpg" alt="Will Robinson">
+            </div>
+            <p class="team-name">Will Robinson</p>
+            <p class="team-role">Design &amp; Strategy</p>
+            <p class="team-bio">Over a decade building digital products across branding, SaaS, and content businesses. Will leads design, client strategy, and makes sure every site looks the way it should — and works the way it needs to.</p>
+          </div>
+          <div class="team-card team-card--rylan">
+            <div class="team-portrait-wrap">
+              <img src="assets/images/rylan-shaver.jpg" alt="Rylan Shaver">
+            </div>
+            <p class="team-name">Rylan Shaver</p>
+            <p class="team-role">Engineering &amp; Systems</p>
+            <p class="team-bio">Full-stack engineer with deep roots in performance, tooling, and automation. Rylan built the AI-assisted workflows and component systems that let us move at agency speed without the agency overhead.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         PROCESS — will be polished in next pass
+    ══════════════════════════════════════════════════════ -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="eyebrow">Our process</p>
+          <h2 class="heading h1">How it works.</h2>
+          <p class="lead">Simple, fast, and transparent from day one.</p>
+        </div>
+        <div class="steps-grid reveal" style="grid-template-columns:repeat(4,1fr)">
+          <div class="card card--sticker step">
+            <div class="step-number" aria-hidden="true">1</div>
+            <h3>Discovery call</h3>
+            <p>20 minutes. We learn about your practice, goals, and current site. We recommend the right plan.</p>
+          </div>
+          <div class="card card--sticker step">
+            <div class="step-number" aria-hidden="true">2</div>
+            <h3>Design</h3>
+            <p>We build a complete site in one sprint — one clean direction, done properly and fast.</p>
+          </div>
+          <div class="card card--sticker step">
+            <div class="step-number" aria-hidden="true">3</div>
+            <h3>Launch</h3>
+            <p>Your site goes live. We migrate content, connect your domain, and handle every technical detail.</p>
+          </div>
+          <div class="card card--sticker step">
+            <div class="step-number" aria-hidden="true">4</div>
+            <h3>Ongoing care</h3>
+            <p>Email us changes, new pages, seasonal updates — we handle it, usually same day.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         VALUES — will be polished in next pass
+    ══════════════════════════════════════════════════════ -->
+    <section class="section" style="background:var(--surface-page-alt)">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="eyebrow">What we believe</p>
+          <h2 class="heading h1">Our principles.</h2>
+        </div>
+        <div class="reveal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-5)">
+          <div class="card card--sticker" style="padding:var(--space-7)">
+            <p class="eyebrow" style="color:var(--sun-500);margin-bottom:var(--space-3)">01</p>
+            <h3 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--text-h3);letter-spacing:var(--tracking-tight);margin-bottom:var(--space-3)">Honest pricing</h3>
+            <p style="font-size:var(--text-sm);color:var(--text-muted);line-height:var(--leading-relaxed)">One price. Everything in. No upsells, no hidden fees, no surprises on invoice day.</p>
+          </div>
+          <div class="card card--sticker" style="background:var(--surface-sun);padding:var(--space-7)">
+            <p class="eyebrow" style="color:var(--sun-700);margin-bottom:var(--space-3)">02</p>
+            <h3 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--text-h3);letter-spacing:var(--tracking-tight);margin-bottom:var(--space-3)">Speed without shortcuts</h3>
+            <p style="font-size:var(--text-sm);color:var(--ink-600);line-height:var(--leading-relaxed)">We're fast because of our systems, not because we cut corners. Every site gets the same care.</p>
+          </div>
+          <div class="card card--sticker" style="padding:var(--space-7)">
+            <p class="eyebrow" style="color:var(--sun-500);margin-bottom:var(--space-3)">03</p>
+            <h3 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--text-h3);letter-spacing:var(--tracking-tight);margin-bottom:var(--space-3)">Built for what's next</h3>
+            <p style="font-size:var(--text-sm);color:var(--text-muted);line-height:var(--leading-relaxed)">We build for AI search, structured data, and evolving web standards — not just what ranks today.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         CTA
+    ══════════════════════════════════════════════════════ -->
+    <section class="section cta-section" style="background:var(--surface-sun);position:relative;overflow:hidden">
+      <img src="assets/accents/sparkle.webp" alt="" aria-hidden="true" class="accent accent--ink accent--float" width="36" height="36" loading="lazy" style="top:15%;left:8%;--accent-rot:-12deg;opacity:0.18">
+      <img src="assets/accents/star.webp" alt="" aria-hidden="true" class="accent accent--ink accent--float" width="28" height="28" loading="lazy" style="bottom:18%;right:10%;--accent-rot:20deg;opacity:0.15;animation-delay:-1.5s">
+      <div class="container reveal">
+        <h2 class="heading h1">Want to work with us?</h2>
+        <p class="lead" style="color:var(--ink-600)">Book a 20-minute call. We'll look at your current site and talk about what a good one could do for your practice.</p>
+        <div style="display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap">
+          <a class="btn btn--dark btn--lg" href="start.html">Start the questionnaire <span class="arrow">&rarr;</span></a>
+          <a class="btn btn--secondary btn--lg" href="book.html">Book a call instead</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="nav-brand" href="/" style="font-size:var(--text-sm)">
+          <img src="assets/images/goodwebsites_logo-icon.png" alt="" width="24" height="24">
+          Good Websites
+        </a>
+        <p>Websites for naturopaths. Beautifully made, properly fast, handled for you.</p>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-title">Pages</span>
+        <a href="work.html">Work</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="book.html">Book a call</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-title">Learn</span>
+        <a href="blog/">Blog</a>
+        <a href="naturopath-websites/">Naturopath websites</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-title">Connect</span>
+        <a href="mailto:hello@goodwebsites.ca">hello@goodwebsites.ca</a>
+        <a href="https://www.instagram.com/goodwebsites.ca" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Good Websites &middot; <a href="https://b9.digital" target="_blank" rel="noopener noreferrer">B9 Digital</a></span>
+      <a href="privacy.html">Privacy</a>
+    </div>
+  </footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "WebPage", "url": "https://goodwebsites.ca/about.html", "name": "About Good Websites — Naturopath Web Design Studio", "inLanguage": "en" },
+      { "@type": "Person", "name": "Will Robinson", "jobTitle": "Design & Strategy", "worksFor": { "@type": "Organization", "name": "Good Websites", "url": "https://goodwebsites.ca" } },
+      { "@type": "Person", "name": "Rylan Shaver", "jobTitle": "Engineering & Systems", "worksFor": { "@type": "Organization", "name": "Good Websites", "url": "https://goodwebsites.ca" } }
+    ]
+  }
+  </script>
+
+  <script src="js/main.js?v=10" defer></script>
+  <script src="js/vendor/gsap.min.js" defer></script>
+  <script src="js/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="js/animations.js?v=4" defer></script>
+  <script src="js/about.js?v=4" defer></script>
+</body>
+</html>

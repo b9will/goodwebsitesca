@@ -1,0 +1,39 @@
+<!-- @dsCard group="Brand" viewport="700x230" name="Shadows" subtitle="Hard 'sticker' offsets (signature) + warm soft shadows" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  html,body{margin:0;background:var(--surface-page);color:var(--text-strong);}
+  .wrap{padding:30px 32px;font-family:var(--font-sans);display:flex;gap:38px;flex-wrap:wrap;align-items:flex-start;}
+  .group{display:flex;gap:24px;align-items:flex-start;}
+  .col{display:flex;flex-direction:column;gap:12px;align-items:center;}
+  .box{width:84px;height:60px;background:var(--surface-card);border:2px solid var(--ink-900);border-radius:var(--radius-md);}
+  .soft{border:none;background:var(--surface-card);}
+  .name{font-size:var(--text-2xs);font-weight:700;}
+  .head{font-size:var(--text-2xs);font-weight:700;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--text-muted);width:100%;margin-bottom:-6px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div style="display:flex;flex-direction:column;gap:14px;">
+    <span class="head">Hard · sticker</span>
+    <div class="group">
+      <div class="col"><div class="box" style="box-shadow:var(--shadow-hard-sm)"></div><span class="name">hard-sm</span></div>
+      <div class="col"><div class="box" style="box-shadow:var(--shadow-hard)"></div><span class="name">hard</span></div>
+      <div class="col"><div class="box" style="box-shadow:var(--shadow-hard-lg)"></div><span class="name">hard-lg</span></div>
+      <div class="col"><div class="box" style="box-shadow:var(--shadow-hard-coral);border-color:var(--coral-500)"></div><span class="name">coral</span></div>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:14px;">
+    <span class="head">Soft · warm</span>
+    <div class="group">
+      <div class="col"><div class="box soft" style="box-shadow:var(--shadow-soft-sm)"></div><span class="name">soft-sm</span></div>
+      <div class="col"><div class="box soft" style="box-shadow:var(--shadow-soft)"></div><span class="name">soft</span></div>
+      <div class="col"><div class="box soft" style="box-shadow:var(--shadow-soft-lg)"></div><span class="name">soft-lg</span></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

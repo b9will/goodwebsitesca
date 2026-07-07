@@ -1,0 +1,33 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="Big Numbers" subtitle="Stat strip on cream with a sun panel" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  html,body{margin:0;}
+  .slide{width:1280px;height:720px;background:var(--surface-page);color:var(--ink-900);font-family:var(--font-sans);padding:64px 72px;box-sizing:border-box;display:flex;flex-direction:column;}
+  .eyebrow{font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);}
+  h2{font-family:var(--font-display);font-weight:500;font-size:60px;letter-spacing:-.025em;margin:10px 0 0;max-width:20ch;}
+  .grid{margin-top:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .stat{border:2px solid var(--ink-900);border-radius:var(--radius-xl);padding:36px 32px;}
+  .stat .n{font-family:var(--font-display);font-weight:500;font-size:88px;line-height:.95;letter-spacing:-.03em;}
+  .stat .l{font-size:19px;color:var(--text-body);margin-top:8px;}
+  .stat.sun{background:var(--sun-400);box-shadow:var(--shadow-hard-lg);}
+  .stat.ink{background:var(--ink-900);color:var(--paper-50);}
+  .stat.ink .n{color:var(--sun-400);}
+  .stat.ink .l{color:var(--paper-100);}
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="eyebrow">Why it matters</div>
+  <h2>A good site pays for itself.</h2>
+  <div class="grid">
+    <div class="stat sun"><div class="n">+42%</div><div class="l">More online orders in the first month</div></div>
+    <div class="stat"><div class="n">3 wks</div><div class="l">From hello to launch</div></div>
+    <div class="stat ink"><div class="n">98%</div><div class="l">Of clients would recommend us</div></div>
+  </div>
+</div>
+</body>
+</html>

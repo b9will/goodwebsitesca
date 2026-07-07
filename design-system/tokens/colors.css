@@ -1,0 +1,111 @@
+/* ============================================================
+   COLORS — Good Websites
+   Bold & poppy. Sunny gold hero, warm ink, cream paper,
+   and a tight set of saturated "block" accents.
+   ============================================================ */
+
+:root {
+  /* ---- Brand: Sun (primary) ---- */
+  --sun-50:  #FFF8E2;
+  --sun-100: #FFEFBF;
+  --sun-200: #FFE08A;
+  --sun-300: #FFD45E;
+  --sun-400: #FFC838;   /* hero gold */
+  --sun-500: #FFBE1A;   /* primary */
+  --sun-600: #F2A100;   /* hover / deeper */
+  --sun-700: #C97F00;   /* press / on-light text */
+
+  /* ---- Ink (warm near-black) ---- */
+  --ink-900: #1A1611;   /* darkest — dark sections, headlines */
+  --ink-800: #2A241D;
+  --ink-700: #3C342A;
+  --ink-600: #5A4F41;
+  --ink-500: #7A6E5D;   /* muted text */
+  --ink-400: #A99C88;
+
+  /* ---- Paper (warm cream neutrals) — lifted lighter & airier ---- */
+  --paper-0:  #FFFFFF;  /* card white */
+  --paper-50: #FEFCF7;  /* page — brighter cream */
+  --paper-100:#FBF7EF;  /* page alt */
+  --paper-200:#F5EEE1;  /* subtle fill */
+  --paper-300:#ECE2D2;  /* borders / lines */
+  --paper-400:#DCCDB4;
+
+  /* ---- Poppy accents (color blocks) ----
+     Each accent now carries a LIGHT tint (-100 / -200) for
+     bento fills — soft, sunlit, easy on cream — alongside the
+     saturated core (-400/-500) kept for emphasis & shadows. */
+  --coral-100: #FFE7DE;
+  --coral-200: #FFCDBC;
+  --coral-400: #FF7A52;
+  --coral-500: #FF5A36;   /* tomato coral */
+  --coral-600: #E8431F;
+
+  --grass-100: #DBF3E4;
+  --grass-200: #B6E7C9;
+  --grass-400: #2BBE6E;
+  --grass-500: #12A45A;   /* fresh green */
+  --grass-600: #0B8147;
+
+  --sky-100: #DEE9FF;
+  --sky-200: #BFD3FF;
+  --sky-400: #4D86FF;
+  --sky-500: #2F6BFF;     /* friendly blue */
+  --sky-600: #1B4FD6;
+
+  --grape-100: #E8E2FF;
+  --grape-200: #D2C6FF;
+  --grape-400: #8A6BFF;
+  --grape-500: #6C4CF1;   /* violet pop */
+  --grape-600: #5436D1;
+
+  /* ============================================================
+     SEMANTIC ALIASES — use these in components
+     ============================================================ */
+
+  /* Surfaces */
+  --surface-page:    var(--paper-50);
+  --surface-page-alt:var(--paper-100);
+  --surface-card:    var(--paper-0);
+  --surface-sunk:    var(--paper-200);
+  --surface-ink:     var(--ink-900);
+  --surface-sun:     var(--sun-400);
+
+  /* Bento tile fills — soft, sunlit tints for grid cells.
+     Pair with the 2px ink outline + hard shadow for the look. */
+  --tile-sun:   var(--sun-100);
+  --tile-coral: var(--coral-100);
+  --tile-grass: var(--grass-100);
+  --tile-sky:   var(--sky-100);
+  --tile-grape: var(--grape-100);
+  --tile-cream: var(--paper-100);
+  --tile-ink:   var(--ink-900);
+
+  /* Text */
+  --text-strong:  var(--ink-900);
+  --text-body:    var(--ink-700);
+  --text-muted:   var(--ink-500);
+  --text-on-ink:  var(--paper-50);
+  --text-on-ink-muted: var(--ink-400);
+  --text-on-sun:  var(--ink-900);   /* ink reads great on gold */
+  --text-link:    var(--sky-600);
+
+  /* Lines & borders */
+  --border-soft:  var(--paper-300);
+  --border-strong:var(--ink-900);
+
+  /* Brand actions */
+  --accent:        var(--sun-500);
+  --accent-hover:  var(--sun-600);
+  --accent-press:  var(--sun-700);
+  --accent-contrast: var(--ink-900);
+
+  /* Status */
+  --success: var(--grass-500);
+  --info:    var(--sky-500);
+  --warning: var(--sun-600);
+  --danger:  var(--coral-600);
+
+  /* Focus ring */
+  --focus-ring: var(--sky-500);
+}

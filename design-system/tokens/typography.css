@@ -1,0 +1,75 @@
+/* ============================================================
+   TYPOGRAPHY — Good Websites
+   Excon for display (rounded, confident, characterful).
+   Ranade for everything else (clean, humanist, friendly).
+   ============================================================ */
+
+:root {
+  /* ---- Families ---- */
+  --font-display: "Excon", "Helvetica Neue", Arial, sans-serif;
+  --font-sans:    "Ranade", "Helvetica Neue", Arial, sans-serif;
+  --font-mono:    ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* ---- Weights ---- */
+  --weight-light:   300;
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-bold:    700;
+  --weight-black:   800;
+  /* Excon's heaviest cut is 800; the display weight is Medium (500) */
+  --weight-display: 500;
+
+  /* ---- Type scale (clamped, fluid) ---- */
+  /* Display — Nippo, for hero moments */
+  --text-hero-2xl: clamp(3.5rem, 1.5rem + 8vw, 8rem); /* @kind other */
+  --text-hero-xl:  clamp(2.75rem, 1.4rem + 5.4vw, 5.5rem); /* @kind other */
+  --text-hero-lg:  clamp(2.25rem, 1.4rem + 3.4vw, 4rem); /* @kind other */
+  --text-hero-md:  clamp(1.875rem, 1.3rem + 2.3vw, 3rem); /* @kind other */
+
+  /* Headings — Satoshi bold/black */
+  --text-h1: 2.5rem;   /* 40 */
+  --text-h2: 2rem;     /* 32 */
+  --text-h3: 1.5rem;   /* 24 */
+  --text-h4: 1.25rem;  /* 20 */
+
+  /* Body & UI */
+  --text-lg:  1.25rem;  /* 20 — lead */
+  --text-md:  1.0625rem;/* 17 — body default */
+  --text-sm:  0.9375rem;/* 15 */
+  --text-xs:  0.8125rem;/* 13 */
+  --text-2xs: 0.6875rem;/* 11 — eyebrow / label */
+
+  /* ---- Line heights ---- */
+  --leading-tight:   1.02;  /* display */
+  --leading-snug:    1.12;  /* headings */
+  --leading-normal:  1.5;   /* body */
+  --leading-relaxed: 1.65;  /* long form */
+
+  /* ---- Letter spacing ---- */
+  --tracking-tighter: -0.03em;  /* big display */
+  --tracking-tight:   -0.015em; /* headings */
+  --tracking-normal:  0em;
+  --tracking-wide:    0.02em;
+  --tracking-eyebrow: 0.14em;   /* uppercase labels */
+}
+
+/* ---- Convenience text roles (optional helpers) ---- */
+.gw-display {
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+.gw-eyebrow {
+  font-family: var(--font-sans);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+}
+.gw-body {
+  font-family: var(--font-sans);
+  font-weight: var(--weight-regular);
+  font-size: var(--text-md);
+  line-height: var(--leading-normal);
+}

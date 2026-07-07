@@ -1,0 +1,24 @@
+<!-- @dsCard group="Brand" viewport="700x230" name="Motifs — Colour Blocks & Stickers" subtitle="How the brand uses solid blocks, outlines and offset shadows" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  html,body{margin:0;background:var(--surface-page);color:var(--text-strong);}
+  .wrap{padding:26px 30px;font-family:var(--font-sans);display:flex;gap:16px;align-items:stretch;flex-wrap:wrap;}
+  .block{border:2px solid var(--ink-900);border-radius:var(--radius-lg);padding:16px 18px;box-shadow:var(--shadow-hard);display:flex;flex-direction:column;justify-content:space-between;min-width:150px;min-height:120px;}
+  .block .k{font-size:var(--text-2xs);font-weight:700;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;}
+  .block .big{font-family:var(--font-display);font-size:30px;line-height:1;letter-spacing:-.02em;}
+  .pill{align-self:flex-start;font-size:var(--text-2xs);font-weight:700;padding:5px 12px;border-radius:var(--radius-pill);border:2px solid var(--ink-900);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="block" style="background:var(--sun-400);"><span class="k">Bright</span><span class="big">Good</span><span class="pill" style="background:var(--paper-0)">sun-400</span></div>
+  <div class="block" style="background:var(--coral-500);color:var(--paper-50);border-color:var(--ink-900);"><span class="k">Poppy</span><span class="big">Bold</span><span class="pill" style="background:var(--paper-0);color:var(--ink-900);">coral-500</span></div>
+  <div class="block" style="background:var(--ink-900);color:var(--paper-50);"><span class="k">Grounded</span><span class="big">Clear</span><span class="pill" style="background:var(--sun-400);color:var(--ink-900);border-color:var(--sun-400)">ink-900</span></div>
+  <div class="block" style="background:var(--paper-0);"><span class="k">Charming</span><span class="big">Easy</span><span class="pill" style="background:var(--grass-500);color:var(--paper-50);border-color:var(--ink-900)">outline</span></div>
+</div>
+</body>
+</html>

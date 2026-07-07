@@ -1,0 +1,37 @@
+<!-- @dsCard group="Components" viewport="700x240" name="Logo" subtitle="Sun mark + Excon wordmark, all colourways" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  html,body{margin:0;background:var(--surface-page);font-family:var(--font-sans);}
+  #root{display:grid;grid-template-columns:1fr 1fr;}
+  .cell{display:flex;align-items:center;gap:18px;padding:28px 30px;min-height:80px;}
+  .cell.dark{background:var(--ink-900);}
+  .cell.sun{background:var(--sun-400);}
+  .cell.b{border-top:1px solid var(--border-soft);}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { Logo } = window.GoodWebsitesDesignSystem_790400;
+  function Demo(){
+    return (
+      <React.Fragment>
+        <div className="cell"><Logo size="lg" /></div>
+        <div className="cell"><Logo markOnly size="lg" /><Logo size="sm" /></div>
+        <div className="cell dark b"><Logo colorway="light" size="lg" /></div>
+        <div className="cell sun b"><Logo colorway="onSun" size="lg" /></div>
+      </React.Fragment>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script>
+</body>
+</html>
