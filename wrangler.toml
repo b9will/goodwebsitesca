@@ -1,6 +1,6 @@
 name = "goodwebsitesca"
 compatibility_date = "2024-09-23"
-main = "_worker.js"
+main = "worker.js"
 
 [assets]
 directory = "."
