@@ -88,17 +88,8 @@ window.addEventListener('load', function () {
     }
   }
 
-  /* ── Below-timeline reveals ─────────────────────────────────────────── */
-  gsap.utils.toArray('.reveal').forEach(function (el) {
-    if (el.closest('#tl-section')) return;
-    gsap.from(el, {
-      opacity: 0,
-      y: prefersReduced ? 0 : 28,
-      duration: 0.6,
-      ease: 'power2.out',
-      scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none reverse' }
-    });
-  });
+  /* `.reveal` elements are owned by the CSS/IntersectionObserver system in
+     main.js — do not animate them here (one system per element). */
 
   ScrollTrigger.refresh();
 });

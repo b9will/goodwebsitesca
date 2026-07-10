@@ -14,13 +14,16 @@
   <link rel="icon" href="../assets/images/icon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=excon@400,700,800&f[]=ranade@400,500,700&display=swap">
-  <link rel="stylesheet" href="../css/tokens.css?v=10">
-  <link rel="stylesheet" href="../css/base.css?v=10">
-  <link rel="stylesheet" href="../css/components.css?v=10">
-  <link rel="stylesheet" href="../css/pages.css?v=10">
+  <link rel="stylesheet" href="../css/tokens.css?v=11">
+  <link rel="stylesheet" href="../css/base.css?v=11">
+  <link rel="stylesheet" href="../css/components.css?v=14">
+  <link rel="stylesheet" href="../css/pages.css?v=14">
+  <meta property="og:image" content="https://goodwebsites.ca/assets/images/og-card.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:image" content="https://goodwebsites.ca/assets/images/og-card.jpg">
 </head>
 <body>
-  <div class="page-transition" id="page-transition"></div>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header" id="site-header">
@@ -31,7 +34,7 @@
       </a>
       <div class="nav-tabs" id="nav-tabs">
         <div class="nav-slider" id="nav-slider" aria-hidden="true"></div>
-        <a href="../work.html">Work</a>
+        <a href="../work.html">Process</a>
         <a href="../blog/" aria-current="true">Blog</a>
         <a href="../pricing.html">Pricing</a>
         <a href="../about.html">About</a>
@@ -44,8 +47,9 @@
       </div>
     </nav>
     <div class="nav-links" id="nav-links">
-      <a href="../work.html">Work</a>
+      <a href="../work.html">Process</a>
       <a href="../blog/">Blog</a>
+        <a href="../resources/">Free resources</a>
       <a href="../pricing.html">Pricing</a>
       <a href="../about.html">About</a>
       <a class="btn btn--primary" href="../book.html">Book a call</a>
@@ -68,6 +72,8 @@
           <p class="lead">When someone searches "naturopath near me," the Google Maps panel that appears above every other result is driven by Google Business Profile. If you're not actively managing yours, you're handing patients to the NDs who are.</p>
           <hr class="article-divider">
         </header>
+
+        <img src="../blogimages/goodwebsitesblogimage6-googlemybusiness.webp" alt="Google Business Profile for a naturopathic clinic" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--radius-lg);border:2px solid var(--ink-900);margin-bottom:var(--space-8);display:block" loading="lazy">
 
         <h2 id="why-gbp-matters">Why GBP matters more than your website for local search</h2>
         <p>For searches with local intent — "naturopath Toronto," "naturopath near me," "naturopath open Saturday" — Google shows a map pack with three business listings before any organic website results. Getting into that map pack is often more valuable than ranking #1 in organic search.</p>
@@ -168,7 +174,7 @@
 
     </div>
 
-    <section class="section cta-section" style="background:var(--surface-sun);position:relative;overflow:hidden">
+    <section class="section cta-section section--textured" style="background:var(--surface-sun);position:relative;overflow:hidden">
       <div class="container">
         <h2 class="heading h1">Want your GBP done right?</h2>
         <p class="lead" style="color:var(--ink-600)">Our Practice and Authority plans include full Google Business Profile setup, optimization, and initial review strategy — alongside your new website.</p>
@@ -178,6 +184,16 @@
   </main>
 
   <footer class="site-footer">
+    <div class="footer-newsletter">
+      <div class="footer-newsletter-copy">
+        <p class="eyebrow">Monthly &middot; Free</p>
+        <p class="heading">Stay ahead of website trends.</p>
+      </div>
+      <form class="footer-newsletter-form" action="https://formspree.io/f/xwvdgedv" method="post">
+        <input type="email" name="email" placeholder="your@email.com" required autocomplete="email">
+        <button class="btn btn--dark" type="submit">Subscribe &rarr;</button>
+      </form>
+    </div>
     <div class="footer-inner">
       <div class="footer-brand">
         <a class="nav-brand" href="/" style="font-size:var(--text-sm)">
@@ -188,7 +204,7 @@
       </div>
       <div class="footer-col">
         <span class="footer-col-title">Pages</span>
-        <a href="../work.html">Work</a>
+        <a href="../work.html">Process</a>
         <a href="../pricing.html">Pricing</a>
         <a href="../about.html">About</a>
         <a href="../book.html">Book a call</a>
@@ -196,11 +212,13 @@
       <div class="footer-col">
         <span class="footer-col-title">Learn</span>
         <a href="../blog/">Blog</a>
+        <a href="../resources/">Free resources</a>
         <a href="../naturopath-websites/">Naturopath websites</a>
       </div>
       <div class="footer-col">
         <span class="footer-col-title">Connect</span>
         <a href="mailto:hello@goodwebsites.ca">hello@goodwebsites.ca</a>
+        <a href="https://www.instagram.com/goodwebsites.ca" target="_blank" rel="noopener noreferrer">Instagram</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -246,9 +264,9 @@
   }
   </script>
 
-  <script src="../js/main.js?v=10" defer></script>
+  <script src="../js/main.js?v=11" defer></script>
   <script src="../js/vendor/gsap.min.js" defer></script>
   <script src="../js/vendor/ScrollTrigger.min.js" defer></script>
-  <script src="../js/animations.js?v=4" defer></script>
+  <script src="../js/animations.js?v=8" defer></script>
 </body>
 </html>

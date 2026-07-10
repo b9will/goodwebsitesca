@@ -205,6 +205,7 @@
 /* Sticker base */
 .hero-sticker {
   position: absolute;
+  will-change: transform;
   background: var(--paper-0);
   border: 2px solid var(--ink-900);
   border-radius: var(--radius-xl);
@@ -498,8 +499,11 @@
   position: fixed;
   top: 0;
   left: 0;
+  --card-x: 0px;
+  --card-y: 0px;
   opacity: 0;
-  transform: translateY(8px) scale(0.97);
+  will-change: transform;
+  transform: translate(var(--card-x), var(--card-y)) translateY(8px) scale(0.97);
   pointer-events: none;
   width: 390px;
   aspect-ratio: 4/3;
@@ -513,7 +517,7 @@
 }
 .problem-card.visible {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translate(var(--card-x), var(--card-y)) translateY(0) scale(1);
 }
 #problem-card-photo {
   width: 100%; height: 100%;
@@ -855,6 +859,25 @@
   border-radius: var(--radius-pill);
 }
 
+/* ---- Yearly pricing strikethrough ---- */
+.price-was {
+  display: none;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-faint);
+  text-decoration: line-through;
+  margin-right: 4px;
+}
+.price-annual-note {
+  display: none;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+body.is-yearly .price-was { display: inline; }
+body.is-yearly .price-annual-note { display: block; }
+
 /* ---- FAQ ---- */
 .faq-list {
   max-width: 720px;
@@ -1031,9 +1054,8 @@
   box-shadow: var(--shadow-hard-lg);
   will-change: transform;
 }
-.testi-card:nth-child(1) { transform: rotateY(8deg)  translateY(28px);  }
-.testi-card:nth-child(2) { transform: rotateY(0deg)  translateY(0px);   }
-.testi-card:nth-child(3) { transform: rotateY(-8deg) translateY(-28px); }
+.testi-card:nth-child(1) { transform: rotateY(8deg)  translateY(14px);  }
+.testi-card:nth-child(2) { transform: rotateY(-8deg) translateY(-14px); }
 .testi-quote {
   font-family: var(--font-display);
   font-size: var(--text-h3);
@@ -1056,9 +1078,22 @@
   box-shadow: var(--shadow-hard);
   padding: var(--space-3) var(--space-4);
   display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 160px;
+}
+.testi-avatar {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 2px solid var(--ink-900);
+  object-fit: cover;
+}
+.testi-float-text {
+  display: flex;
   flex-direction: column;
   gap: 2px;
-  min-width: 160px;
 }
 .testi-name {
   font-size: var(--text-sm);
@@ -1423,7 +1458,7 @@
 }
 .blog-card:hover .blog-card-title { color: var(--text-muted); }
 .blog-card-img-wrap {
-  width: 100%; aspect-ratio: 16/9;
+  width: 100%; aspect-ratio: 1/1;
   background: var(--surface-sunk);
   overflow: hidden; position: relative;
   border-bottom: 2px solid var(--ink-900);
@@ -1734,3 +1769,120 @@
 
 @media (max-width: 900px) { .signup-grid { grid-template-columns: 1fr; max-width: 480px; margin-inline: auto; } }
 @media (max-width: 620px) { .chat-end-btns { flex-direction: column; } }
+
+/* ---- Process steps (work page) ---- */
+.process-section {
+  background: var(--ink-900);
+  padding-block: clamp(4rem, 8vw, 8rem);
+  position: relative;
+  overflow: hidden;
+}
+.process-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/textures/clean-textile.webp');
+  background-size: 320px;
+  opacity: 0.06;
+  pointer-events: none;
+}
+.process-section .container { position: relative; }
+.process-section .section-header .eyebrow { color: var(--sun-500); }
+.process-section .section-header .heading { color: var(--paper-50); }
+.process-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.process-row {
+  background: var(--paper-50);
+  border: 2px solid var(--ink-900);
+  border-radius: var(--radius-xl);
+  box-shadow: 5px 5px 0 0 var(--ink-900);
+  padding: var(--space-6) var(--space-8);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: var(--space-8);
+  position: relative;
+  cursor: default;
+  transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+}
+.process-row:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 0 var(--ink-900);
+}
+.process-divider { display: none; }
+.process-row-body { flex: 1; }
+.process-row-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-weight: var(--weight-display);
+  color: var(--ink-900);
+  line-height: 1.1;
+  margin-bottom: var(--space-2);
+}
+.process-row-desc {
+  font-size: var(--text-base);
+  color: var(--text-muted);
+  max-width: 52ch;
+  line-height: var(--leading-relaxed);
+}
+.process-row-num {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-weight: var(--weight-display);
+  color: rgba(0,0,0,0.07);
+  line-height: 1;
+  padding-top: 0.05em;
+  letter-spacing: -0.02em;
+}
+@media (max-width: 620px) {
+  .process-row { padding: var(--space-5) var(--space-5); gap: var(--space-4); }
+  .process-row-num { font-size: clamp(1.8rem, 8vw, 2.5rem); }
+}
+
+/* ---- Build quality grid (work page) ---- */
+.build-quality-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+.build-quality-item {
+  background: var(--paper-50);
+  border: 2px solid var(--ink-900);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-hard-sm);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.build-quality-item-label {
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  font-size: var(--text-base);
+  color: var(--ink-900);
+}
+.build-quality-item-sub {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+@media (max-width: 860px) { .build-quality-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .build-quality-grid { grid-template-columns: 1fr; } }
+
+/* ---- Texture utility ---- */
+.section--textured {
+  position: relative;
+}
+.section--textured::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/textures/clean-textile.webp');
+  background-size: 320px;
+  opacity: 0.045;
+  pointer-events: none;
+  z-index: 0;
+}
+.section--textured > * { position: relative; z-index: 1; }

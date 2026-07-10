@@ -118,6 +118,7 @@
 
   /* ---- Typography ---- */
   --font-display: "Excon", "Helvetica Neue", Arial, sans-serif;
+  --font-poster:  var(--font-display); /* poster-scale headlines (.display); override to trial display faces */
   --font-sans:    "Ranade", "Helvetica Neue", Arial, sans-serif;
   --font-mono:    ui-monospace, "SF Mono", Menlo, monospace;
 

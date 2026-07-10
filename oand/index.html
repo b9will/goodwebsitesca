@@ -8,8 +8,12 @@
   <link rel="icon" href="../assets/images/icon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=excon@400,700,800&f[]=ranade@400,500,700&display=swap">
-  <link rel="stylesheet" href="../css/tokens.css?v=10">
+  <link rel="stylesheet" href="../css/tokens.css?v=11">
   <link rel="stylesheet" href="oand.css">
+  <meta property="og:image" content="https://goodwebsites.ca/assets/images/og-card.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:image" content="https://goodwebsites.ca/assets/images/og-card.jpg">
 </head>
 <body>
 
@@ -41,11 +45,11 @@
       <div>
         <p class="eyebrow">Introduction</p>
         <h2 class="slide-heading">Hi, I'm Will Robinson.</h2>
-        <p class="slide-body">Web Designer, Webflow Developer, and Founder of Good Websites.</p>
+        <p class="slide-body">Web Designer, Developer, and Founder of Good Websites.</p>
         <p class="slide-body">I help businesses create professional websites that are clear, strategic, easy to grow, and built to support real business outcomes.</p>
       </div>
       <div style="display:flex;justify-content:center;align-items:center">
-        <div class="portrait-ph">WR</div>
+        <img src="../assets/images/will-robinson-developer.avif" alt="Will Robinson" style="width:100%;max-width:300px;aspect-ratio:3/4;object-fit:cover;border-radius:20px;display:block">
       </div>
     </div>
   </section>
@@ -252,8 +256,8 @@
           <div class="big-number__label">off any monthly plan,<br>as long as you're a member</div>
         </div>
         <div class="big-number big-number--accent">
-          <div class="big-number__value">+15%</div>
-          <div class="big-number__label">additional off when<br>you pay yearly</div>
+          <div class="big-number__value">+40%</div>
+          <div class="big-number__label">additional off when<br>you pay yearly upfront</div>
         </div>
       </div>
       <div class="benefit-tags">
@@ -265,7 +269,72 @@
     </div>
   </section>
 
-  <!-- ── 12. Why This Matters ── -->
+  <!-- ── 12. OAND Pricing ── -->
+  <section class="slide" id="s-pricing">
+    <div class="slide-inner">
+      <p class="eyebrow">OAND Member Pricing</p>
+      <h2 class="slide-heading">Simple pricing. Real savings.</h2>
+
+      <div class="oand-billing-toggle" id="oand-billing-toggle">
+        <span class="active" data-period="monthly">Monthly</span>
+        <div class="oand-toggle-switch" id="oand-toggle-switch" role="switch" aria-checked="false" tabindex="0"></div>
+        <span data-period="yearly">Yearly</span>
+        <span class="oand-save-badge">Save 49%</span>
+      </div>
+
+      <div class="card-grid card-grid--3">
+
+        <div class="deck-card">
+          <div class="price-card-label">Calling Card</div>
+          <del class="price-was" data-was-monthly="$99/mo" data-was-yearly="$59/mo">$99/mo</del>
+          <div class="price-amount price-oand-amount" data-monthly="85" data-yearly="51">$85<span>/mo</span></div>
+          <div class="price-oand-note" data-monthly="OAND member price · save 15%" data-yearly="billed as $606/yr · just $1.66/day">OAND member price · save 15%</div>
+          <hr class="price-divider">
+          <ul class="price-features">
+            <li>One-page professional site</li>
+            <li>Jane App booking link</li>
+            <li>Mobile-first design</li>
+            <li>On-page SEO setup</li>
+            <li>Hosting included</li>
+          </ul>
+        </div>
+
+        <div class="deck-card deck-card--featured">
+          <div class="price-card-label">Growth</div>
+          <del class="price-was" data-was-monthly="$199/mo" data-was-yearly="$119/mo">$199/mo</del>
+          <div class="price-amount price-oand-amount" data-monthly="170" data-yearly="102">$170<span>/mo</span></div>
+          <div class="price-oand-note" data-monthly="OAND member price · save 15%" data-yearly="billed as $1,218/yr · just $3.34/day">OAND member price · save 15%</div>
+          <hr class="price-divider">
+          <ul class="price-features">
+            <li>7+ page custom site</li>
+            <li>Jane App embedded</li>
+            <li>Local SEO strategy</li>
+            <li>Google Business setup</li>
+            <li>Ongoing edits included</li>
+          </ul>
+        </div>
+
+        <div class="deck-card">
+          <div class="price-card-label">Authority</div>
+          <del class="price-was" data-was-monthly="$349/mo" data-was-yearly="$209/mo">$349/mo</del>
+          <div class="price-amount price-oand-amount" data-monthly="297" data-yearly="178">$297<span>/mo</span></div>
+          <div class="price-oand-note" data-monthly="OAND member price · save 15%" data-yearly="billed as $2,136/yr · just $5.85/day">OAND member price · save 15%</div>
+          <hr class="price-divider">
+          <ul class="price-features">
+            <li>50+ page powerhouse</li>
+            <li>Condition landing pages</li>
+            <li>Blog + content strategy</li>
+            <li>Embedded Jane booking</li>
+            <li>Newsletter setup</li>
+          </ul>
+        </div>
+
+      </div>
+      <p class="price-footnote">All prices CAD · OAND members save 15% · Billed yearly: 40% annual + 15% OAND = save 49% total · Cancel anytime</p>
+    </div>
+  </section>
+
+  <!-- ── 13. Why This Matters ── -->
   <section class="slide" id="s12">
     <div class="slide-inner">
       <p class="eyebrow">The Impact</p>
@@ -309,14 +378,16 @@
       <p class="slide-brand">Good Websites</p>
       <h2 class="slide-display" style="color:#fff">Thank you.</h2>
       <p class="slide-subtitle" style="max-width:540px;margin:0 auto">Let's discuss how Good Websites can support OAND members with better websites, easier updates, and long-term digital growth.</p>
-      <div class="contact-box" style="margin-top:2.5rem">
-        <div class="contact-box__label">Get in touch</div>
-        <div class="contact-box__value">will@b9.digital</div>
+      <div class="contact-box" id="copy-email-btn" role="button" tabindex="0" aria-label="Copy email address" style="margin-top:2.5rem;cursor:pointer">
+        <div class="contact-box__label">Click to copy email</div>
+        <div class="contact-box__value">hello@goodwebsites.ca</div>
       </div>
     </div>
   </section>
 
 </div>
+
+<div class="copy-toast" id="copy-toast" aria-live="polite">Copied!</div>
 
 <!-- Progress bar -->
 <div class="deck-progress" id="progress"></div>

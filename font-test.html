@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Font Test — Good Websites (internal)</title>
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=excon@400,700,800&f[]=ranade@400,500,700&display=swap">
+  <link rel="stylesheet" href="css/tokens.css?v=11">
+  <link rel="stylesheet" href="css/base.css?v=11">
+  <link rel="stylesheet" href="css/components.css?v=14">
+  <link rel="stylesheet" href="css/pages.css?v=14">
+  <style>
+    /* Candidate faces — test page only, not loaded on the live site */
+    @font-face {
+      font-family: "Getai Grotesk Display";
+      src: url("assets/fonts/GetaiGroteskDisplay-Black.woff2") format("woff2");
+      font-weight: 900; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "Milkman";
+      src: url("assets/fonts/Milkman.woff2") format("woff2");
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "Lunchtype22";
+      src: url("assets/fonts/Lunchtype22-Regular.woff2") format("woff2");
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "Lunchtype22";
+      src: url("assets/fonts/Lunchtype22-Medium.woff2") format("woff2");
+      font-weight: 500; font-style: normal; font-display: swap;
+    }
+
+    /* ---- Combos: poster face (.display) + heading face (.heading) ---- */
+    body[data-combo="getai"]           { --font-poster: "Getai Grotesk Display", "Excon", sans-serif; }
+    body[data-combo="getai"] .display  { font-weight: 900; letter-spacing: -0.015em; }
+
+    body[data-combo="getai-lunch"]           { --font-poster: "Getai Grotesk Display", "Excon", sans-serif; }
+    body[data-combo="getai-lunch"] .display  { font-weight: 900; letter-spacing: -0.015em; }
+    body[data-combo="getai-lunch"] .heading,
+    body[data-combo="getai-lunch"] .eyebrow  { font-family: "Lunchtype22", sans-serif; font-weight: 500; }
+
+    body[data-combo="milkman"]           { --font-poster: "Milkman", "Excon", sans-serif; }
+    body[data-combo="milkman"] .display  { font-weight: 400; letter-spacing: 0; }
+    body[data-combo="milkman"] .heading,
+    body[data-combo="milkman"] .eyebrow  { font-family: "Lunchtype22", sans-serif; font-weight: 500; }
+
+    body[data-combo="lunch"]           { --font-poster: "Lunchtype22", sans-serif; }
+    body[data-combo="lunch"] .display  { font-weight: 500; letter-spacing: -0.02em; }
+    body[data-combo="lunch"] .heading  { font-family: "Lunchtype22", sans-serif; font-weight: 500; }
+
+    /* ---- Test-page chrome ---- */
+    .ft-bar {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+      padding: 12px var(--gutter);
+      background: var(--ink-900); color: var(--paper-50);
+    }
+    .ft-bar strong { font-size: var(--text-sm); margin-right: 8px; }
+    .ft-bar button {
+      font: inherit; font-size: var(--text-xs);
+      padding: 6px 14px; cursor: pointer;
+      background: var(--paper-50); color: var(--ink-900);
+      border: 2px solid var(--paper-50); border-radius: var(--radius-pill);
+    }
+    .ft-bar button[aria-pressed="true"] { background: var(--sun-400); border-color: var(--sun-400); font-weight: 700; }
+    .ft-note { font-size: 11px; opacity: 0.7; width: 100%; }
+    .ft-section { padding: var(--space-8) var(--gutter); max-width: var(--container-max); margin-inline: auto; }
+    .ft-label {
+      font-family: var(--font-mono); font-size: 11px; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--ink-500); opacity: 0.8;
+      border-top: 1px dashed var(--ink-300); padding-top: var(--space-3); margin-bottom: var(--space-5);
+    }
+    .ft-dark { background: var(--ink-900); }
+    .ft-dark .ft-label { color: var(--paper-200); }
+    .ft-pricing { display: flex; justify-content: center; }
+    .ft-pricing .price-card { max-width: 340px; }
+  </style>
+</head>
+<body data-combo="current">
+
+  <div class="ft-bar">
+    <strong>Poster font:</strong>
+    <button type="button" data-combo="current" aria-pressed="true">Current (Excon)</button>
+    <button type="button" data-combo="getai" aria-pressed="false">Getai Black</button>
+    <button type="button" data-combo="getai-lunch" aria-pressed="false">Getai + Lunchtype headings</button>
+    <button type="button" data-combo="milkman" aria-pressed="false">Milkman + Lunchtype</button>
+    <button type="button" data-combo="lunch" aria-pressed="false">Lunchtype only (quiet)</button>
+    <span class="ft-note">Internal page — noindex. Body stays Ranade in all combos. ⚠️ Milkman's commercial license is unverified — do not ship it live until checked.</span>
+  </div>
+
+  <!-- Hero replica -->
+  <section class="ft-section">
+    <p class="ft-label">Hero — .display .display-md + retro layers</p>
+    <p class="eyebrow" style="color:var(--sun-500)">Websites for naturopaths</p>
+    <h1 class="display display-md" style="max-width:14ch">Your next client is booking on a <span class="retro-text">good website.<span class="retro-layer" aria-hidden="true">good website.</span><span class="retro-layer" aria-hidden="true">good website.</span><span class="retro-layer" aria-hidden="true">good website.</span></span></h1>
+    <p class="lead" style="max-width:44ch">Beautifully designed, properly fast, and handled for you. One monthly price, no big bill up front.</p>
+    <div class="hero-actions" style="margin-top:var(--space-5)">
+      <a class="btn btn--primary btn--lg" href="#">I'm ready — start now <span class="arrow" aria-hidden="true">&rarr;</span></a>
+      <a class="btn btn--secondary btn--lg" href="#">Book a call first</a>
+    </div>
+  </section>
+
+  <!-- Section header replica -->
+  <section class="ft-section">
+    <p class="ft-label">Section header — .heading .h1 (Ranade Black on live site)</p>
+    <p class="eyebrow">The problem</p>
+    <h2 class="heading h1">Sound familiar?</h2>
+    <p class="lead" style="max-width:52ch">A dated template from 2018 tells patients you do not take your business seriously. First impressions happen online now.</p>
+  </section>
+
+  <!-- Poster sizes ladder -->
+  <section class="ft-section">
+    <p class="ft-label">Scale ladder — .display sizes</p>
+    <p class="display display-2xl">Aa Rr Gg 98</p>
+    <p class="display display-lg">Naturopath Toronto</p>
+    <p class="display display-md">Build trust before the first visit.</p>
+  </section>
+
+  <!-- Pricing card replica -->
+  <section class="ft-section ft-pricing">
+    <div class="card card--sticker price-card">
+      <span class="price-name">Practice</span>
+      <div class="price-amount">$199<span>/mo</span></div>
+      <p class="price-desc">A full multi-page site built to bring in patients.</p>
+      <ul class="price-features">
+        <li>7+ page custom site</li>
+        <li>Jane App integration</li>
+        <li>Local SEO strategy</li>
+      </ul>
+      <a class="btn btn--dark" href="#" style="margin-top:auto">Get started</a>
+    </div>
+  </section>
+
+  <!-- Dark testimonial quote replica -->
+  <section class="ft-dark">
+    <div class="ft-section">
+      <p class="ft-label">Testimonial quote — .testi-quote uses --font-display</p>
+      <blockquote class="testi-quote" style="max-width:24ch">"The process was easy, and the site finally feels like me."</blockquote>
+    </div>
+  </section>
+
+  <!-- Body text -->
+  <section class="ft-section">
+    <p class="ft-label">Body — Ranade (unchanged in all combos)</p>
+    <p style="max-width:60ch">Local SEO, structured data, condition pages, and content built to rank. When a patient searches "naturopath Toronto," you show up. When they ask ChatGPT for a recommendation, your site gets cited. Numbers: 0123456789 — $199/mo.</p>
+  </section>
+
+  <script>
+    var param = new URLSearchParams(location.search).get('combo');
+    if (param) {
+      document.body.dataset.combo = param;
+      document.querySelectorAll('.ft-bar button').forEach(function (b) {
+        b.setAttribute('aria-pressed', b.dataset.combo === param ? 'true' : 'false');
+      });
+    }
+    document.querySelectorAll('.ft-bar button').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.body.dataset.combo = btn.dataset.combo;
+        document.querySelectorAll('.ft-bar button').forEach(function (b) {
+          b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

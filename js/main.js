@@ -24,15 +24,21 @@
   var header = document.getElementById("site-header");
   if (header) {
     var lastScrollY = window.scrollY;
+    var navTicking = false;
     var onScroll = function () {
-      var scrollY = window.scrollY;
-      header.classList.toggle("scrolled", scrollY > 60);
-      if (scrollY > lastScrollY && scrollY > 120) {
-        header.classList.add("nav-hidden");
-      } else if (scrollY < lastScrollY) {
-        header.classList.remove("nav-hidden");
-      }
-      lastScrollY = scrollY;
+      if (navTicking) return;
+      navTicking = true;
+      requestAnimationFrame(function () {
+        var scrollY = window.scrollY;
+        header.classList.toggle("scrolled", scrollY > 60);
+        if (scrollY > lastScrollY && scrollY > 120) {
+          header.classList.add("nav-hidden");
+        } else if (scrollY < lastScrollY) {
+          header.classList.remove("nav-hidden");
+        }
+        lastScrollY = scrollY;
+        navTicking = false;
+      });
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
@@ -115,8 +121,9 @@
       // top 2: top-left at cursor; middle: centred; bottom 2: bottom-left at cursor
       var offset = activeRowIdx <= 1 ? 0 : activeRowIdx === 2 ? CARD_H / 2 : CARD_H;
       var y = Math.min(Math.max(8, cardCurY - offset), window.innerHeight - CARD_H - 8);
-      problemCard.style.left = x + "px";
-      problemCard.style.top = y + "px";
+      // Transform-only positioning (compositor); CSS composes translate(--card-x, --card-y)
+      problemCard.style.setProperty("--card-x", x + "px");
+      problemCard.style.setProperty("--card-y", y + "px");
       cardRaf = requestAnimationFrame(tickCard);
     }
 
@@ -146,13 +153,25 @@
         if (problemCardPhoto && row.dataset.img) {
           clearTimeout(photoSwapTimer);
           var newSrc = row.dataset.img;
-          problemCardPhoto.style.opacity = '0';
-          photoSwapTimer = setTimeout(function () {
-            problemCardPhoto.src = newSrc;
-            problemCardPhoto.style.opacity = '1';
-          }, 120);
+          if (problemCard.classList.contains("visible")) {
+            problemCardPhoto.style.opacity = '0';
+            photoSwapTimer = setTimeout(function () {
+              problemCardPhoto.src = newSrc;
+              problemCardPhoto.style.opacity = '1';
+            }, 120);
+          } else {
+            var _preload = new Image();
+            _preload.onload = function () {
+              problemCardPhoto.src = newSrc;
+              problemCardPhoto.style.opacity = '1';
+              problemCard.classList.add("visible");
+            };
+            problemCardPhoto.style.opacity = '0';
+            _preload.src = newSrc;
+          }
+        } else {
+          problemCard.classList.add("visible");
         }
-        problemCard.classList.add("visible");
       });
     });
 
@@ -195,27 +214,10 @@
     }
   }
 
-  // Solution section — scroll-driven sticky nav + click to jump
+  // Solution section — click to jump (scroll-driven active state lives in animations.js)
   var solutionNav = document.getElementById("solution-nav");
   if (solutionNav) {
-    var navItems = solutionNav.querySelectorAll(".solution-nav-item");
-    var blocks = document.querySelectorAll(".solution-block");
-
-    function updateSolutionNav() {
-      var activeIdx = 0;
-      blocks.forEach(function (block, i) {
-        var rect = block.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.5) activeIdx = i;
-      });
-      navItems.forEach(function (item, i) {
-        item.classList.remove("active", "done");
-        if (i < activeIdx) item.classList.add("done");
-        if (i === activeIdx) item.classList.add("active");
-        item.setAttribute("aria-current", i === activeIdx ? "true" : "false");
-      });
-    }
-
-    navItems.forEach(function (item) {
+    solutionNav.querySelectorAll(".solution-nav-item").forEach(function (item) {
       item.addEventListener("click", function () {
         var target = document.querySelector(".solution-block[data-index='" + item.dataset.index + "']");
         if (target) {
@@ -224,31 +226,6 @@
         }
       });
     });
-
-    window.addEventListener("scroll", updateSolutionNav, { passive: true });
-    updateSolutionNav();
-  }
-
-  // Testimonial 3D parallax
-  var testiStage = document.getElementById('testimonials-stage');
-  if (testiStage && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    var testiCards = testiStage.querySelectorAll('.testi-card');
-    var rotations  = [8,  0, -8];
-    var baseY      = [28, 0, -28];
-    var speeds     = [50, 0, -50];
-
-    function updateTestiParallax() {
-      var rect = testiStage.getBoundingClientRect();
-      var progress = (window.innerHeight * 0.5 - rect.top) / rect.height;
-      progress = Math.max(-0.5, Math.min(1.5, progress));
-      testiCards.forEach(function (card, i) {
-        var py = baseY[i] + speeds[i] * (progress - 0.5);
-        card.style.transform = 'rotateY(' + rotations[i] + 'deg) translateY(' + py + 'px)';
-      });
-    }
-
-    window.addEventListener('scroll', updateTestiParallax, { passive: true });
-    updateTestiParallax();
   }
 
   // Proof showcase — hover swaps preview panel

@@ -494,6 +494,28 @@ html, body {
   color: #fff;
   letter-spacing: -0.01em;
 }
+#copy-email-btn:hover { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.06); }
+#copy-email-btn:hover .contact-box__label { color: rgba(255,255,255,0.7); }
+.copy-toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(1rem);
+  background: var(--g-forest);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.6rem 1.4rem;
+  border-radius: 100px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 9999;
+}
+.copy-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
 
 /* ─── Navigation ─── */
 .deck-nav {
@@ -581,6 +603,164 @@ html, body {
 }
 .deck-home:hover { opacity: 1; }
 .deck-home img { width: 28px; height: 28px; display: block; }
+
+/* ─── Pricing slide ─── */
+.price-card-label {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--g-forest);
+  background: var(--g-pale);
+  border-radius: 100px;
+  padding: 0.25rem 0.75rem;
+  margin-bottom: 1.25rem;
+}
+.deck-card--featured .price-card-label {
+  background: var(--g-forest);
+  color: #fff;
+}
+.price-amount {
+  font-family: var(--ff-h);
+  font-size: clamp(2.25rem, 3.5vw, 3rem);
+  font-weight: 800;
+  color: var(--ink-900);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 0.2rem;
+}
+.price-amount sup {
+  font-size: 1rem;
+  font-weight: 700;
+  vertical-align: super;
+  letter-spacing: 0;
+}
+.price-amount span {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink-500);
+  letter-spacing: 0;
+}
+.price-daily {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--g-forest);
+  margin-bottom: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  background: var(--g-pale);
+  border-radius: 6px;
+  display: inline-block;
+}
+.deck-card--featured .price-daily {
+  background: rgba(255,255,255,0.45);
+}
+.price-yearly {
+  font-size: 0.775rem;
+  color: var(--ink-500);
+  margin-bottom: 1.1rem;
+}
+.price-divider {
+  border: none;
+  border-top: 1px solid var(--paper-300);
+  margin: 1rem 0;
+}
+.price-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.price-features li {
+  font-size: 0.815rem;
+  color: var(--ink-600);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  line-height: 1.4;
+}
+.price-features li::before {
+  content: '';
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+  background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%233a6349' stroke-width='2.5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.price-footnote {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--ink-400);
+  margin-top: 1.25rem;
+}
+
+/* ─── OAND pricing toggle ─── */
+.oand-billing-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+.oand-billing-toggle span[data-period] {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink-400);
+}
+.oand-billing-toggle span[data-period].active {
+  color: var(--ink-900);
+}
+.oand-toggle-switch {
+  width: 40px;
+  height: 22px;
+  border: 2px solid var(--g-forest);
+  border-radius: 100px;
+  background: var(--g-pale);
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.oand-toggle-switch.on { background: var(--g-forest); }
+.oand-toggle-switch::after {
+  content: '';
+  position: absolute;
+  top: 2px; left: 2px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--g-forest);
+  transition: transform 0.2s;
+}
+.oand-toggle-switch.on::after {
+  background: #fff;
+  transform: translateX(18px);
+}
+.oand-save-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--g-forest);
+  background: var(--g-pale);
+  border-radius: 100px;
+  padding: 0.2rem 0.6rem;
+}
+/* ─── Crossed-out regular price ─── */
+.price-was {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--ink-400);
+  text-decoration: line-through;
+  margin-bottom: 0.1rem;
+}
+/* ─── OAND note below price ─── */
+.price-oand-note {
+  font-size: 0.75rem;
+  color: var(--g-forest);
+  font-weight: 600;
+  margin-bottom: 0.85rem;
+}
 
 /* ─── Print ─── */
 @media print {
