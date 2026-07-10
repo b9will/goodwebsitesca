@@ -5,7 +5,7 @@
 
 ## Tech stack
 - Pure static HTML/CSS/JS — no framework, no build step
-- Deploy: **push to `main` → Cloudflare Pages auto-deploys** (repo: b9will/goodwebsitesca, private)
+- Deploy: **`npx wrangler deploy`** (Cloudflare Worker with assets — NOT Pages, git push alone does NOT deploy; the 2026-07-09 handoff doc was wrong about this). Push to `main` (b9will/goodwebsitesca, private) for backup/history, then run wrangler to go live.
 - Local dev: `python3 -m http.server 8812` → http://localhost:8812/
 - GSAP + ScrollTrigger loaded via `js/vendor/gsap.min.js` + `js/vendor/ScrollTrigger.min.js`
 - Newsletter: Formspree `https://formspree.io/f/xwvdgedv`
@@ -170,7 +170,9 @@ Process | Blog | Pricing | About | Book a call
 ## Deployment
 ```bash
 cd "/Users/williamrobinson/Good Website Builds/GoodWebsitesca"
-git add -A && git commit -m "..." && git push origin main   # Cloudflare Pages auto-deploys
+git add -A && git commit -m "..." && git push origin main   # backup/history only
+npx wrangler deploy                                         # this is what goes live
 ```
-Live at: https://goodwebsites.ca
-Secrets (`ANTHROPIC_API_KEY`, `RESEND_API_KEY`) are set in the Cloudflare Pages dashboard.
+Live at: https://goodwebsites.ca (worker preview: https://goodwebsitesca.will-69d.workers.dev)
+Edge cache can serve stale HTML for a few minutes after deploy — verify with a cache-busted
+curl or hard refresh. Secrets: `npx wrangler secret put ANTHROPIC_API_KEY` / `RESEND_API_KEY`.

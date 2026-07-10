@@ -1,5 +1,6 @@
 # Good Websites — Handoff Doc
 **Date:** 2026-07-09  
+**⚠️ Deploy correction (2026-07-10):** production is a Cloudflare Worker deployed via `npx wrangler deploy` — the "Pages auto-deploys from main" claim below is WRONG.
 **Project:** goodwebsites.ca  
 **Repo:** github.com/b9will/goodwebsitesca (private)  
 **Live:** Cloudflare Pages, auto-deploys from `main` branch  
