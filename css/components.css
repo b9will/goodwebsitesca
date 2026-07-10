@@ -7,8 +7,8 @@
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
   gap: 0.55em;
-  font-family: var(--font-sans);
-  font-weight: var(--weight-bold);
+  font-family: var(--font-ui);
+  font-weight: var(--weight-medium);
   font-size: var(--text-sm);
   line-height: 1;
   padding: 12px 22px;

@@ -40,11 +40,12 @@ GSAP defaults: `power4.out` / 0.55s (matches CSS `--ease-out` / `--dur-slower`).
 All motion goes inside `gsap.matchMedia()` (see animations.js) — reduced-motion returns early,
 hero parallax + testimonial drift are desktop-only.
 
-## Fonts
-- Live: Excon (display) + Ranade (body) from Fontshare CDN + local woff2 (known double-load — candidate for self-hosting cleanup)
-- `--font-poster` token (tokens.css) drives `.display` poster headlines; defaults to `--font-display`
-- Candidate replacement faces in `assets/fonts/` (woff2, subsetted): Getai Grotesk Display Black (OFL, license file alongside), Milkman (⚠️ license UNVERIFIED — do not ship live), Lunchtype22 Regular/Medium
-- Compare at `/font-test.html` (noindex, combo switcher; `?combo=getai|milkman|lunch|getai-lunch`)
+## Fonts (final stack as of 2026-07-10 — Excon is GONE)
+- `--font-poster` = **Getai Grotesk Display Black (900)** → `.display` poster headlines (self-hosted woff2, OFL license alongside)
+- `--font-ui` / `--font-display` = **Lunchtype22 (400/500)** → headings, eyebrows, buttons, nav brand, quotes (self-hosted; family maxes at 500 — never ask for 700+)
+- `--font-sans` = **Ranade** → body only, from Fontshare CDN (`f[]=ranade@400,500,700`)
+- Preloads on every page: GetaiGroteskDisplay-Black.woff2 + Lunchtype22-Medium.woff2
+- `/font-test.html` (noindex) was the comparison page; Milkman.woff2 remains in assets/fonts but is UNSHIPPED (license unverified)
 
 ## Design system
 

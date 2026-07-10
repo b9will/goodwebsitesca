@@ -1,20 +1,27 @@
 /* ============================================================
    TOKENS — Good Websites Design System v2
-   Excon (display) + Ranade (body), warm cream + poppy accents
+   Getai Grotesk (poster) + Lunchtype (headings/UI) + Ranade (body)
    ============================================================ */
 
-/* Self-hosted core weights */
+/* Self-hosted (Ranade body weights come from Fontshare) */
 @font-face {
-  font-family: "Excon";
-  src: url("../assets/fonts/Excon-Medium.woff2") format("woff2");
-  font-weight: 500;
+  font-family: "Getai Grotesk Display";
+  src: url("../assets/fonts/GetaiGroteskDisplay-Black.woff2") format("woff2");
+  font-weight: 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Ranade";
-  src: url("../assets/fonts/Ranade-Light.woff2") format("woff2");
-  font-weight: 300;
+  font-family: "Lunchtype22";
+  src: url("../assets/fonts/Lunchtype22-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lunchtype22";
+  src: url("../assets/fonts/Lunchtype22-Medium.woff2") format("woff2");
+  font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
@@ -117,9 +124,10 @@
   --focus-ring: var(--sky-500);
 
   /* ---- Typography ---- */
-  --font-display: "Excon", "Helvetica Neue", Arial, sans-serif;
-  --font-poster:  var(--font-display); /* poster-scale headlines (.display); override to trial display faces */
-  --font-sans:    "Ranade", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Lunchtype22", "Helvetica Neue", Arial, sans-serif;  /* quotes, nav brand, sticker labels */
+  --font-poster:  "Getai Grotesk Display", "Lunchtype22", Arial, sans-serif; /* .display poster headlines */
+  --font-ui:      "Lunchtype22", "Helvetica Neue", Arial, sans-serif;  /* headings, eyebrows, buttons */
+  --font-sans:    "Ranade", "Helvetica Neue", Arial, sans-serif;       /* body */
   --font-mono:    ui-monospace, "SF Mono", Menlo, monospace;
 
   --weight-light:   300;
@@ -128,6 +136,7 @@
   --weight-bold:    700;
   --weight-black:   800;
   --weight-display: 500;
+  --weight-poster:  900; /* Getai ships Black only */
 
   --text-hero-2xl: clamp(3.5rem, 1.5rem + 8vw, 8rem);
   --text-hero-xl:  clamp(2.75rem, 1.4rem + 5.4vw, 5.5rem);

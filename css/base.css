@@ -36,7 +36,7 @@ p, li, blockquote { text-wrap: pretty; }
 
 .display {
   font-family: var(--font-poster);
-  font-weight: var(--weight-display);
+  font-weight: var(--weight-poster);
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
   color: var(--text-strong);
@@ -47,8 +47,8 @@ p, li, blockquote { text-wrap: pretty; }
 .display-md  { font-size: var(--text-hero-md); }
 
 .heading {
-  font-family: var(--font-sans);
-  font-weight: var(--weight-black);
+  font-family: var(--font-ui);
+  font-weight: var(--weight-medium); /* Lunchtype tops out at 500 */
   line-height: var(--leading-snug);
   letter-spacing: var(--tracking-tight);
   color: var(--text-strong);
@@ -59,8 +59,8 @@ p, li, blockquote { text-wrap: pretty; }
 .h4 { font-size: var(--text-h4); }
 
 .eyebrow {
-  font-family: var(--font-sans);
-  font-weight: var(--weight-bold);
+  font-family: var(--font-ui);
+  font-weight: var(--weight-medium);
   font-size: var(--text-2xs);
   letter-spacing: var(--tracking-eyebrow);
   text-transform: uppercase;
