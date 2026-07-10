@@ -164,9 +164,9 @@
 .badge--soft { background: var(--paper-200); color: var(--ink-700); }
 .badge--sun  { background: var(--sun-400); color: var(--ink-900); }
 .badge--ink  { background: var(--ink-900); color: var(--paper-50); }
-.badge--coral { background: rgba(255,90,54,0.15); color: var(--coral-600); }
-.badge--grass { background: rgba(18,164,90,0.15); color: var(--grass-600); }
-.badge--sky   { background: rgba(47,107,255,0.15); color: var(--sky-600); }
+.badge--coral { background: var(--coral-500); color: var(--paper-50); }
+.badge--grass { background: var(--grass-500); color: var(--paper-50); }
+.badge--sky   { background: var(--sky-500);   color: var(--paper-50); }
 
 /* ---- Nav ---- */
 .site-header {
@@ -418,9 +418,9 @@ body.footer-fixed .site-footer {
      No overflow/max-height: internal scrolling would swallow the wheel-up
      that reverses the reveal. */
 }
-/* Breathing room so the bounced footer covers padding, not the CTA itself */
+/* Runway after the CTA so it can be read before the footer fires */
 body.footer-fixed main {
-  padding-bottom: clamp(4rem, 12vh, 9rem);
+  padding-bottom: clamp(16rem, 45vh, 28rem);
 }
 
 /* Cookie consent (injected by main.js) */

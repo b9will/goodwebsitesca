@@ -1872,7 +1872,7 @@ body.is-yearly .price-annual-note { display: block; }
   background: var(--paper-50);
   border: 2px solid var(--ink-900);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-hard-sm);
+  box-shadow: var(--shadow-hard);
   padding: var(--space-5);
   display: flex;
   flex-direction: column;
@@ -1887,6 +1887,26 @@ body.is-yearly .price-annual-note { display: block; }
 .build-quality-item-sub {
   font-size: var(--text-xs);
   color: var(--text-muted);
+}
+/* Strong color variants — badges go paper so they read on any fill */
+.build-quality-item--sun   { background: var(--sun-400); }
+.build-quality-item--coral { background: var(--coral-500); }
+.build-quality-item--sky   { background: var(--sky-500); }
+.build-quality-item--grass { background: var(--grass-500); }
+.build-quality-item--sun .build-quality-item-sub { color: var(--ink-700); }
+.build-quality-item--coral .build-quality-item-label,
+.build-quality-item--sky   .build-quality-item-label,
+.build-quality-item--grass .build-quality-item-label { color: var(--paper-50); }
+.build-quality-item--coral .build-quality-item-sub,
+.build-quality-item--sky   .build-quality-item-sub,
+.build-quality-item--grass .build-quality-item-sub { color: var(--paper-100); }
+.build-quality-item--sun .badge,
+.build-quality-item--coral .badge,
+.build-quality-item--sky .badge,
+.build-quality-item--grass .badge {
+  background: var(--paper-50);
+  color: var(--ink-900);
+  border: 2px solid var(--ink-900);
 }
 @media (max-width: 860px) { .build-quality-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 480px) { .build-quality-grid { grid-template-columns: 1fr; } }

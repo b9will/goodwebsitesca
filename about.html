@@ -18,8 +18,8 @@
   <link rel="preload" href="assets/fonts/Lunchtype22-Medium.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/tokens.css?v=12">
   <link rel="stylesheet" href="css/base.css?v=12">
-  <link rel="stylesheet" href="css/components.css?v=18">
-  <link rel="stylesheet" href="css/pages.css?v=19">
+  <link rel="stylesheet" href="css/components.css?v=19">
+  <link rel="stylesheet" href="css/pages.css?v=20">
   <noscript><style>.reveal,.tl-era{opacity:1!important;transform:none!important} #tl-progress{transform:scaleX(1)!important}</style></noscript>
 
   <style>
@@ -82,9 +82,11 @@
       color: var(--ink-600);
     }
     .ab-stamp--sun   { background: var(--sun-400); }
-    .ab-stamp--coral { background: var(--coral-200); }
-    .ab-stamp--sky   { background: var(--sky-200); }
-    .ab-stamp--grass { background: var(--grass-200); }
+    .ab-stamp--coral { background: var(--coral-500); }
+    .ab-stamp--sky   { background: var(--sky-500); }
+    .ab-stamp--grass { background: var(--grass-500); }
+    .ab-stamp--coral .ab-stamp-num, .ab-stamp--sky .ab-stamp-num, .ab-stamp--grass .ab-stamp-num { color: var(--paper-50); }
+    .ab-stamp--coral .ab-stamp-label, .ab-stamp--sky .ab-stamp-label, .ab-stamp--grass .ab-stamp-label { color: var(--paper-100); }
 
     /* ─────────────────────────────────────────────────────────────────
        MARQUEE STRIP
@@ -396,7 +398,7 @@
       aspect-ratio: 3/4;
       border: 2px solid var(--ink-900);
       box-shadow: var(--shadow-hard);
-      background: var(--sun-200);
+      background: var(--sun-400);
       overflow: hidden;
       display: flex; align-items: center; justify-content: center;
       margin-bottom: var(--space-6);
@@ -657,7 +659,7 @@
           </div>
 
           <!-- ── 2014 ─────────────────────────────────────────── -->
-          <div class="tl-era" style="--era-bg:var(--sky-200)">
+          <div class="tl-era" style="--era-bg:var(--sky-400)">
             <span class="tl-ghost" aria-hidden="true">2014</span>
             <div class="tl-polaroid" aria-hidden="true" style="top:var(--space-7);right:var(--space-9);transform:rotate(5deg)">
               <div class="tl-polaroid-photo" style="background:#000">
@@ -691,7 +693,7 @@
           </div>
 
           <!-- ── 2019 ─────────────────────────────────────────── -->
-          <div class="tl-era" style="--era-bg:var(--grape-200)">
+          <div class="tl-era" style="--era-bg:var(--grape-400)">
             <span class="tl-ghost" aria-hidden="true">2019</span>
             <div class="tl-polaroid" aria-hidden="true" style="top:var(--space-7);right:var(--space-8);transform:rotate(4deg)">
               <div class="tl-polaroid-photo" style="background:#000">
@@ -708,7 +710,7 @@
           </div>
 
           <!-- ── 2023 ─────────────────────────────────────────── -->
-          <div class="tl-era" style="--era-bg:var(--coral-200)">
+          <div class="tl-era" style="--era-bg:var(--coral-400)">
             <span class="tl-ghost" aria-hidden="true">2023</span>
             <div class="tl-polaroid" aria-hidden="true" style="top:var(--space-7);right:var(--space-7);transform:rotate(-3deg)">
               <div class="tl-polaroid-photo" style="background:#000">
