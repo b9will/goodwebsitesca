@@ -57,16 +57,18 @@
       if (context.conditions.reduceMotion) return;
       var isDesktop = context.conditions.isDesktop;
 
-      /* Process rows (work page) — one timeline per row, GSAP is the sole owner */
+      /* Process rows (work page) — GSAP is the sole owner. One tween per row,
+         card + content move together (sequenced children read as broken/empty cards).
+         The row's CSS hover transition (transform) fights the tween and its leftover
+         inline transform kills :hover — suppress during entrance, clearProps after. */
       gsap.utils.toArray('.process-row').forEach(function (row) {
-        var tl = gsap.timeline({
-          scrollTrigger: { trigger: row, start: 'top 88%', once: true }
+        row.style.transition = 'none';
+        gsap.from(row, {
+          y: 32,
+          autoAlpha: 0,
+          clearProps: 'all',
+          scrollTrigger: { trigger: row, start: 'top 90%', once: true }
         });
-        tl.from(row, { y: 40, autoAlpha: 0 })
-          .from(row.querySelectorAll('.process-row-title, .process-row-desc'),
-                { y: 16, autoAlpha: 0, stagger: 0.07, duration: 0.45 }, '-=0.35');
-        var num = row.querySelector('.process-row-num');
-        if (num) tl.from(num, { x: 24, autoAlpha: 0, duration: 0.45 }, '<0.05');
       });
 
       /* Homepage hero parallax — desktop only */
