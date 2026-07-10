@@ -300,22 +300,30 @@
     });
   }
 
-  // Cookie consent (once per browser, stored in localStorage)
+  // Cookie consent (once per browser; footer "Cookies" link reopens it)
+  function showCookieBanner() {
+    if (document.querySelector(".cookie-consent")) return;
+    var cc = document.createElement("div");
+    cc.className = "cookie-consent";
+    cc.setAttribute("role", "dialog");
+    cc.setAttribute("aria-label", "Cookie notice");
+    cc.innerHTML = '<p>We use a few cookies for booking and analytics — nothing creepy. <a href="/privacy.html">Privacy</a></p>' +
+                   '<button class="btn btn--dark btn--sm" type="button">Got it</button>';
+    cc.querySelector("button").addEventListener("click", function () {
+      try { localStorage.setItem("gw-cookie-ok", "1"); } catch (e) {}
+      cc.remove();
+    });
+    document.body.appendChild(cc);
+  }
   try {
-    if (!localStorage.getItem("gw-cookie-ok")) {
-      var cc = document.createElement("div");
-      cc.className = "cookie-consent";
-      cc.setAttribute("role", "dialog");
-      cc.setAttribute("aria-label", "Cookie notice");
-      cc.innerHTML = '<p>We use a few cookies for booking and analytics — nothing creepy. <a href="/privacy.html">Privacy</a></p>' +
-                     '<button class="btn btn--dark btn--sm" type="button">Got it</button>';
-      cc.querySelector("button").addEventListener("click", function () {
-        localStorage.setItem("gw-cookie-ok", "1");
-        cc.remove();
-      });
-      document.body.appendChild(cc);
-    }
+    if (!localStorage.getItem("gw-cookie-ok")) showCookieBanner();
   } catch (e) { /* localStorage unavailable (private mode) — skip banner */ }
+  document.querySelectorAll("[data-cookie-settings]").forEach(function (link) {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      showCookieBanner();
+    });
+  });
 
   // Mobile nav toggle
   var navToggle = document.getElementById("nav-toggle");

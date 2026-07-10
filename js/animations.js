@@ -56,7 +56,7 @@
         document.body.classList.add('footer-fixed');
         var footTween = gsap.fromTo(siteFooter,
           { y: 0, yPercent: 103 },
-          { yPercent: 0, ease: 'back.out(1.2)', duration: 0.8, paused: true });
+          { yPercent: 0, ease: 'back.out(1.1)', duration: 0.45, paused: true });
         ScrollTrigger.create({
           trigger: mainEl,
           start: 'bottom bottom+=2',
