@@ -1046,7 +1046,6 @@ body.is-yearly .price-annual-note { display: block; }
   position: relative;
   flex-shrink: 0;
   width: 320px;
-  min-height: 320px;
   padding: var(--space-6) var(--space-6) calc(var(--space-6) + 64px);
   background: var(--card-bg, var(--surface-card));
   border: 2px solid var(--ink-900);
@@ -1098,7 +1097,7 @@ body.is-yearly .price-annual-note { display: block; }
 }
 .testi-card:nth-child(1) .testi-photo { left: -26px; top: 55%; }
 .testi-card:nth-child(2) .testi-photo { top: -32px; left: 50%; margin-left: -36px; }
-.testi-card:nth-child(3) .testi-photo { right: -26px; top: 40%; }
+.testi-card:nth-child(3) .testi-photo { right: -26px; top: -28px; }
 .testi-name {
   font-size: var(--text-sm);
   font-weight: var(--weight-bold);
