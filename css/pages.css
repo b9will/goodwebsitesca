@@ -1054,8 +1054,9 @@ body.is-yearly .price-annual-note { display: block; }
   box-shadow: var(--shadow-hard-lg);
   will-change: transform;
 }
-.testi-card:nth-child(1) { transform: rotateY(8deg)  translateY(14px);  }
-.testi-card:nth-child(2) { transform: rotateY(-8deg) translateY(-14px); }
+.testi-card:nth-child(1) { transform: rotateY(8deg)  translateY(28px);  }
+.testi-card:nth-child(2) { transform: rotateY(0deg)  translateY(0px);   }
+.testi-card:nth-child(3) { transform: rotateY(-8deg) translateY(-28px); }
 .testi-quote {
   font-family: var(--font-display);
   font-size: var(--text-h3);
@@ -1078,23 +1079,26 @@ body.is-yearly .price-annual-note { display: block; }
   box-shadow: var(--shadow-hard);
   padding: var(--space-3) var(--space-4);
   display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  min-width: 160px;
-}
-.testi-avatar {
-  width: 44px;
-  height: 44px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  border: 2px solid var(--ink-900);
-  object-fit: cover;
-}
-.testi-float-text {
-  display: flex;
   flex-direction: column;
   gap: 2px;
+  min-width: 160px;
 }
+/* Circular headshot hanging off the card edge, sticker-style */
+.testi-photo {
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 3px solid var(--ink-900);
+  object-fit: cover;
+  object-position: 50% 22%; /* bias crop toward the face in framed portraits */
+  background: var(--paper-50);
+  transform: translateZ(56px);
+  z-index: 2;
+}
+.testi-card:nth-child(1) .testi-photo { left: -26px; top: 55%; }
+.testi-card:nth-child(2) .testi-photo { top: -32px; left: 50%; margin-left: -36px; }
+.testi-card:nth-child(3) .testi-photo { right: -26px; top: 40%; }
 .testi-name {
   font-size: var(--text-sm);
   font-weight: var(--weight-bold);

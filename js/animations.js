@@ -90,8 +90,8 @@
          baseY must match the .testi-card:nth-child transforms in pages.css. */
       var testiStage = document.getElementById('testimonials-stage');
       if (testiStage && isDesktop) {
-        var baseY  = [14, -14];
-        var drift  = [40, -40];
+        var baseY  = [28, 0, -28];
+        var drift  = [50, 0, -50];
         testiStage.querySelectorAll('.testi-card').forEach(function (card, i) {
           if (i >= baseY.length) return;
           gsap.fromTo(card,
