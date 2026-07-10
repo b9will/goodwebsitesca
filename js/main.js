@@ -300,6 +300,23 @@
     });
   }
 
+  // Cookie consent (once per browser, stored in localStorage)
+  try {
+    if (!localStorage.getItem("gw-cookie-ok")) {
+      var cc = document.createElement("div");
+      cc.className = "cookie-consent";
+      cc.setAttribute("role", "dialog");
+      cc.setAttribute("aria-label", "Cookie notice");
+      cc.innerHTML = '<p>We use a few cookies for booking and analytics — nothing creepy. <a href="/privacy.html">Privacy</a></p>' +
+                     '<button class="btn btn--dark btn--sm" type="button">Got it</button>';
+      cc.querySelector("button").addEventListener("click", function () {
+        localStorage.setItem("gw-cookie-ok", "1");
+        cc.remove();
+      });
+      document.body.appendChild(cc);
+    }
+  } catch (e) { /* localStorage unavailable (private mode) — skip banner */ }
+
   // Mobile nav toggle
   var navToggle = document.getElementById("nav-toggle");
   var navLinks = document.getElementById("nav-links");

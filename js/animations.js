@@ -14,16 +14,6 @@
   /* ── Class toggles (run for everyone — CSS owns the motion and already
         disables it under prefers-reduced-motion) ─────────────────────── */
 
-  var siteFooter = document.querySelector('.site-footer');
-  if (siteFooter) {
-    ScrollTrigger.create({
-      trigger: siteFooter,
-      start: 'top 92%',
-      once: true,
-      onEnter: function () { siteFooter.classList.add('footer--visible'); }
-    });
-  }
-
   var solutionNav = document.getElementById('solution-nav');
   if (solutionNav) {
     var navItems = solutionNav.querySelectorAll('.solution-nav-item');
@@ -56,6 +46,32 @@
     function (context) {
       if (context.conditions.reduceMotion) return;
       var isDesktop = context.conditions.isDesktop;
+
+      /* Footer. Desktop: fixed behind the page edge, bounces up over the last
+         section when scroll ends (reverses on scroll back). Mobile/short
+         pages: classic in-flow slide-up. */
+      var siteFooter = document.querySelector('.site-footer');
+      var mainEl = document.querySelector('main');
+      if (siteFooter && mainEl && isDesktop) {
+        document.body.classList.add('footer-fixed');
+        var footTween = gsap.fromTo(siteFooter,
+          { y: 0, yPercent: 103 },
+          { yPercent: 0, ease: 'back.out(1.2)', duration: 0.8, paused: true });
+        ScrollTrigger.create({
+          trigger: mainEl,
+          start: 'bottom bottom+=2',
+          animation: footTween,
+          toggleActions: 'play none none reverse'
+        });
+        ScrollTrigger.refresh();
+      } else if (siteFooter) {
+        ScrollTrigger.create({
+          trigger: siteFooter,
+          start: 'top 92%',
+          once: true,
+          onEnter: function () { siteFooter.classList.add('footer--visible'); }
+        });
+      }
 
       /* Process rows (work page) — GSAP is the sole owner. One tween per row,
          card + content move together (sequenced children read as broken/empty cards).
@@ -103,6 +119,8 @@
             });
         });
       }
+
+      return function () { document.body.classList.remove('footer-fixed'); };
     }
   );
 })();

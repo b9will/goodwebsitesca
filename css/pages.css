@@ -1046,7 +1046,9 @@ body.is-yearly .price-annual-note { display: block; }
   position: relative;
   flex-shrink: 0;
   width: 320px;
-  padding: var(--space-6) var(--space-6) calc(var(--space-6) + 64px);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-6);
   background: var(--card-bg, var(--surface-card));
   border: 2px solid var(--ink-900);
   border-radius: var(--radius-xl);
@@ -1066,11 +1068,12 @@ body.is-yearly .price-annual-note { display: block; }
   margin: 0;
   quotes: none;
 }
-/* Floating author badge pops toward viewer */
+/* Author badge — in flow (never overlaps the quote), pops toward viewer */
 .testi-float {
-  position: absolute;
-  bottom: var(--space-5);
-  right: var(--space-5);
+  position: relative;
+  margin-top: var(--space-5);
+  margin-left: auto;
+  width: fit-content;
   transform: translateZ(48px);
   background: var(--surface-page);
   border: 2px solid var(--ink-900);
@@ -1129,6 +1132,15 @@ body.is-yearly .price-annual-note { display: block; }
 .cta-section {
   text-align: center;
   padding: var(--space-11) var(--gutter);
+  position: relative;
+  overflow: hidden;
+  width: min(var(--container-max), calc(100% - 2 * var(--gutter)));
+  margin-inline: auto;
+  margin-bottom: var(--space-10);
+  background: var(--coral-200);
+  border: 2px solid var(--ink-900);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-hard);
 }
 .cta-section .heading { margin-bottom: var(--space-3); }
 .cta-section .lead {

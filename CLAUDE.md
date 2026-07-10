@@ -156,6 +156,15 @@ border-radius: var(--radius-2xl);  /* 40px — for big panels */
      baseY arrays in animations.js must match pages.css)
 ```
 
+### Footer (desktop) — fixed bounce reveal
+On desktop (≥900px, motion OK) JS adds `body.footer-fixed`: footer is position:fixed
+offscreen below the viewport (GSAP owns its transform — never set transform on it in CSS);
+at end of scroll a ScrollTrigger on `main` ('bottom bottom+=2') bounces it up (back.out)
+over the last section, reversing on scroll-up. Mobile/reduced-motion keep the in-flow
+slide-up footer. Footer max-height 88vh with internal scroll.
+Cookie consent banner is injected by main.js (localStorage key `gw-cookie-ok`).
+CTA sections are contained coral cards (`.cta-section`, coral-200) — no inline bg styles.
+
 ### Other motion facts
 - Testimonials: 2 real cards (Dr. Margot Lattanzi, Dr. Michelle McKee — real names/clinics,
   written with permission). Avatars: assets/images/testimonial-*.jpg
