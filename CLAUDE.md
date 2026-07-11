@@ -95,7 +95,7 @@ take paper-50 text; sun-400 takes ink text. Shadows are always black (--shadow-h
 ├── about.html         (Has horizontal scroll timeline)
 ├── book.html          (Calendly CTA — no newsletter in footer)
 ├── privacy.html
-├── signup.html / start.html
+├── signup.html / contact.html (start.html now redirects → contact; AI chat parked until ANTHROPIC_API_KEY is set on the worker)
 ├── blog/              (index.html + 6 posts)
 ├── resources/         (index.html + website-checklist.html)
 ├── naturopath-websites/  (index.html + 10 city pages)
