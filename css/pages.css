@@ -856,8 +856,8 @@
 .save-badge {
   font-size: var(--text-2xs);
   font-weight: var(--weight-bold);
-  color: var(--grass-600);
-  background: rgba(18,164,90,0.12);
+  color: var(--paper-50);
+  background: var(--grass-500);
   padding: 3px 8px;
   border-radius: var(--radius-pill);
 }
@@ -1208,7 +1208,7 @@ body.is-yearly .price-annual-note { display: block; }
   flex-shrink: 0;
   width: 26px; height: 26px;
   border-radius: 50%;
-  background: var(--sun-200);
+  background: var(--sun-400);
   border: 2px solid var(--ink-900);
   box-shadow: var(--shadow-hard-sm);
   display: flex; align-items: center; justify-content: center;

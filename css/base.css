@@ -28,7 +28,7 @@ a { color: inherit; text-decoration: none; }
 ul, ol { margin: 0; padding: 0; list-style: none; }
 p { margin: 0; }
 :focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
-::selection { background: var(--sun-200); color: var(--ink-900); }
+::selection { background: var(--sun-400); color: var(--ink-900); }
 
 /* ---- Typography ---- */
 h1, h2, h3, h4, h5, h6 { margin: 0; text-wrap: balance; }

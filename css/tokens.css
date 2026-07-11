@@ -29,9 +29,8 @@
 
 :root {
   /* ---- Sun (primary) ---- */
+  /* Strong colors only: 100/200 tint scales removed — no pastel fills */
   --sun-50:  #FFF8E2;
-  --sun-100: #FFEFBF;
-  --sun-200: #FFE08A;
   --sun-300: #FFD45E;
   --sun-400: #F7DC41;
   --sun-500: #FFBE1A;
@@ -54,27 +53,19 @@
   --paper-300: #ECE2D2;
   --paper-400: #DCCDB4;
 
-  /* ---- Poppy accents (with new light tints for bento fills) ---- */
-  --coral-100: #FFE7DE;
-  --coral-200: #FFCDBC;
+  /* ---- Poppy accents (strong scales only) ---- */
   --coral-400: #FF7A52;
   --coral-500: #FF5A36;
   --coral-600: #E8431F;
 
-  --grass-100: #DBF3E4;
-  --grass-200: #B6E7C9;
   --grass-400: #2BBE6E;
   --grass-500: #12A45A;
   --grass-600: #0B8147;
 
-  --sky-100: #DEE9FF;
-  --sky-200: #BFD3FF;
   --sky-400: #4D86FF;
   --sky-500: #2F6BFF;
   --sky-600: #1B4FD6;
 
-  --grape-100: #E8E2FF;
-  --grape-200: #D2C6FF;
   --grape-400: #8A6BFF;
   --grape-500: #6C4CF1;
   --grape-600: #5436D1;
@@ -86,15 +77,6 @@
   --surface-sunk:     var(--paper-200);
   --surface-ink:      var(--ink-900);
   --surface-sun:      var(--sun-400);
-
-  /* Bento tile fills — soft, sunlit tints */
-  --tile-sun:   var(--sun-100);
-  --tile-coral: var(--coral-100);
-  --tile-grass: var(--grass-100);
-  --tile-sky:   var(--sky-100);
-  --tile-grape: var(--grape-100);
-  --tile-cream: var(--paper-100);
-  --tile-ink:   var(--ink-900);
 
   /* Text */
   --text-strong:      var(--ink-900);

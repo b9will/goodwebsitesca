@@ -57,6 +57,12 @@ border-radius: var(--radius-2xl);  /* 40px — for big panels */
 /* or var(--radius-xl) / var(--radius-lg) for smaller cards */
 ```
 
+### Color rule — STRONG COLORS ONLY (as of 2026-07-11)
+Backgrounds use the 400/500 scales (sun-400, coral-500, sky-500, grass-500, grape-400/500)
+or neutrals (paper/ink). The 100/200 tint scales and --tile-* tokens were DELETED from
+tokens.css — do not reintroduce pastel fills. Dark fills (coral/sky/grass/grape 500)
+take paper-50 text; sun-400 takes ink text. Shadows are always black (--shadow-hard*).
+
 ### Key tokens
 - `--paper-50: #FEFCF7` — warmest cream, main page bg
 - `--ink-900` — near-black, all borders/text

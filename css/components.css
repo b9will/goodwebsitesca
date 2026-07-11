@@ -221,7 +221,7 @@
   top: 4px;
   left: 4px;
   height: calc(100% - 8px);
-  background: var(--sun-200);
+  background: var(--sun-400);
   border-radius: var(--radius-pill);
   opacity: 0;
   pointer-events: none;
