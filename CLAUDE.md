@@ -199,3 +199,10 @@ curl or hard refresh. Secrets: `npx wrangler secret put ANTHROPIC_API_KEY` / `RE
 inside a tall `.flap-track` (9 features × 62vh), vanilla JS inline at the bottom of
 work.html, CSS in pages.css (`.flap-*`). Card fills use the strong tokens via JS
 (`var(--sun-400)` etc.). Reduced motion: letters swap instantly, no leaf animation.
+
+## Process drum (work.html)
+The 6 process steps are a scroll-scrubbed 3D drum (six faces at 60° / translateZ 260px),
+sticky stage inside .process-section (which must NOT have overflow:hidden — that kills
+position:sticky). GSAP rotates to -300deg (rests on step 6) with snap per face; desktop +
+motion only via gsap.matchMedia — mobile/reduced-motion get the default static card stack.
+Inline script at the bottom of work.html; CSS is `.drum-*` in pages.css.

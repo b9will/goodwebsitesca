@@ -1795,7 +1795,7 @@ body.is-yearly .price-annual-note { display: block; }
   background: var(--ink-900);
   padding-block: clamp(4rem, 8vw, 8rem);
   position: relative;
-  overflow: hidden;
+  /* no overflow:hidden — it would break position:sticky for the drum stage */
 }
 .process-section::before {
   content: '';
@@ -2013,3 +2013,73 @@ body.is-yearly .price-annual-note { display: block; }
   z-index: 0;
 }
 .section--textured > * { position: relative; z-index: 1; }
+
+/* ---- Process drum (work page) — default: static stacked cards;
+       .is-3d (added by JS on desktop+motion): sticky 6-face cylinder ---- */
+.drum-track { position: relative; }
+.drum-stage { display: flex; align-items: center; justify-content: center; }
+.drum-scene { width: min(360px, 100%); }
+.drum { display: flex; flex-direction: column; gap: var(--space-5); }
+.drum-face {
+  background: var(--paper-50);
+  border: 2px solid var(--ink-900);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-hard);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.drum-step {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--coral-600);
+}
+.drum-title {
+  font-family: var(--font-poster);
+  font-weight: var(--weight-poster);
+  font-size: var(--text-h3);
+  color: var(--ink-900);
+  margin: 0;
+  line-height: 1.1;
+}
+.drum-desc {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin: 0;
+}
+.drum-track.is-3d .drum-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+}
+.drum-track.is-3d .drum-scene {
+  width: 300px;
+  perspective: 1400px;
+}
+.drum-track.is-3d .drum {
+  position: relative;
+  display: block;
+  width: 300px;
+  height: 340px;
+  transform-style: preserve-3d;
+}
+.drum-track.is-3d .drum-face {
+  position: absolute;
+  inset: 0;
+  width: 300px;
+  height: 340px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+/* radius = 300 / (2 * tan(30deg)) ~ 260px */
+.drum-track.is-3d .drum-face:nth-child(1) { transform: rotateY(0deg)   translateZ(260px); }
+.drum-track.is-3d .drum-face:nth-child(2) { transform: rotateY(60deg)  translateZ(260px); }
+.drum-track.is-3d .drum-face:nth-child(3) { transform: rotateY(120deg) translateZ(260px); }
+.drum-track.is-3d .drum-face:nth-child(4) { transform: rotateY(180deg) translateZ(260px); }
+.drum-track.is-3d .drum-face:nth-child(5) { transform: rotateY(240deg) translateZ(260px); }
+.drum-track.is-3d .drum-face:nth-child(6) { transform: rotateY(300deg) translateZ(260px); }

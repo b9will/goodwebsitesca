@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="css/tokens.css?v=13">
   <link rel="stylesheet" href="css/base.css?v=13">
   <link rel="stylesheet" href="css/components.css?v=20">
-  <link rel="stylesheet" href="css/pages.css?v=22">
+  <link rel="stylesheet" href="css/pages.css?v=23">
   <noscript><style>.reveal { opacity:1!important; transform:none!important; }</style></noscript>
   <meta property="og:image" content="https://goodwebsites.ca/assets/images/og-card.jpg">
   <meta property="og:image:width" content="1200">
@@ -83,62 +83,43 @@
           <h2 class="heading h1" style="color:var(--paper-50)">What actually happens<br>when you sign up.</h2>
         </div>
 
-        <div class="process-list">
-
-          <div class="process-row">
-            <span class="process-divider"></span>
-            <div class="process-row-body">
-              <p class="process-row-title">Book a call</p>
-              <p class="process-row-desc">A free 20-minute call to learn about your practice, your goals, and your current online presence. No pitch, no pressure — just a conversation.</p>
+        <div class="drum-track" id="drum-track">
+          <div class="drum-stage">
+            <div class="drum-scene">
+              <div class="drum" id="drum" aria-label="Our six-step process, from booking a call to ongoing support">
+                <div class="drum-face">
+                  <span class="drum-step">Step 01</span>
+                  <p class="drum-title">Book a call</p>
+                  <p class="drum-desc">A free 20-minute call about your practice, your goals, and your current online presence. No pitch, no pressure.</p>
+                </div>
+                <div class="drum-face">
+                  <span class="drum-step">Step 02</span>
+                  <p class="drum-title">Strategy brief</p>
+                  <p class="drum-desc">A short intake form becomes your site brief: target patients, services, local SEO keywords, and a competitor look.</p>
+                </div>
+                <div class="drum-face">
+                  <span class="drum-step">Step 03</span>
+                  <p class="drum-title">Design</p>
+                  <p class="drum-desc">A custom design built around your brand and the patients you want. You approve before anything gets built.</p>
+                </div>
+                <div class="drum-face">
+                  <span class="drum-step">Step 04</span>
+                  <p class="drum-title">Build</p>
+                  <p class="drum-desc">Hand-coded HTML, CSS, and JS. Built for speed, mobile, accessibility, and Google from the ground up.</p>
+                </div>
+                <div class="drum-face">
+                  <span class="drum-step">Step 05</span>
+                  <p class="drum-title">Launch</p>
+                  <p class="drum-desc">DNS, hosting, and go-live handled. PageSpeed audit, schema, Search Console, and sitemap on launch day.</p>
+                </div>
+                <div class="drum-face">
+                  <span class="drum-step">Step 06</span>
+                  <p class="drum-title">Ongoing support</p>
+                  <p class="drum-desc">Monthly updates, blog posts, and SEO tweaks included. Your site keeps improving without you thinking about it.</p>
+                </div>
+              </div>
             </div>
-            <span class="process-row-num" aria-hidden="true">01</span>
           </div>
-
-          <div class="process-row">
-            <span class="process-divider"></span>
-            <div class="process-row-body">
-              <p class="process-row-title">Strategy brief</p>
-              <p class="process-row-desc">We send a short intake form and build your site brief: your target patients, services, local SEO keywords, and a look at what's working for competitors in your city.</p>
-            </div>
-            <span class="process-row-num" aria-hidden="true">02</span>
-          </div>
-
-          <div class="process-row">
-            <span class="process-divider"></span>
-            <div class="process-row-body">
-              <p class="process-row-title">Design</p>
-              <p class="process-row-desc">A complete custom design built around your brand, your voice, and the patients you want to attract. You review and approve before anything gets built.</p>
-            </div>
-            <span class="process-row-num" aria-hidden="true">03</span>
-          </div>
-
-          <div class="process-row">
-            <span class="process-divider"></span>
-            <div class="process-row-body">
-              <p class="process-row-title">Build</p>
-              <p class="process-row-desc">Hand-coded HTML, CSS, and JS — no page builders, no bloated templates. Built for speed, mobile, accessibility, and Google from the ground up.</p>
-            </div>
-            <span class="process-row-num" aria-hidden="true">04</span>
-          </div>
-
-          <div class="process-row">
-            <span class="process-divider"></span>
-            <div class="process-row-body">
-              <p class="process-row-title">Launch</p>
-              <p class="process-row-desc">We handle DNS, hosting, and go-live. Full PageSpeed audit, schema markup, Google Search Console setup, and sitemap submission on launch day.</p>
-            </div>
-            <span class="process-row-num" aria-hidden="true">05</span>
-          </div>
-
-          <div class="process-row">
-            <span class="process-divider"></span>
-            <div class="process-row-body">
-              <p class="process-row-title">Ongoing support</p>
-              <p class="process-row-desc">Monthly updates, blog posts, and SEO tweaks are included. Your site keeps improving — and you never have to think about it.</p>
-            </div>
-            <span class="process-row-num" aria-hidden="true">06</span>
-          </div>
-
         </div>
       </div>
     </section>
@@ -400,5 +381,45 @@
     show(0);
   });
   </script>
+
+  <!-- Process drum: 6-face cylinder, scroll-scrubbed rotation (desktop + motion only;
+       default CSS is a static stack of cards) -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var drum = document.getElementById('drum');
+    var track = document.getElementById('drum-track');
+    if (!drum || !track || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+    var mm = gsap.matchMedia();
+    mm.add(
+      { isDesktop: '(min-width: 900px)', reduceMotion: '(prefers-reduced-motion: reduce)' },
+      function (context) {
+        if (context.conditions.reduceMotion || !context.conditions.isDesktop) return;
+
+        var FACES = 6;
+        track.classList.add('is-3d');
+        track.style.height = (FACES * 55 + 100) + 'vh';
+
+        gsap.to(drum, {
+          rotationY: -300, /* 5 steps of 60deg -- rests on face 6, not back at face 1 */
+          ease: 'none',
+          scrollTrigger: {
+            trigger: track,
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: 1.2,
+            snap: { snapTo: 1 / (FACES - 1), duration: 0.3, ease: 'power2.out' }
+          }
+        });
+
+        return function () {
+          track.classList.remove('is-3d');
+          track.style.height = '';
+        };
+      }
+    );
+  });
+  </script>
 </body>
 </html>
+
