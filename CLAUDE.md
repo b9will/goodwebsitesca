@@ -192,3 +192,9 @@ npx wrangler deploy                                         # this is what goes 
 Live at: https://goodwebsites.ca (worker preview: https://goodwebsitesca.will-69d.workers.dev)
 Edge cache can serve stale HTML for a few minutes after deploy — verify with a cache-busted
 curl or hard refresh. Secrets: `npx wrangler secret put ANTHROPIC_API_KEY` / `RESEND_API_KEY`.
+
+## Split-flap board (work.html)
+"Not extras" features are a scroll-driven split-flap departure board: sticky `.flap-stage`
+inside a tall `.flap-track` (9 features × 62vh), vanilla JS inline at the bottom of
+work.html, CSS in pages.css (`.flap-*`). Card fills use the strong tokens via JS
+(`var(--sun-400)` etc.). Reduced motion: letters swap instantly, no leaf animation.
