@@ -1,0 +1,19 @@
+# Never serve these as public assets (Cloudflare Workers assets ignore file)
+*.md
+worker.js
+functions/
+design-system/
+.gitignore
+.assetsignore
+wrangler.toml
+Dr. Rucha Rege, ND.html
+Dr. Rucha Rege, ND_files/
+Shopify Designscrollanimationss.html
+margotscreenshot.png
+michellehero.png
+vistaswellness.png
+notiondiea.jpeg
+valueprop-cardidea.jpeg
+playful-retro-text-effect-logo-mockup-1.jpg
+podium_home.png
+doodles/

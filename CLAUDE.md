@@ -9,7 +9,7 @@
 - Local dev: `python3 -m http.server 8812` → http://localhost:8812/
 - GSAP + ScrollTrigger loaded via `js/vendor/gsap.min.js` + `js/vendor/ScrollTrigger.min.js`
 - Newsletter: Formspree `https://formspree.io/f/xwvdgedv`
-- Calendly booking: `https://calendly.com/goodwebsites/discovery-call`
+- Calendly booking: `https://calendly.com/hello-goodwebsites/30min`
 
 ## Asset versions (bump on every CSS/JS change, apply to ALL html files)
 ```
