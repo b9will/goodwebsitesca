@@ -13,14 +13,15 @@
 
 ## Asset versions (bump on every CSS/JS change, apply to ALL html files)
 ```
-css/tokens.css?v=11
-css/base.css?v=11
-css/components.css?v=14
-css/pages.css?v=14
-js/main.js?v=11
-js/animations.js?v=8
+css/tokens.css?v=13
+css/base.css?v=13
+css/components.css?v=20
+css/pages.css?v=22
+js/main.js?v=13
+js/animations.js?v=14
 js/about.js?v=5
 ```
+(If these drift, trust the versions in index.html over this list.)
 Version bump command pattern:
 ```bash
 find . -name "*.html" | while read f; do
@@ -67,7 +68,7 @@ take paper-50 text; sun-400 takes ink text. Shadows are always black (--shadow-h
 - `--paper-50: #FEFCF7` — warmest cream, main page bg
 - `--ink-900` — near-black, all borders/text
 - `--sun-400` — primary yellow accent
-- `--coral-100 / --coral-600` — coral tones (newsletter pill)
+- `--coral-400/500/600`, `--sky-400/500/600`, `--grass-400/500/600`, `--grape-400/500/600` — strong accents (no tints exist)
 - `--radius-2xl: 40px`, `--shadow-hard: 4px 4px 0 0 var(--ink-900)`
 - `--container-max: 1200px`, `--gutter: clamp(1.25rem, 4vw, 4rem)`
 - `--section-y: clamp(4rem, 8vw, 8rem)` — standard section padding
@@ -76,12 +77,12 @@ take paper-50 text; sun-400 takes ink text. Shadows are always black (--shadow-h
 - `assets/textures/clean-textile.webp` — bg repeat at 320px, opacity ~0.045–0.06
 - `assets/textures/crissxcross.webp` — overlay, opacity ~0.04
 
-### Badge variants
+### Badge variants (all solid, strong)
 ```css
-.badge--sun    /* sun-200 bg, sun-700 text */
-.badge--coral  /* coral tint bg, coral-600 text */
-.badge--sky    /* sky tint bg, sky-600 text */
-.badge--grass  /* grass tint bg, grass-600 text */
+.badge--sun    /* sun-400 bg, ink-900 text */
+.badge--coral  /* coral-500 bg, paper-50 text */
+.badge--sky    /* sky-500 bg, paper-50 text */
+.badge--grass  /* grass-500 bg, paper-50 text */
 .badge--ink    /* ink-900 bg, paper-50 text */
 ```
 
@@ -129,8 +130,8 @@ take paper-50 text; sun-400 takes ink text. Shadows are always black (--shadow-h
 ### Process section (work.html)
 - Dark `var(--ink-900)` panel with textile texture
 - Each `.process-row` is a white sticker card (border + `box-shadow: 5px 5px 0 0 var(--ink-900)` + `border-radius: var(--radius-xl)`)
-- GSAP animates each card: `y:40, opacity:0` → natural position, triggered at `top 90%`
-- **Known issue as of last session:** process section "acting up" — needs investigation
+- GSAP animates each card as ONE unit (autoAlpha + y, clearProps after — see animations.js);
+  the old "acting up" bug (double animation + hover-transition conflict) is FIXED 2026-07-10
 
 ### Blog cards
 - `.blog-card-img-wrap` aspect ratio: 1/1 (square)
