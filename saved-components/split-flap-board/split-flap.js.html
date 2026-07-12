@@ -1,0 +1,161 @@
+  <!-- Split-flap build-features board -->
+  <script defer>
+  document.addEventListener('DOMContentLoaded', function () {
+    var board = document.getElementById('flap-board');
+    if (!board) return;
+
+    var FEATURES = [
+      { tag: 'Code',        lines: ['CUSTOM', 'HTML CSS & JS', 'NO BUILDERS'],   bg: 'var(--sun-400)',   fg: 'var(--ink-900)',
+        desc: 'HTML, CSS & JS. No WordPress, no page builders. Clean code that loads fast and ranks well.' },
+      { tag: 'Performance', lines: ['PAGESPEED 95+', 'CORE WEB', 'VITALS READY'],    bg: 'var(--sky-500)',   fg: 'var(--paper-50)',
+        desc: 'Every site is optimised for Core Web Vitals. Fast sites rank higher and convert better.' },
+      { tag: 'Design',      lines: ['MOBILE-FIRST', 'BUILT FOR', 'SMALL SCREENS'],   bg: 'var(--grass-500)', fg: 'var(--paper-50)',
+        desc: 'Most of your patients find you on their phone. Every layout is designed for mobile before desktop.' },
+      { tag: 'SEO',         lines: ['LOCAL SEO', 'CITY LEVEL', 'TARGETING'],         bg: 'var(--coral-500)', fg: 'var(--paper-50)',
+        desc: 'City and neighbourhood targeting built into every page from day one. Not bolted on as an afterthought.' },
+      { tag: 'SEO',         lines: ['SCHEMA MARKUP', 'GOOGLE KNOWS', 'WHO YOU ARE'], bg: 'var(--sky-500)',   fg: 'var(--paper-50)',
+        desc: 'Structured data for your practice, services, and reviews so Google (and AI search) knows exactly who you are.' },
+      { tag: 'Analytics',   lines: ['SEARCH CONSOLE', 'INDEXED ON', 'LAUNCH DAY'],   bg: 'var(--sun-400)',   fg: 'var(--ink-900)',
+        desc: 'Sitemap submitted, Search Console connected, and indexing verified on launch day. No loose ends.' },
+      { tag: 'Booking',     lines: ['JANE APP', 'ONE CLICK', 'TO BOOKING'],          bg: 'var(--grass-500)', fg: 'var(--paper-50)',
+        desc: 'Your booking link lives front and centre. Patients go from your site to your calendar in one click.' },
+      { tag: 'Hosting',     lines: ['FAST GLOBAL', 'CDN + SSL', 'ON CLOUDFLARE'],    bg: 'var(--ink-900)',   fg: 'var(--paper-50)',
+        desc: "Hosted on Cloudflare's global edge network. SSL included. Reliable uptime. Handled for you." },
+      { tag: 'Ongoing',     lines: ['MONTHLY', 'UPDATES + SEO', 'INCLUDED'],         bg: 'var(--coral-500)', fg: 'var(--paper-50)',
+        desc: 'Content updates, blog posts, and SEO improvements included every month. Your site keeps improving.' }
+    ];
+
+    var CHARSET = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+&-.';
+    var ROWS = 3;
+    var COLS = 0;
+    FEATURES.forEach(function (f) { f.lines.forEach(function (l) { COLS = Math.max(COLS, l.length); }); });
+    var FLIP_MS = 85;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function padCenter(str, len) {
+      var total = len - str.length;
+      var left = Math.floor(total / 2);
+      return new Array(left + 1).join(' ') + str + new Array(total - left + 1).join(' ');
+    }
+
+    var cells = [];
+    for (var r = 0; r < ROWS; r++) {
+      var row = document.createElement('div');
+      row.className = 'flap-row';
+      board.appendChild(row);
+      for (var i = 0; i < COLS; i++) {
+        var cell = document.createElement('div');
+        cell.className = 'flap-cell';
+        cell.innerHTML =
+          '<div class="flap-half top"><span> </span></div>' +
+          '<div class="flap-half bottom"><span> </span></div>' +
+          '<div class="flap-leaf">' +
+            '<div class="flap-leaf-face flap-leaf-front"><span> </span></div>' +
+            '<div class="flap-leaf-face flap-leaf-back"><span> </span></div>' +
+          '</div>';
+        row.appendChild(cell);
+        cells.push({
+          el: cell, row: r, col: i,
+          top: cell.querySelector('.flap-half.top span'),
+          bottom: cell.querySelector('.flap-half.bottom span'),
+          leaf: cell.querySelector('.flap-leaf'),
+          leafFront: cell.querySelector('.flap-leaf-front span'),
+          leafBack: cell.querySelector('.flap-leaf-back span'),
+          current: ' ', timer: null
+        });
+      }
+    }
+
+    function flipStep(c, next, done) {
+      if (reduced) {
+        c.top.textContent = next;
+        c.bottom.textContent = next;
+        c.current = next;
+        if (done) done();
+        return;
+      }
+      c.leafFront.textContent = c.current;
+      c.leafBack.textContent = next;
+      c.top.textContent = next;
+      c.leaf.classList.remove('flipping');
+      void c.leaf.offsetWidth;
+      c.leaf.style.setProperty('--flip-ms', FLIP_MS + 'ms');
+      c.leaf.classList.add('flipping');
+      setTimeout(function () {
+        c.bottom.textContent = next;
+        c.leaf.classList.remove('flipping');
+        c.current = next;
+        if (done) done();
+      }, FLIP_MS);
+    }
+
+    function flipCellTo(c, target, delay) {
+      clearTimeout(c.timer);
+      c.timer = setTimeout(function run() {
+        if (c.current === target) return;
+        var steps = [];
+        var n = 2 + Math.floor(Math.random() * 3);
+        for (var i = 0; i < n; i++) steps.push(CHARSET[Math.floor(Math.random() * CHARSET.length)]);
+        steps.push(target);
+        var idx = 0;
+        (function next() {
+          if (idx >= steps.length) return;
+          flipStep(c, steps[idx++], function () { c.timer = setTimeout(next, 10); });
+        })();
+      }, delay);
+    }
+
+    var dotsEl = document.getElementById('flap-dots');
+    FEATURES.forEach(function () { dotsEl.appendChild(document.createElement('i')); });
+    var dots = Array.prototype.slice.call(dotsEl.children);
+
+    var card = document.getElementById('flap-card');
+    var tag = document.getElementById('flap-tag');
+    var desc = document.getElementById('flap-desc');
+    var counter = document.getElementById('flap-counter');
+    var activeIdx = -1;
+
+    function show(idx) {
+      if (idx === activeIdx) return;
+      activeIdx = idx;
+      var f = FEATURES[idx];
+
+      card.style.backgroundColor = f.bg;
+      card.style.color = f.fg;
+
+      counter.textContent = ('0' + (idx + 1)).slice(-2) + ' / ' + ('0' + FEATURES.length).slice(-2);
+      dots.forEach(function (d, i) { d.classList.toggle('on', i === idx); });
+
+      tag.style.opacity = 0;
+      setTimeout(function () { tag.textContent = f.tag; tag.style.opacity = 1; }, 200);
+
+      desc.classList.add('out');
+      setTimeout(function () { desc.textContent = f.desc; desc.classList.remove('out'); }, 260);
+
+      var target = f.lines.map(function (l) { return padCenter(l.toUpperCase(), COLS); }).join('');
+      cells.forEach(function (c, i) {
+        flipCellTo(c, target[i], c.col * 26 + c.row * 90);
+      });
+    }
+
+    var track = document.getElementById('flap-track');
+    var PER_ITEM_VH = 62;
+    track.style.height = (FEATURES.length * PER_ITEM_VH + 100) + 'vh';
+
+    var ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        var rect = track.getBoundingClientRect();
+        var total = track.offsetHeight - window.innerHeight;
+        var progress = Math.min(0.9999, Math.max(0, -rect.top / total));
+        show(Math.floor(progress * FEATURES.length));
+        ticking = false;
+      });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    show(0);
+  });
+  </script>

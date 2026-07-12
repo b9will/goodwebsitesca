@@ -1,0 +1,38 @@
+  <!-- Process drum: 6-face cylinder, scroll-scrubbed rotation (desktop + motion only;
+       default CSS is a static stack of cards) -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var drum = document.getElementById('drum');
+    var track = document.getElementById('drum-track');
+    if (!drum || !track || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+    var mm = gsap.matchMedia();
+    mm.add(
+      { isDesktop: '(min-width: 900px)', reduceMotion: '(prefers-reduced-motion: reduce)' },
+      function (context) {
+        if (context.conditions.reduceMotion || !context.conditions.isDesktop) return;
+
+        var FACES = 6;
+        track.classList.add('is-3d');
+        track.style.height = (FACES * 55 + 100) + 'vh';
+
+        gsap.to(drum, {
+          rotationY: -300, /* 5 steps of 60deg -- rests on face 6, not back at face 1 */
+          ease: 'none',
+          scrollTrigger: {
+            trigger: track,
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: 1.2,
+            snap: { snapTo: 1 / (FACES - 1), duration: 0.3, ease: 'power2.out' }
+          }
+        });
+
+        return function () {
+          track.classList.remove('is-3d');
+          track.style.height = '';
+        };
+      }
+    );
+  });
+  </script>

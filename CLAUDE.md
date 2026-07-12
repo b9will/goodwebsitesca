@@ -15,8 +15,8 @@
 ```
 css/tokens.css?v=13
 css/base.css?v=13
-css/components.css?v=20
-css/pages.css?v=22
+css/components.css?v=21
+css/pages.css?v=26
 js/main.js?v=13
 js/animations.js?v=14
 js/about.js?v=5
@@ -128,7 +128,12 @@ take paper-50 text; sun-400 takes ink text. Shadows are always black (--shadow-h
 - Footer "Connect" column must include: hello@goodwebsites.ca, Instagram
 
 ### Process section (work.html)
-- Dark `var(--ink-900)` panel with textile texture
+- Texture stack identical to `.hero--textured` (clean-textile 320px bg + crissxcross
+  200px ::before at 0.055) so hero and steps read as one surface (was ink-900 until 2026-07-11)
+- Doodles: thumbsup in the h2 (`.section-doodle`) + four `.process-doodle` imgs absolute
+  at the section edges (calendar/speechbubble/hammer/laptop) — shown ≥1200px only;
+  sources are `assets/images/doodle-p-*.webp` (480px webp conversions of the raw
+  `doodles/*.png` stash; spaceship/heart converted but unused)
 - Each `.process-row` is a white sticker card (border + `box-shadow: 5px 5px 0 0 var(--ink-900)` + `border-radius: var(--radius-xl)`)
 - GSAP animates each card as ONE unit (autoAlpha + y, clearProps after — see animations.js);
   the old "acting up" bug (double animation + hover-transition conflict) is FIXED 2026-07-10
@@ -200,9 +205,21 @@ inside a tall `.flap-track` (9 features × 62vh), vanilla JS inline at the botto
 work.html, CSS in pages.css (`.flap-*`). Card fills use the strong tokens via JS
 (`var(--sun-400)` etc.). Reduced motion: letters swap instantly, no leaf animation.
 
-## Process drum (work.html)
-The 6 process steps are a scroll-scrubbed 3D drum (six faces at 60° / translateZ 260px),
-sticky stage inside .process-section (which must NOT have overflow:hidden — that kills
-position:sticky). GSAP rotates to -300deg (rests on step 6) with snap per face; desktop +
-motion only via gsap.matchMedia — mobile/reduced-motion get the default static card stack.
-Inline script at the bottom of work.html; CSS is `.drum-*` in pages.css.
+## Process list (work.html)
+The 6 process steps are a simple static list of full-width sticker cards
+(`.process-list > .process-row`): title + desc left, solid coral-500 poster number
+right (large ghost/watermark numerals are NOT our style — same to-do exists for the
+about timeline). Entrance = the standard GSAP process-rows fade-up in animations.js
+(one tween per row, autoAlpha + y, clearProps after, once). Depth hover in CSS:
+hovered card pops (translate -3px + 8px hard shadow), siblings fade to 0.5 via
+`.process-list:hover .process-row:not(:hover)` inside `@media (hover: hover)`.
+Doodles are absolute imgs at the section edges, shown ≥1200px only.
+No inline script — the page's only scroll component is now the split-flap board.
+
+## saved-components/ (never deployed — in .assetsignore)
+Component library of custom builds, each with README + html/css/js:
+- `process-drum/` — horizontal 3D rotateY drum (retired)
+- `process-roller/` — vertical rotateX wide-card roller (retired; see README for the
+  sign rule — face angles must be POSITIVE to cancel the negative JS rotation)
+- `split-flap-board/` — vestaboard (STILL LIVE on work.html; update both copies)
+Plan: keep archiving custom components here as they're built or retired.

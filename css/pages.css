@@ -1791,24 +1791,36 @@ body.is-yearly .price-annual-note { display: block; }
 @media (max-width: 620px) { .chat-end-btns { flex-direction: column; } }
 
 /* ---- Process steps (work page) ---- */
+/* Texture stack matches .hero--textured so hero and steps read as one surface */
 .process-section {
-  background: var(--ink-900);
+  background-color: var(--paper-50);
+  background-image: url('../assets/textures/clean-textile.webp');
+  background-size: 320px;
   padding-block: clamp(4rem, 8vw, 8rem);
   position: relative;
-  /* no overflow:hidden — it would break position:sticky for the drum stage */
 }
 .process-section::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('../assets/textures/clean-textile.webp');
-  background-size: 320px;
-  opacity: 0.06;
+  background-image: url('../assets/textures/crissxcross.webp');
+  background-size: 200px;
+  opacity: 0.055;
   pointer-events: none;
 }
 .process-section .container { position: relative; }
-.process-section .section-header .eyebrow { color: var(--sun-500); }
-.process-section .section-header .heading { color: var(--paper-50); }
+.process-section .section-header .eyebrow { color: var(--coral-600); }
+/* Doodles scattered along the section edges (wide screens only, clear of the cards) */
+.process-doodle {
+  display: none;
+  position: absolute;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+  pointer-events: none;
+  height: auto;
+}
+@media (min-width: 1200px) { .process-doodle { display: block; } }
 .process-list {
   display: flex;
   flex-direction: column;
@@ -1826,11 +1838,17 @@ body.is-yearly .price-annual-note { display: block; }
   gap: var(--space-8);
   position: relative;
   cursor: default;
-  transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+  transition: transform var(--dur-base) var(--ease-out),
+              box-shadow var(--dur-base) var(--ease-out),
+              opacity var(--dur-base) var(--ease-out);
 }
+/* Depth hover: the hovered card pops, its siblings fall back */
 .process-row:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 7px 7px 0 0 var(--ink-900);
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0 0 var(--ink-900);
+}
+@media (hover: hover) {
+  .process-list:hover .process-row:not(:hover) { opacity: 0.5; }
 }
 .process-divider { display: none; }
 .process-row-body { flex: 1; }
@@ -1849,10 +1867,10 @@ body.is-yearly .price-annual-note { display: block; }
   line-height: var(--leading-relaxed);
 }
 .process-row-num {
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 7vw, 5rem);
-  font-weight: var(--weight-display);
-  color: rgba(0,0,0,0.07);
+  font-family: var(--font-poster);
+  font-weight: var(--weight-poster);
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  color: var(--coral-500);
   line-height: 1;
   padding-top: 0.05em;
   letter-spacing: -0.02em;
@@ -2014,72 +2032,3 @@ body.is-yearly .price-annual-note { display: block; }
 }
 .section--textured > * { position: relative; z-index: 1; }
 
-/* ---- Process drum (work page) — default: static stacked cards;
-       .is-3d (added by JS on desktop+motion): sticky 6-face cylinder ---- */
-.drum-track { position: relative; }
-.drum-stage { display: flex; align-items: center; justify-content: center; }
-.drum-scene { width: min(360px, 100%); }
-.drum { display: flex; flex-direction: column; gap: var(--space-5); }
-.drum-face {
-  background: var(--paper-50);
-  border: 2px solid var(--ink-900);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-hard);
-  padding: var(--space-6);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
-.drum-step {
-  font-family: var(--font-mono);
-  font-size: var(--text-2xs);
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--coral-600);
-}
-.drum-title {
-  font-family: var(--font-poster);
-  font-weight: var(--weight-poster);
-  font-size: var(--text-h3);
-  color: var(--ink-900);
-  margin: 0;
-  line-height: 1.1;
-}
-.drum-desc {
-  font-size: var(--text-sm);
-  color: var(--text-muted);
-  margin: 0;
-}
-.drum-track.is-3d .drum-stage {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  height: 100svh;
-}
-.drum-track.is-3d .drum-scene {
-  width: 300px;
-  perspective: 1400px;
-}
-.drum-track.is-3d .drum {
-  position: relative;
-  display: block;
-  width: 300px;
-  height: 340px;
-  transform-style: preserve-3d;
-}
-.drum-track.is-3d .drum-face {
-  position: absolute;
-  inset: 0;
-  width: 300px;
-  height: 340px;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-/* radius = 300 / (2 * tan(30deg)) ~ 260px */
-.drum-track.is-3d .drum-face:nth-child(1) { transform: rotateY(0deg)   translateZ(260px); }
-.drum-track.is-3d .drum-face:nth-child(2) { transform: rotateY(60deg)  translateZ(260px); }
-.drum-track.is-3d .drum-face:nth-child(3) { transform: rotateY(120deg) translateZ(260px); }
-.drum-track.is-3d .drum-face:nth-child(4) { transform: rotateY(180deg) translateZ(260px); }
-.drum-track.is-3d .drum-face:nth-child(5) { transform: rotateY(240deg) translateZ(260px); }
-.drum-track.is-3d .drum-face:nth-child(6) { transform: rotateY(300deg) translateZ(260px); }

@@ -1,0 +1,136 @@
+/* ---- Split-flap build-features board (work page) ---- */
+.flap-track { position: relative; }
+.flap-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-5);
+}
+.flap-card {
+  --cell-w: clamp(15px, 4.6vw, 36px);
+  --cell-gap: clamp(2px, 0.7vw, 4px);
+  --cell-h: calc(var(--cell-w) * 1.45);
+  width: min(680px, 100%);
+  border-radius: var(--radius-2xl);
+  border: 2px solid var(--ink-900);
+  box-shadow: var(--shadow-hard-lg);
+  padding: clamp(24px, 5vw, 48px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  transition: background-color 0.55s ease, color 0.55s ease;
+  background: var(--sun-400);
+}
+.flap-card-head { display: flex; justify-content: space-between; align-items: center; }
+.flap-tag {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1.5px solid currentColor;
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+  transition: opacity 0.25s ease;
+}
+.flap-counter {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+}
+.flap-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--cell-gap);
+  perspective: 900px;
+}
+.flap-row { display: flex; flex-wrap: nowrap; gap: var(--cell-gap); }
+.flap-cell {
+  position: relative;
+  width: var(--cell-w);
+  height: var(--cell-h);
+  border-radius: calc(var(--cell-w) * 0.16);
+  background: var(--ink-900);
+  color: var(--paper-50);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: calc(var(--cell-h) * 0.62);
+  line-height: var(--cell-h);
+  text-align: center;
+  transform-style: preserve-3d;
+}
+.flap-cell::after { /* seam */
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: 50%;
+  height: 1.5px;
+  background: rgba(254, 252, 247, 0.28);
+  transform: translateY(-50%);
+  z-index: 5;
+  pointer-events: none;
+}
+.flap-half { position: absolute; left: 0; width: 100%; height: 50%; overflow: hidden; }
+.flap-half span {
+  position: absolute; left: 0; width: 100%;
+  height: var(--cell-h); line-height: var(--cell-h); display: block;
+}
+.flap-half.top { top: 0; border-radius: calc(var(--cell-w) * 0.16) calc(var(--cell-w) * 0.16) 0 0; }
+.flap-half.top span { top: 0; }
+.flap-half.bottom { bottom: 0; border-radius: 0 0 calc(var(--cell-w) * 0.16) calc(var(--cell-w) * 0.16); }
+.flap-half.bottom span { bottom: 0; }
+.flap-leaf {
+  position: absolute; left: 0; top: 0; width: 100%; height: 50%;
+  transform-origin: bottom center;
+  transform-style: preserve-3d;
+  z-index: 4;
+  display: none;
+}
+.flap-leaf.flipping { display: block; animation: flap-leafflip var(--flip-ms, 90ms) ease-in forwards; }
+@keyframes flap-leafflip { from { transform: rotateX(0deg); } to { transform: rotateX(-180deg); } }
+.flap-leaf-face {
+  position: absolute; inset: 0; overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: var(--ink-900);
+}
+.flap-leaf-face span {
+  position: absolute; left: 0; width: 100%;
+  height: var(--cell-h); line-height: var(--cell-h); display: block;
+}
+.flap-leaf-front { border-radius: calc(var(--cell-w) * 0.16) calc(var(--cell-w) * 0.16) 0 0; }
+.flap-leaf-front span { top: 0; }
+.flap-leaf-back {
+  transform: rotateX(180deg);
+  border-radius: 0 0 calc(var(--cell-w) * 0.16) calc(var(--cell-w) * 0.16);
+}
+.flap-leaf-back span { bottom: 0; }
+.flap-desc {
+  font-size: clamp(15px, 2.4vw, 19px);
+  font-weight: var(--weight-medium);
+  line-height: 1.45;
+  max-width: 46ch;
+  margin: 0 auto;
+  text-align: center;
+  min-height: 3.2em;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.flap-desc.out { opacity: 0; transform: translateY(8px); }
+.flap-dots { display: flex; justify-content: center; gap: 8px; }
+.flap-dots i {
+  width: 8px; height: 8px; border-radius: 50%;
+  border: 1.5px solid currentColor;
+  opacity: 0.45;
+  transition: all 0.3s ease;
+}
+.flap-dots i.on { opacity: 1; background: currentColor; }
+@media (prefers-reduced-motion: reduce) {
+  .flap-leaf { display: none !important; }
+}
+

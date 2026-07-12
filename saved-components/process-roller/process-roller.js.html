@@ -1,0 +1,62 @@
+  <!-- Process roller: wide 6-face card that rolls vertically, scroll-scrubbed
+       (desktop + motion only; default CSS is a static stack of cards).
+       The old horizontal drum is archived in saved-components/process-drum/. -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var drum = document.getElementById('drum');
+    var track = document.getElementById('drum-track');
+    if (!drum || !track || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+    var mm = gsap.matchMedia();
+    mm.add(
+      { isDesktop: '(min-width: 900px)', reduceMotion: '(prefers-reduced-motion: reduce)' },
+      function (context) {
+        if (context.conditions.reduceMotion || !context.conditions.isDesktop) return;
+
+        var FACES = 6;
+        var faces = drum.querySelectorAll('.drum-face');
+        track.classList.add('is-3d');
+        track.style.height = (FACES * 55 + 100) + 'vh';
+
+        /* Fade faces by how far they are from the front, so only the
+           current step reads while neighbours peek in dimly. */
+        function shade() {
+          var r = Number(gsap.getProperty(drum, 'rotationX')) || 0;
+          faces.forEach(function (f, i) {
+            var ang = ((r + 60 * i) % 360 + 360) % 360;
+            if (ang > 180) ang -= 360;
+            f.style.opacity = Math.pow(Math.max(0, Math.cos(ang * Math.PI / 180)), 2).toFixed(3);
+          });
+        }
+
+        /* Dwell on each step, then roll over quickly with a mechanical
+           overshoot -- the snappiness lives in the timeline, not in the
+           scroll position, so the page itself never bounces. */
+        var tl = gsap.timeline({
+          onUpdate: shade,
+          scrollTrigger: {
+            trigger: track,
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: 0.6,
+            snap: { snapTo: 'labels', duration: 0.3, ease: 'power1.inOut' }
+          }
+        });
+        tl.addLabel('step0');
+        for (var i = 1; i < FACES; i++) {
+          tl.to({}, { duration: 0.6 })
+            .to(drum, { rotationX: -60 * i, duration: 0.4, ease: 'back.out(2)' })
+            .addLabel('step' + i);
+        }
+        tl.to({}, { duration: 0.6 });
+        shade();
+
+        return function () {
+          track.classList.remove('is-3d');
+          track.style.height = '';
+          faces.forEach(function (f) { f.style.opacity = ''; });
+        };
+      }
+    );
+  });
+  </script>
