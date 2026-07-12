@@ -416,9 +416,11 @@ body.footer-fixed .site-footer {
   margin-top: 0;
   transition: none;
   opacity: 1;
-  /* transform is owned by GSAP (yPercent 103 -> 0); do not set it here.
+  /* GSAP owns the transform (gsap.set y:0,yPercent:103 → yPercent:0).
+     transform:none here resets the base translateY(56px) so GSAP starts clean.
      No overflow/max-height: internal scrolling would swallow the wheel-up
      that reverses the reveal. */
+  transform: none;
 }
 /* Runway after the CTA so it can be read before the footer fires */
 body.footer-fixed main {

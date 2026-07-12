@@ -15,10 +15,10 @@
 ```
 css/tokens.css?v=13
 css/base.css?v=13
-css/components.css?v=21
+css/components.css?v=22
 css/pages.css?v=26
 js/main.js?v=13
-js/animations.js?v=14
+js/animations.js?v=15
 js/about.js?v=5
 ```
 (If these drift, trust the versions in index.html over this list.)
@@ -169,11 +169,15 @@ take paper-50 text; sun-400 takes ink text. Shadows are always black (--shadow-h
 ```
 
 ### Footer (desktop) — fixed bounce reveal
-On desktop (≥900px, motion OK) JS adds `body.footer-fixed`: footer is position:fixed
-offscreen below the viewport (GSAP owns its transform — never set transform on it in CSS);
-at end of scroll a ScrollTrigger on `main` ('bottom bottom+=2') bounces it up (back.out)
-over the last section, reversing on scroll-up. Mobile/reduced-motion keep the in-flow
-slide-up footer. Footer max-height 88vh with internal scroll.
+On desktop (≥900px, motion OK) JS adds `body.footer-fixed`: footer is `position:fixed`
+offscreen below the viewport. `body.footer-fixed .site-footer` CSS sets `transform: none`
+to reset the base `translateY(56px)` so GSAP starts clean. GSAP owns the transform:
+`gsap.set(footer, {y:0, yPercent:103})` hides it; ScrollTrigger on `main`
+`start:'bottom bottom+=2'` uses `onEnter`/`onLeaveBack` with TWO separate tweens —
+reveal: `back.out(1.1)` 0.45s (bouncy), hide: `power3.in` 0.3s (clean, no overshoot).
+Using separate tweens avoids the `back.out` reversed-overshoot flicker from
+`toggleActions:'play none none reverse'`. Mobile/reduced-motion keep the in-flow
+slide-up footer.
 Cookie consent banner is injected by main.js (localStorage key `gw-cookie-ok`).
 CTA sections are contained coral cards (`.cta-section`, coral-200) — no inline bg styles.
 

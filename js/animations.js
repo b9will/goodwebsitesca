@@ -54,16 +54,20 @@
       var mainEl = document.querySelector('main');
       if (siteFooter && mainEl && isDesktop) {
         document.body.classList.add('footer-fixed');
-        var footTween = gsap.fromTo(siteFooter,
-          { y: 0, yPercent: 103 },
-          { yPercent: 0, ease: 'back.out(1.1)', duration: 0.45, paused: true });
+        gsap.set(siteFooter, { y: 0, yPercent: 103 });
         ScrollTrigger.create({
           trigger: mainEl,
           start: 'bottom bottom+=2',
-          animation: footTween,
-          toggleActions: 'play none none reverse'
+          onEnter: function () {
+            gsap.killTweensOf(siteFooter, 'yPercent');
+            gsap.to(siteFooter, { yPercent: 0, ease: 'back.out(1.1)', duration: 0.45 });
+          },
+          onLeaveBack: function () {
+            gsap.killTweensOf(siteFooter, 'yPercent');
+            gsap.to(siteFooter, { yPercent: 103, ease: 'power3.in', duration: 0.3 });
+          }
         });
-        ScrollTrigger.refresh();
+        requestAnimationFrame(function () { ScrollTrigger.refresh(); });
       } else if (siteFooter) {
         ScrollTrigger.create({
           trigger: siteFooter,
