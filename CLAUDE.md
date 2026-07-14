@@ -1,5 +1,11 @@
 # Good Websites — Claude Project Brief
 
+## Handoff rule
+**Always update `HANDOFF.md` before ending a session or deploying.** Overwrite it in
+place — it is the single rolling source of truth for the next session. Dated handoff
+files (`goodwebsites_handoff_*.md`) are old snapshots; ignore them. `HANDOFF.md` is
+assetsignored and never deploys.
+
 ## What this is
 **goodwebsites.ca** — subscription web design business targeting naturopathic doctors in Canada. 3 tiers, done-for-you model. Owner: Will Robinson (will@b9.digital).
 
