@@ -1,68 +1,65 @@
 # Good Websites — Session Handoff (2026-07-12)
 
-> Read alongside `CLAUDE.md` (authoritative for conventions). This file covers what
-> shipped in the 2026-07-11 session, the current working-tree state, and what's next.
+> Read alongside `CLAUDE.md` (authoritative for conventions).
 > `*.md` files are assetsignored — this never deploys.
 
-## Deploy status: LIVE ✅ (as of end of 2026-07-11 session)
-- Commit `14ac207` "Process page redesign: simple card list, cream texture, doodles;
-  site-wide polish" — 52 files, pushed to `b9will/goodwebsitesca` main.
-- `npx wrangler deploy` succeeded (version `01ed6bee-dc58-4357-901d-3a4fa091dc15`).
-- **Gotcha:** `git push` 403s when active gh account is `goodwebsitesca` — switch first:
-  `gh auth switch -u b9will && git push origin main` (then switch back if needed).
+## Deploy status: LIVE ✅
+- Commit `ef227ee` "Fix footer animation + remove crown doodle; bump components v22, animations v15"
+- `npx wrangler deploy` → version `48315a4a-4c96-49ab-bcec-3fddb5f522e0`
+- **Gotcha:** `git push` 403s when active gh account is `goodwebsitesca` — always:
+  `gh auth switch -u b9will && git push origin main`
 
-## Working tree — NOT YET COMMITTED/DEPLOYED
-Two files modified locally (`git diff --name-only` shows index.html + pricing.html):
+## What shipped this session
 
-### 1. Crown doodle removed ✅
-`sed -i '' '/crown.webp/d' index.html pricing.html` — the `<img src="assets/accents/crown.webp">` 
-sticker that was sitting above the Practice pricing card is gone from both files.
-Confirmed: `grep -r "crown" index.html pricing.html` returns zero matches.
+### Footer animation fix (animations.js v14 → v15, components.css v21 → v22)
+**Root causes found:**
+1. `back.out(1.1)` + `toggleActions: 'play none none reverse'` — GSAP reverses the
+   back.out ease which overshoots in the wrong direction, briefly flashing the footer
+   into view when scrolling back up past the trigger.
+2. Base `.site-footer` CSS has `transform: translateY(56px)`. GSAP was inheriting this
+   and stacking it on top of `yPercent:103`, so when the footer revealed (yPercent→0)
+   it would still carry the 56px offset, cutting off the bottom row.
 
-### 2. Footer animation bug — NOT YET FIXED ⚠️
-User flagged something weird happening with the footer animation (visible/triggering at
-the pricing section mid-page, not just at the very bottom). Investigation started but
-cut off before a fix landed.
+**Fixes:**
+- Replaced single paused tween + `animation/toggleActions` with two separate tweens
+  via `onEnter` / `onLeaveBack` callbacks:
+  - Reveal: `gsap.to(footer, { yPercent:0, ease:'back.out(1.1)', duration:0.45 })`
+  - Hide: `gsap.to(footer, { yPercent:103, ease:'power3.in', duration:0.3 })`
+  - `gsap.killTweensOf(siteFooter, 'yPercent')` before each to prevent conflicts
+- Added `transform: none` to `body.footer-fixed .site-footer` CSS — resets the base
+  `translateY(56px)` so GSAP reads a clean starting transform.
+- Initial hide: `gsap.set(siteFooter, { y:0, yPercent:103 })` (explicit y:0 prevents
+  CSS y value from leaking into GSAP's internal state).
+- Wrapped `ScrollTrigger.refresh()` in `requestAnimationFrame` so CSS is settled first.
 
-**What we know:**
-- Footer uses `body.footer-fixed` class (added by JS on desktop ≥900px, motion OK)
-- Footer is `position: fixed`, GSAP owns its transform — never set transform on it in CSS
-- Tween: `gsap.fromTo(siteFooter, {y:0, yPercent:103}, {yPercent:0, ease:'back.out(1.1)', duration:0.45, paused:true})`
-- ScrollTrigger: `trigger: mainEl, start: 'bottom bottom+=2', toggleActions: 'play none none reverse'`
-- At page load, footer correctly sits at `transform: matrix(1,0,0,1,0,769.458)` (offscreen)
-- Hypothesis: the `padding-bottom: clamp(16rem, 45vh, 28rem)` runway added to `main` 
-  when `body.footer-fixed` is active may be making the page's `bottom` reach `bottom+=2`
-  earlier than expected (e.g. at pricing section), causing the footer to slide up too soon.
-  Check `animations.js` + `components.css` footer section for the runway/trigger logic.
+### Crown doodle removed
+`<img src="assets/accents/crown.webp">` removed from the Practice pricing card in both
+`index.html` and `pricing.html`.
+
+## Current asset versions
+```
+css/tokens.css?v=13
+css/base.css?v=13
+css/components.css?v=22
+css/pages.css?v=26
+js/main.js?v=13
+js/animations.js?v=15
+js/about.js?v=5
+```
 
 ## Next steps (in rough priority)
+1. Annex Naturopathic real site build → replaces the mockup screenshot on the homepage,
+   becomes the first numbered case study.
+2. About-page timeline redo (ghost/watermark numerals don't fit the style — same reason
+   process list numbers went solid coral; see CLAUDE.md).
+3. Parked: AI chat revive (`npx wrangler secret put ANTHROPIC_API_KEY`), Stripe
+   link↔plan verification on signup.html, Resend domain verification, OAND badge
+   wording, free audit tool.
 
-### Immediate (these changes are sitting in the working tree)
-1. **Fix footer animation bug** — diagnose why footer reveals mid-page at pricing section.
-   Check: runway padding, ScrollTrigger start value, whether `main` height is being 
-   measured before or after padding-bottom is applied. Fix, then commit + deploy both
-   the crown removal and footer fix together.
-
-### After that
-2. Annex Naturopathic real site build → replaces the mockup screenshot, becomes case study.
-3. About-page timeline redo (drop ghost/watermark numerals — same reason process list 
-   numbers went solid coral).
-4. Parked: AI chat revive (`npx wrangler secret put ANTHROPIC_API_KEY`), Stripe 
-   link↔plan verification on signup.html, Resend domain verification, OAND badge wording,
-   free audit tool.
-
-## What shipped last session (2026-07-11) — quick reference
-Full detail in `goodwebsites_handoff_2026-07-11.md`. Summary:
-- work.html process section: black drum → cream texture + static card list + doodles
-- Portfolio teaser → "Not ready to book? Start here." + checklist card
-- Nav font fixed site-wide (Lunchtype22, was inheriting Ranade)
-- Buttons: `white-space: nowrap`
-- "properly fast" → "fast on every device" everywhere
-- Patient-stories copy → website-focused on homepage
-- Hero secondary CTA → "See the process"
-- About page → "See the full process →" link
-- saved-components/ library created (drum, roller, split-flap-board archived)
-- "Hand-coded" → "Custom HTML, CSS, and JS" everywhere
-
-## Local dev
-`python3 -m http.server 8812` → http://localhost:8812/
+## Notes carried forward from 2026-07-11 session
+Full detail in `goodwebsites_handoff_2026-07-11.md`. Quick ref:
+- work.html: cream texture, static process card list, doodles, checklist CTA card
+- Nav: Lunchtype22 site-wide; buttons: white-space:nowrap
+- "fast on every device" replaces "properly fast" everywhere
+- saved-components/ library: drum, roller, split-flap-board (all assetsignored)
+- About page → "See the full process →" button added
