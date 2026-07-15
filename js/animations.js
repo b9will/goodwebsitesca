@@ -7,6 +7,10 @@
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
   gsap.registerPlugin(ScrollTrigger);
 
+  /* Lenis smooth scroll — disabled: double-smoothing with scrub: 0.8 on homepage
+     parallax creates stacked lag. Native trackpad scroll already has ease-out momentum.
+     Re-enable only if scrub values are all changed to scrub: true first. */
+
   /* Matches the site's CSS motion personality:
      --ease-out: cubic-bezier(0.22,1,0.36,1) ≈ power4.out, --dur-slower: 520ms */
   gsap.defaults({ ease: 'power4.out', duration: 0.55 });
@@ -52,12 +56,13 @@
          pages: classic in-flow slide-up. */
       var siteFooter = document.querySelector('.site-footer');
       var mainEl = document.querySelector('main');
-      if (siteFooter && mainEl && isDesktop) {
+      if (siteFooter && mainEl && isDesktop && !document.body.hasAttribute('data-no-footer-fixed')) {
         document.body.classList.add('footer-fixed');
         gsap.set(siteFooter, { y: 0, yPercent: 103 });
         ScrollTrigger.create({
           trigger: mainEl,
           start: 'bottom bottom+=2',
+          invalidateOnRefresh: true,
           onEnter: function () {
             gsap.killTweensOf(siteFooter, 'yPercent');
             gsap.to(siteFooter, { yPercent: 0, ease: 'back.out(1.1)', duration: 0.45 });

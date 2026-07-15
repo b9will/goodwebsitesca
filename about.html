@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="css/base.css?v=13">
   <link rel="stylesheet" href="css/components.css?v=22">
   <link rel="stylesheet" href="css/pages.css?v=26">
-  <noscript><style>.reveal,.tl-era{opacity:1!important;transform:none!important} #tl-progress{transform:scaleX(1)!important}</style></noscript>
+  <noscript><style>.reveal,.tl-era-inner,.tl-year,.tl-text{opacity:1!important;transform:none!important}</style></noscript>
 
   <style>
     /* ─────────────────────────────────────────────────────────────────
@@ -89,292 +89,256 @@
     .ab-stamp--coral .ab-stamp-label, .ab-stamp--sky .ab-stamp-label, .ab-stamp--grass .ab-stamp-label { color: var(--paper-100); }
 
     /* ─────────────────────────────────────────────────────────────────
-       MARQUEE STRIP
-    ───────────────────────────────────────────────────────────────── */
-    .ab-marquee {
-      overflow: hidden;
-      background: var(--ink-900);
-      border-bottom: 2px solid var(--ink-900);
-      padding: 14px 0;
-      user-select: none;
-    }
-    .ab-marquee-track {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-6);
-      animation: ab-marquee 24s linear infinite;
-      will-change: transform;
-    }
-    @keyframes ab-marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .ab-marquee-track { animation-play-state: paused; }
-    }
-    .ab-marquee-item {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: 0.75rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--sun-400);
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .ab-marquee-sep {
-      color: var(--ink-600);
-      font-size: 0.6rem;
-      flex-shrink: 0;
-    }
-
-    /* ─────────────────────────────────────────────────────────────────
        HORIZONTAL TIMELINE
     ───────────────────────────────────────────────────────────────── */
-    :root { --tl-h: 100vh; }
-
     #tl-section {
-      position: relative;
-      overflow: hidden;
       border-bottom: 2px solid var(--ink-900);
     }
-
-    /* Yellow progress bar at very top of section */
-    #tl-progress-wrap {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-      background: rgba(255,255,255,0.08);
-      z-index: 20;
-    }
-    #tl-progress {
-      height: 100%;
-      background: var(--sun-400);
-      transform: scaleX(0);
-      transform-origin: left center;
-    }
-
-    .tl-outer {
-      overflow: hidden;
-      height: var(--tl-h);
-    }
-
-    .tl-track {
-      display: flex;
-      align-items: stretch;
-      height: var(--tl-h);
-      width: max-content;
-      position: relative;
-    }
-
-    /* ── Intro card (dark slab) ─────────────────────────────────── */
-    .tl-intro-card {
-      width: 320px;
-      flex-shrink: 0;
-      background: var(--ink-900);
-      color: var(--paper-50);
-      border-right: 2px solid var(--paper-200);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: var(--space-8);
+    /* ── intro header (scrolls naturally before pin kicks in) ── */
+    .tl-intro {
+      background: var(--paper-50);
+      padding: var(--space-8) 0 var(--space-7);
       position: relative;
       overflow: hidden;
     }
-    /* "EST. 2007" stamp in top-left of intro card */
-    .tl-intro-stamp {
+    .tl-intro::before {
+      content: '';
       position: absolute;
-      top: var(--space-7);
-      left: var(--space-7);
-      border: 2px solid var(--sun-400);
-      padding: var(--space-2) var(--space-3);
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--sun-400);
-      transform: rotate(-3deg);
+      inset: 0;
+      background: url('assets/textures/crissxcross.webp') repeat;
+      background-size: 200px;
+      opacity: 0.055;
+      pointer-events: none;
     }
-    .tl-intro-card .eyebrow { color: var(--sun-400); margin-bottom: var(--space-3); }
-    .tl-intro-title {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: clamp(2rem, 3vw, 2.8rem);
+    .tl-intro-inner {
+      position: relative;
+    }
+    .tl-label-title {
+      font-family: var(--font-poster);
+      font-weight: 900;
+      font-size: clamp(2.8rem, 5vw, 5.5rem);
       letter-spacing: -0.04em;
-      line-height: 1.1;
-      color: var(--paper-50);
-      margin-bottom: var(--space-3);
+      line-height: 1.0;
+      margin-top: var(--space-2);
     }
-    .tl-intro-sub {
-      font-size: var(--text-sm);
-      color: rgba(255,255,255,0.45);
-      line-height: var(--leading-relaxed);
-    }
-    .tl-scroll-hint {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-2);
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 0.65rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--sun-400);
-      margin-top: var(--space-5);
-    }
-    .tl-scroll-hint svg { animation: hint-drift 1.8s ease-in-out infinite; }
-    @keyframes hint-drift {
-      0%, 100% { transform: translateX(0); }
-      55%       { transform: translateX(7px); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .tl-scroll-hint svg { animation: none; }
-    }
-
-    /* ── Era card — full-height slab ────────────────────────────── */
-    .tl-era {
-      width: 360px;
-      height: 100%;
-      flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: var(--space-8);
-      position: relative;
-      overflow: hidden;
-      background: var(--era-bg, var(--paper-100));
-      border-right: 2px solid var(--ink-900);
-    }
-
-    /* Ghost year — very large, behind content */
-    .tl-ghost {
+    .tl-doodle {
       position: absolute;
-      left: -0.12em;
-      bottom: -0.1em;
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: 13rem;
-      letter-spacing: -0.08em;
-      color: var(--ink-900);
-      opacity: 0.07;
-      line-height: 1;
-      user-select: none;
+      opacity: 0.55;
+      display: none;
+    }
+    @media (min-width: 900px) {
+      .tl-doodle { display: block; }
+      .tl-doodle--a { top: 0;    right: 18%; transform: rotate(20deg);  width: 60px; }
+      .tl-doodle--b { bottom: 0; right: 32%; transform: rotate(-10deg); width: 44px; }
+    }
+    /* ── pinned horizontal scroll area ── */
+    .tl-outer {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      background: var(--paper-50);
+    }
+    .tl-outer::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('assets/textures/crissxcross.webp') repeat;
+      background-size: 200px;
+      opacity: 0.055;
       pointer-events: none;
       z-index: 0;
-      white-space: nowrap;
     }
-
-    /* ── Polaroid pop-culture cards ─────────────────────────── */
-    .tl-polaroid {
-      position: absolute;
-      z-index: 2;
-      background: #fff;
-      padding: 10px 10px 50px;
-      box-shadow: 6px 10px 30px rgba(0,0,0,0.22), 2px 3px 6px rgba(0,0,0,0.10);
-      border-radius: 2px;
+    .tl-track {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: flex-start;
+      gap: 8vw;
+      height: 100%;
+      padding-left: 90svw;
+      padding-right: 0;
+      will-change: transform;
     }
-    .tl-polaroid-photo {
-      width: 180px;
-      height: 180px;
+    .tl-era {
+      position: relative;
+      flex-shrink: 0;
+      width: 420px;
+      height: 100%;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
+      padding-top: var(--tl-y, 15%);
     }
-    .tl-polaroid-emoji {
-      font-size: 5rem;
-      line-height: 1;
-      user-select: none;
+    .tl-era:nth-child(1) { --tl-y: 8vh;  }
+    .tl-era:nth-child(2) { --tl-y: 40vh; }
+    .tl-era:nth-child(3) { --tl-y: 6vh;  }
+    .tl-era:nth-child(4) { --tl-y: 44vh; }
+    .tl-era:nth-child(5) { --tl-y: 18vh; }
+    .tl-era:nth-child(6) { --tl-y: 4vh;  }
+    .tl-era:nth-child(7) { --tl-y: 32vh; }
+    .tl-era-inner {
+      position: relative;
+      transform-origin: center center;
+      will-change: transform;
     }
-    .tl-polaroid-inner {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: 2rem;
+    /* ── Year badge + GIF float above card ── */
+    .tl-year {
+      position: absolute;
+      top: -22px;
+      left: var(--space-5);
+      z-index: 2;
+      background: var(--year-bg, var(--coral-500));
+      color: var(--paper-50);
+      border: 2px solid var(--ink-900);
+      border-radius: var(--radius-pill);
+      font-family: var(--font-poster);
+      font-weight: 900;
+      font-size: 2.25rem;
       letter-spacing: -0.03em;
-      line-height: 1.05;
-      text-align: center;
-      color: var(--ink-900);
-      text-transform: uppercase;
+      padding: 8px 28px;
+      white-space: nowrap;
+      box-shadow: 4px 4px 0 0 var(--ink-900);
+      line-height: 1.1;
     }
-    .tl-polaroid-label {
-      font-family: var(--font-sans);
-      font-style: italic;
-      font-size: 0.8rem;
-      letter-spacing: 0.02em;
-      color: #3a3028;
-      text-align: center;
-      padding-top: 10px;
-      line-height: 1.4;
+    .tl-gif-wrap {
+      position: absolute;
+      top: -32px;
+      right: var(--space-5);
+      z-index: 2;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 2px solid var(--ink-900);
+      box-shadow: 3px 3px 0 0 var(--ink-900);
+      overflow: hidden;
+      background: var(--ink-900);
     }
-
-    /* Era content sits on top of ghost */
-    .tl-era-content { position: relative; z-index: 1; }
-
-    .tl-tags  { display: flex; gap: var(--space-2); flex-wrap: wrap; margin-bottom: var(--space-3); }
-    .tl-year  {
-      font-family: var(--font-display); font-weight: 800;
-      font-size: 0.65rem; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--sun-700);
-      margin-bottom: var(--space-2);
+    .tl-gif-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      display: block;
+    }
+    /* ── Card: text content only ── */
+    .tl-card {
+      position: relative;
+      z-index: 1;
+      background: var(--paper-0);
+      border: 2px solid var(--ink-900);
+      border-radius: var(--radius-xl);
+      box-shadow: 6px 6px 0 0 var(--ink-900);
+      padding: 1.5rem;
+      padding-top: 3.5rem;
+    }
+    .tl-gif-wrap {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      border: 2px solid var(--ink-900);
+      box-shadow: 3px 3px 0 0 var(--ink-900);
+      overflow: hidden;
+      flex-shrink: 0;
+      background: var(--ink-900);
+    }
+    .tl-gif-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      display: block;
     }
     .tl-headline {
-      font-family: var(--font-display); font-weight: 800;
-      font-size: clamp(1rem, 1.5vw, 1.25rem);
-      letter-spacing: var(--tracking-tight);
-      color: var(--text-strong); line-height: 1.2;
-      margin-bottom: var(--space-3);
+      font-family: var(--font-ui);
+      font-weight: 500;
+      font-size: 1.05rem;
+      letter-spacing: -0.015em;
+      line-height: 1.3;
+      color: var(--text-strong);
+      margin-block: 0 var(--space-3);
     }
     .tl-body {
-      font-size: var(--text-sm); color: var(--text-body);
+      font-size: 0.875rem;
+      color: var(--text-body);
       line-height: var(--leading-relaxed);
+      margin: 0 0 var(--space-4);
     }
-    /* Vivid-bg cards: keep text legible */
-    .tl-era[style*="coral-400"] .tl-headline,
-    .tl-era[style*="grass-400"] .tl-headline { color: var(--ink-900); }
-    .tl-era[style*="coral-400"] .tl-body,
-    .tl-era[style*="grass-400"] .tl-body     { color: var(--ink-700); }
-    .tl-era[style*="coral-400"] .tl-ghost,
-    .tl-era[style*="grass-400"] .tl-ghost    { opacity: 0.12; }
+    .tl-tags {
+      display: flex; gap: var(--space-2); flex-wrap: wrap;
+    }
+    .tl-end-spacer {
+      flex-shrink: 0;
+      width: calc(50svw - 210px);
+      height: 1px;
+      pointer-events: none;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .tl-era-inner { transform: none !important; opacity: 1 !important; }
+    }
+    @media (max-width: 800px) {
+      .tl-outer { height: auto; overflow: visible; border-bottom: none; }
+      .tl-track {
+        flex-direction: column;
+        width: 100% !important;
+        transform: none !important;
+        padding: var(--section-y) var(--gutter);
+        gap: clamp(3rem, 8vw, 5rem);
+      }
+      .tl-era { width: 100%; height: auto; padding-top: 0 !important; }
+      .tl-era-inner { transform: none !important; opacity: 1 !important; }
+      .tl-gif-wrap { width: 72px; height: 72px; }
+      .tl-year { font-size: 1.1rem; padding: 4px 14px; }
+    }
 
-    /* ─────────────────────────────────────────────────────────────────
-       Mission / Vision (unchanged — will be polished in next pass)
+        /* ─────────────────────────────────────────────────────────────────
+       MISSION & VISION — two floating sticker cards
     ───────────────────────────────────────────────────────────────── */
     .mv-section {
-      padding: var(--space-11) 0;
-      position: relative; overflow: hidden;
+      background: var(--surface-page-alt);
+      border-bottom: 2px solid var(--ink-900);
+      padding-block: var(--section-y);
     }
-    .mv-section--mission { background: var(--surface-sun); border-bottom: 2px solid var(--ink-900); }
-    .mv-section--vision  { background: var(--ink-900); }
-    .mv-inner {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: var(--space-12); align-items: center;
+    .mv-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-7);
+      align-items: start;
+      margin-top: var(--space-8);
     }
-    .mv-label-col { display: flex; flex-direction: column; gap: var(--space-5); }
-    .mv-doodle {
-      width: 80px; height: 80px;
-      border: 2px solid currentColor;
+    .mv-card {
+      border: 2px solid var(--ink-900);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-hard-xl);
+      padding: var(--space-8);
+    }
+    .mv-card--mission {
+      background: var(--coral-500);
+      color: var(--paper-50);
+      transform: rotate(-1.5deg);
+    }
+    .mv-card--vision {
+      background: var(--sky-500);
+      color: var(--paper-50);
+      transform: rotate(1.5deg);
+      margin-top: var(--space-7);
+    }
+    .mv-card-icon {
+      width: 52px; height: 52px;
+      border: 2px solid rgba(255,255,255,0.35);
+      border-radius: var(--radius-md);
       display: flex; align-items: center; justify-content: center;
-      border-radius: 12px;
+      margin-bottom: var(--space-4);
     }
-    .mv-doodle svg { width: 48px; height: 48px; }
-    .mv-quote {
-      font-family: var(--font-display); font-weight: 800;
-      font-size: clamp(1.6rem, 2.8vw, 2.6rem);
-      letter-spacing: var(--tracking-tighter); line-height: 1.12;
+    .mv-card-icon svg { width: 28px; height: 28px; }
+    .mv-card-label { color: rgba(255,255,255,0.65); margin-bottom: var(--space-4); }
+    .mv-card-quote {
+      font-family: var(--font-poster);
+      font-weight: 900;
+      font-size: clamp(1.2rem, 2vw, 1.7rem);
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin: 0;
+      color: var(--paper-50);
     }
-    .mv-section--mission .mv-quote { color: var(--ink-900); }
-    .mv-section--vision  .mv-quote { color: var(--paper-50); }
-    .mv-section--vision  .mv-label-col { color: var(--paper-50); }
-    .mv-section--vision  .eyebrow { color: var(--sun-400); }
-    .mv-bg-letter {
-      position: absolute; pointer-events: none;
-      font-family: var(--font-display); font-weight: 800;
-      font-size: 28rem; line-height: 1;
-      color: var(--paper-50); opacity: 0.03;
-      bottom: -3rem; right: -2rem;
-      letter-spacing: -0.08em;
+    @media (max-width: 700px) {
+      .mv-cards { grid-template-columns: 1fr; }
+      .mv-card--mission,
+      .mv-card--vision { transform: none; margin-top: 0; }
     }
 
     /* ─────────────────────────────────────────────────────────────────
@@ -409,7 +373,7 @@
     .team-portrait-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
     .team-card--will { transform: rotate(-1deg); }
     .team-card--will:hover { transform: rotate(-1deg) translate(-2px,-2px); box-shadow: var(--shadow-hard-xl); }
-    .team-card--rylan { transform: rotate(1deg); background: var(--surface-sun); }
+    .team-card--rylan { transform: rotate(1deg); }
     .team-card--rylan:hover { transform: rotate(1deg) translate(-2px,-2px); box-shadow: var(--shadow-hard-xl); }
     .team-name {
       font-family: var(--font-display); font-weight: 800;
@@ -432,37 +396,11 @@
     @media (max-width: 900px) {
       .ab-hero-inner { grid-template-columns: 1fr; }
       .ab-stamps { grid-template-columns: repeat(4, 1fr); }
-      .mv-inner  { grid-template-columns: 1fr; gap: var(--space-8); }
     }
     @media (max-width: 900px) {
       .team-grid { grid-template-columns: 1fr; max-width: 480px; }
       .team-card--will, .team-card--rylan { transform: none; }
       .team-card--will:hover, .team-card--rylan:hover { transform: translate(-2px,-2px); }
-    }
-    @media (max-width: 800px) {
-      /* Disable horizontal scroll — stack vertically */
-      #tl-section { overflow: visible; }
-      .tl-outer   { overflow: visible; height: auto; }
-      #tl-progress-wrap { display: none; }
-      .tl-track {
-        flex-direction: column;
-        width: 100%;
-        height: auto;
-      }
-      .tl-intro-card {
-        width: 100%;
-        border-right: none;
-        border-bottom: 2px solid var(--paper-200);
-        min-height: 260px;
-      }
-      .tl-era {
-        width: 100%;
-        min-height: 380px;
-        border-right: none;
-        border-bottom: 2px solid var(--ink-900);
-      }
-      .tl-ghost { font-size: 8rem; }
-      .tl-scroll-hint { display: none; }
     }
     @media (max-width: 640px) {
       .ab-stamps { grid-template-columns: 1fr 1fr; }
@@ -477,7 +415,7 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:image" content="https://goodwebsites.ca/assets/images/og-card.jpg">
 </head>
-<body>
+<body data-no-footer-fixed>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header" id="site-header">
@@ -527,7 +465,7 @@
               We built our first website before the iPhone existed.
             </h1>
             <p class="lead ab-hero-lead">
-              Every platform, every algorithm change, every AI search era — we've been in it. We built Good Websites because we got tired of watching good practitioners be invisible online.
+              Every platform, every algorithm change, every AI search era. We've been in it. We built Good Websites because we got tired of watching good practitioners be invisible online.
             </p>
             <div class="ab-hero-ctas">
               <a class="btn btn--primary btn--lg" href="contact.html">Start now <span class="arrow">&rarr;</span></a>
@@ -560,227 +498,163 @@
     </section>
 
     <!-- ══════════════════════════════════════════════════════
-         MARQUEE STRIP
-    ══════════════════════════════════════════════════════ -->
-    <div class="ab-marquee" aria-hidden="true">
-      <div class="ab-marquee-track">
-        <span class="ab-marquee-item">Building since 2007</span>
-        <span class="ab-marquee-sep">✦</span>
-        <span class="ab-marquee-item">7 platform eras</span>
-        <span class="ab-marquee-sep">✦</span>
-        <span class="ab-marquee-item">Naturopaths only</span>
-        <span class="ab-marquee-sep">✦</span>
-        <span class="ab-marquee-item">Canada-wide</span>
-        <span class="ab-marquee-sep">✦</span>
-        <span class="ab-marquee-item">Agency quality</span>
-        <span class="ab-marquee-sep">✦</span>
-        <span class="ab-marquee-item">Subscription price</span>
-        <span class="ab-marquee-sep">✦</span>
-        <span class="ab-marquee-item">Same-day edits</span>
-        <span class="ab-marquee-sep">✦</span>
-        <span class="ab-marquee-item">No contracts</span>
-        <span class="ab-marquee-sep">✦</span>
-        <!-- duplicate set for seamless loop -->
-        <span class="ab-marquee-item">Building since 2007</span>
-        <span class="ab-marquee-sep">✦</span>
-        <span class="ab-marquee-item">7 platform eras</span>
-        <span class="ab-marquee-sep">✦</span>
-        <span class="ab-marquee-item">Naturopaths only</span>
-        <span class="ab-marquee-sep">✦</span>
-        <span class="ab-marquee-item">Canada-wide</span>
-        <span class="ab-marquee-sep">✦</span>
-        <span class="ab-marquee-item">Agency quality</span>
-        <span class="ab-marquee-sep">✦</span>
-        <span class="ab-marquee-item">Subscription price</span>
-        <span class="ab-marquee-sep">✦</span>
-        <span class="ab-marquee-item">Same-day edits</span>
-        <span class="ab-marquee-sep">✦</span>
-        <span class="ab-marquee-item">No contracts</span>
-        <span class="ab-marquee-sep">✦</span>
-      </div>
-    </div>
-
-    <!-- ══════════════════════════════════════════════════════
          HORIZONTAL TIMELINE
     ══════════════════════════════════════════════════════ -->
-    <section id="tl-section" aria-label="Our story timeline">
-      <div id="tl-progress-wrap" aria-hidden="true">
-        <div id="tl-progress"></div>
+    <section id="tl-section" aria-label="Our journey through web development">
+
+      <!-- intro scrolls out before the horizontal pin takes over -->
+      <div class="tl-intro">
+        <div class="container tl-intro-inner">
+          <p class="eyebrow">Our journey</p>
+          <h2 class="tl-label-title">18 years building<br>the web.</h2>
+          <img src="assets/accents/sparkle.webp" class="tl-doodle tl-doodle--a" aria-hidden="true" width="60" height="60" loading="lazy">
+          <img src="assets/accents/star.webp"    class="tl-doodle tl-doodle--b" aria-hidden="true" width="44" height="44" loading="lazy">
+        </div>
       </div>
+
+      <!-- pinned horizontal scroll -->
       <div class="tl-outer">
         <div class="tl-track">
 
-          <!-- Intro slab -->
-          <div class="tl-intro-card">
-            <div class="tl-intro-stamp" aria-hidden="true">EST. 2007</div>
-            <p class="eyebrow">Our story</p>
-            <h2 class="tl-intro-title">Building websites since 2007.</h2>
-            <p class="tl-intro-sub">Every era changed the rules. We changed with them.</p>
-            <p class="tl-scroll-hint" aria-hidden="true">
-              Scroll to explore
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M2 8h12M9 3l5 5-5 5"/>
-              </svg>
-            </p>
-          </div>
-
-          <!-- ── 2007 ─────────────────────────────────────────── -->
-          <div class="tl-era" style="--era-bg:var(--sun-400)">
-            <span class="tl-ghost" aria-hidden="true">2007</span>
-            <div class="tl-polaroid" aria-hidden="true" style="top:var(--space-7);right:var(--space-7);transform:rotate(3deg)">
-              <div class="tl-polaroid-photo" style="background:#000">
-                <img src="assets/timeline_images/tobey-dans-2007.gif" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+          <div class="tl-era">
+            <div class="tl-era-inner">
+              <span class="tl-year" style="--year-bg:var(--coral-500)">2007</span>
+              <div class="tl-gif-wrap">
+                <img src="assets/timeline_images/tobey-dans-2007.gif" alt="" loading="lazy">
               </div>
-              <p class="tl-polaroid-label">Spider-Man 3<br>gave us this</p>
-            </div>
-            <div class="tl-era-content">
-              <div class="tl-tags"><span class="badge badge--ink">WordPress</span><span class="badge badge--ink">HTML</span></div>
-              <p class="tl-year">2007</p>
-              <h3 class="tl-headline">My first website was for a local business. I was in high school.</h3>
-              <p class="tl-body">WordPress, raw HTML, a small business that needed Google. I had no idea what I was doing — but it ranked, and that clinic got more calls. That was enough to hook me for good.</p>
-            </div>
-          </div>
-
-          <!-- ── 2012 ─────────────────────────────────────────── -->
-          <div class="tl-era" style="--era-bg:var(--coral-400)">
-            <span class="tl-ghost" aria-hidden="true">2012</span>
-            <div class="tl-polaroid" aria-hidden="true" style="top:var(--space-8);right:var(--space-8);transform:rotate(-4deg)">
-              <div class="tl-polaroid-photo" style="background:#000">
-                <img src="assets/timeline_images/lightning-bolt-pose-usain-bolt_2012.gif" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+              <div class="tl-card">
+                <h3 class="tl-headline">Before the iPhone. Every site was built for a 1024px screen.</h3>
+                <p class="tl-body">Sites were designed for big monitors and mouse clicks. Mobile wasn't a concern yet.</p>
+                <div class="tl-tags"><span class="badge badge--coral">WordPress</span><span class="badge badge--coral">Flash</span><span class="badge badge--coral">Desktop</span></div>
               </div>
-              <p class="tl-polaroid-label">London Olympics<br>Usain Bolt ×3</p>
-            </div>
-            <div class="tl-era-content">
-              <div class="tl-tags"><span class="badge badge--ink">Agency</span><span class="badge badge--ink">CMS</span><span class="badge badge--ink">SEO</span></div>
-              <p class="tl-year">2012</p>
-              <h3 class="tl-headline">Agency life. Beautiful work — for clients with big budgets.</h3>
-              <p class="tl-body">I learned what great looked like. I also learned what it cost. The gap between what big clients got and what small practices could afford felt completely arbitrary.</p>
             </div>
           </div>
 
-          <!-- ── 2014 ─────────────────────────────────────────── -->
-          <div class="tl-era" style="--era-bg:var(--sky-400)">
-            <span class="tl-ghost" aria-hidden="true">2014</span>
-            <div class="tl-polaroid" aria-hidden="true" style="top:var(--space-7);right:var(--space-9);transform:rotate(5deg)">
-              <div class="tl-polaroid-photo" style="background:#000">
-                <img src="assets/timeline_images/hoda-kotb-ice-bucket-challenge_2014.gif" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+          <div class="tl-era">
+            <div class="tl-era-inner">
+              <span class="tl-year" style="--year-bg:var(--sky-500)">2012</span>
+              <div class="tl-gif-wrap">
+                <img src="assets/timeline_images/lightning-bolt-pose-usain-bolt_2012.gif" alt="" loading="lazy">
               </div>
-              <p class="tl-polaroid-label">Ice Bucket<br>Challenge</p>
-            </div>
-            <div class="tl-era-content">
-              <div class="tl-tags"><span class="badge badge--ink">Squarespace</span><span class="badge badge--ink">Templates</span></div>
-              <p class="tl-year">2014</p>
-              <h3 class="tl-headline">Squarespace arrived and every site looked exactly the same.</h3>
-              <p class="tl-body">Templates were a gift and a trap. Suddenly everyone had a website — and nobody ranked for anything because they were all identical.</p>
-            </div>
-          </div>
-
-          <!-- ── 2016 ─────────────────────────────────────────── -->
-          <div class="tl-era" style="--era-bg:var(--grass-400)">
-            <span class="tl-ghost" aria-hidden="true">2016</span>
-            <div class="tl-polaroid" aria-hidden="true" style="top:var(--space-8);right:var(--space-7);transform:rotate(-2deg)">
-              <div class="tl-polaroid-photo" style="background:#000">
-                <img src="assets/timeline_images/pokemon)gif.gif" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+              <div class="tl-card">
+                <h3 class="tl-headline">Responsive design landed. One URL, every screen size.</h3>
+                <p class="tl-body">Mobile traffic exploded. Sites that didn't adapt got penalised in search. A new discipline was born overnight.</p>
+                <div class="tl-tags"><span class="badge badge--sky">Responsive</span><span class="badge badge--sky">Bootstrap</span><span class="badge badge--sky">Mobile</span></div>
               </div>
-              <p class="tl-polaroid-label">Pokémon GO<br>Summer 2016</p>
-            </div>
-            <div class="tl-era-content">
-              <div class="tl-tags"><span class="badge badge--ink">Webflow</span><span class="badge badge--ink">No-code</span></div>
-              <p class="tl-year">2016</p>
-              <h3 class="tl-headline">Webflow. Page builders. No-code promised everything.</h3>
-              <p class="tl-body">The tools got genuinely powerful. But nobody building them was thinking about the patient discovering a naturopath at 11pm who needed to trust someone before booking.</p>
             </div>
           </div>
 
-          <!-- ── 2019 ─────────────────────────────────────────── -->
-          <div class="tl-era" style="--era-bg:var(--grape-400)">
-            <span class="tl-ghost" aria-hidden="true">2019</span>
-            <div class="tl-polaroid" aria-hidden="true" style="top:var(--space-7);right:var(--space-8);transform:rotate(4deg)">
-              <div class="tl-polaroid-photo" style="background:#000">
-                <img src="assets/timeline_images/kawhi-kawhi-leonard_shot-gif.gif" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+          <div class="tl-era">
+            <div class="tl-era-inner">
+              <span class="tl-year" style="--year-bg:var(--grass-500)">2014</span>
+              <div class="tl-gif-wrap">
+                <img src="assets/timeline_images/hoda-kotb-ice-bucket-challenge_2014.gif" alt="" loading="lazy">
               </div>
-              <p class="tl-polaroid-label">Raptors NBA<br>Champions</p>
-            </div>
-            <div class="tl-era-content">
-              <div class="tl-tags"><span class="badge badge--ink">Mobile-first</span><span class="badge badge--ink">Core Web Vitals</span></div>
-              <p class="tl-year">2019</p>
-              <h3 class="tl-headline">Google went mobile-first. A lot of practices went dark.</h3>
-              <p class="tl-body">Slow on mobile? You dropped. NDs on outdated WordPress themes had no idea until new-patient bookings stopped.</p>
-            </div>
-          </div>
-
-          <!-- ── 2023 ─────────────────────────────────────────── -->
-          <div class="tl-era" style="--era-bg:var(--coral-400)">
-            <span class="tl-ghost" aria-hidden="true">2023</span>
-            <div class="tl-polaroid" aria-hidden="true" style="top:var(--space-7);right:var(--space-7);transform:rotate(-3deg)">
-              <div class="tl-polaroid-photo" style="background:#000">
-                <img src="assets/timeline_images/barbienheimer-barbie_gif.gif" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+              <div class="tl-card">
+                <h3 class="tl-headline">Wix. Squarespace. Suddenly anyone could have a website.</h3>
+                <p class="tl-body">Templates lowered the barrier. "Good enough" became the goal. Most sites looked identical, and ranked accordingly.</p>
+                <div class="tl-tags"><span class="badge badge--grass">Squarespace</span><span class="badge badge--grass">Wix</span><span class="badge badge--grass">Templates</span></div>
               </div>
-              <p class="tl-polaroid-label">Cinema's<br>biggest weekend</p>
-            </div>
-            <div class="tl-era-content">
-              <div class="tl-tags"><span class="badge badge--ink">ChatGPT</span><span class="badge badge--ink">AI Search</span><span class="badge badge--ink">AEO</span></div>
-              <p class="tl-year">2023</p>
-              <h3 class="tl-headline">ChatGPT started recommending practitioners. The window opened.</h3>
-              <p class="tl-body">Practices with structured content and local markup got cited. The rest got ignored. The window to get ahead was open — briefly.</p>
             </div>
           </div>
 
-          <!-- ── 2025 ─────────────────────────────────────────── -->
-          <div class="tl-era" style="--era-bg:var(--sun-400)">
-            <span class="tl-ghost" aria-hidden="true">2025</span>
-            <div class="tl-polaroid" aria-hidden="true" style="top:var(--space-7);right:var(--space-8);transform:rotate(2deg)">
-              <div class="tl-polaroid-photo" style="background:#000">
-                <img src="assets/timeline_images/katy-perry-katy-perry-space_gif.gif" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+          <div class="tl-era">
+            <div class="tl-era-inner">
+              <span class="tl-year" style="--year-bg:var(--coral-500)">2016</span>
+              <div class="tl-gif-wrap">
+                <img src="assets/timeline_images/pokemon)gif.gif" alt="" loading="lazy">
               </div>
-              <p class="tl-polaroid-label">Katy Perry<br>goes to space</p>
-            </div>
-            <div class="tl-era-content">
-              <div class="tl-tags"><span class="badge badge--ink">Good Websites</span><span class="badge badge--ink">Canada</span></div>
-              <p class="tl-year">2025</p>
-              <h3 class="tl-headline">Stuff kept happening.</h3>
-              <p class="tl-body">Agency-quality sites for naturopaths at a subscription price that works for a solo practice. No big bill, no templates. Just a good website, handled for you.</p>
+              <div class="tl-card">
+                <h3 class="tl-headline">Speed became a ranking signal. Slow sites started disappearing.</h3>
+                <p class="tl-body">Google started penalising slow pages. Sites that had always been lazy about performance began paying the price.</p>
+                <div class="tl-tags"><span class="badge badge--coral">PageSpeed</span><span class="badge badge--coral">UX</span><span class="badge badge--coral">Conversion</span></div>
+              </div>
             </div>
           </div>
 
+          <div class="tl-era">
+            <div class="tl-era-inner">
+              <span class="tl-year" style="--year-bg:var(--sky-500)">2019</span>
+              <div class="tl-gif-wrap">
+                <img src="assets/timeline_images/kawhi-kawhi-leonard_shot-gif.gif" alt="" loading="lazy">
+              </div>
+              <div class="tl-card">
+                <h3 class="tl-headline">Google switched to mobile-first indexing. Desktop traffic kept falling.</h3>
+                <p class="tl-body">If your site wasn't fast on a phone, it didn't rank. Most small-practice sites weren't close.</p>
+                <div class="tl-tags"><span class="badge badge--sky">Mobile-first</span><span class="badge badge--sky">Core Web Vitals</span><span class="badge badge--sky">Local SEO</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tl-era">
+            <div class="tl-era-inner">
+              <span class="tl-year" style="--year-bg:var(--grass-500)">2023</span>
+              <div class="tl-gif-wrap">
+                <img src="assets/timeline_images/barbienheimer-barbie_gif.gif" alt="" loading="lazy">
+              </div>
+              <div class="tl-card">
+                <h3 class="tl-headline">AI started answering questions directly. Search changed overnight.</h3>
+                <p class="tl-body">ChatGPT. Perplexity. Google AI Overviews. Sites structured for machines, not just humans, got cited. The rest didn't.</p>
+                <div class="tl-tags"><span class="badge badge--grass">ChatGPT</span><span class="badge badge--grass">AI Search</span><span class="badge badge--grass">Perplexity</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tl-era">
+            <div class="tl-era-inner">
+              <span class="tl-year" style="--year-bg:var(--coral-500)">2025</span>
+              <div class="tl-gif-wrap">
+                <img src="assets/timeline_images/katy-perry-katy-perry-space_gif.gif" alt="" loading="lazy">
+              </div>
+              <div class="tl-card">
+                <h3 class="tl-headline">The bar is higher than it's ever been. We built a studio to clear it.</h3>
+                <p class="tl-body">Fast, structured, credible sites at a price that makes sense for a solo practice.</p>
+                <div class="tl-tags"><span class="badge badge--coral">AI-native</span><span class="badge badge--coral">Structured Data</span><span class="badge badge--coral">Good Websites</span></div>
+              </div>
+            </div>
+          </div>
+          <!-- Trailing spacer — flex item so scrollWidth includes it (padding-right doesn't count in Chrome) -->
+          <div class="tl-end-spacer" aria-hidden="true"></div>
+
+          <!-- Depth doodles after eras so nth-child on .tl-era is unaffected -->
+          <img class="tl-depth-doodle" src="assets/accents/sparkle.webp" aria-hidden="true" loading="lazy"
+               style="position:absolute;top:14%;left:480px;width:52px;opacity:0.22;pointer-events:none;z-index:0">
+          <img class="tl-depth-doodle" src="assets/accents/star.webp" aria-hidden="true" loading="lazy"
+               style="position:absolute;bottom:22%;left:1150px;width:42px;opacity:0.18;pointer-events:none;z-index:0">
+          <img class="tl-depth-doodle" src="assets/accents/sparkle.webp" aria-hidden="true" loading="lazy"
+               style="position:absolute;top:28%;left:2000px;width:38px;opacity:0.15;pointer-events:none;z-index:0">
+          <img class="tl-depth-doodle" src="assets/accents/star.webp" aria-hidden="true" loading="lazy"
+               style="position:absolute;bottom:15%;left:2700px;width:46px;opacity:0.20;pointer-events:none;z-index:0">
         </div><!-- /tl-track -->
       </div><!-- /tl-outer -->
     </section>
 
-    <!-- ══════════════════════════════════════════════════════
-         MISSION — will be polished in next pass
+        <!-- ══════════════════════════════════════════════════════
+         MISSION & VISION
     ══════════════════════════════════════════════════════ -->
-    <section class="mv-section mv-section--mission" aria-label="Our mission">
+    <section class="mv-section" aria-label="Mission and vision">
       <div class="container">
-        <div class="mv-inner reveal">
-          <div class="mv-label-col">
-            <div class="mv-doodle" aria-hidden="true">
+        <div class="section-header reveal">
+          <p class="eyebrow">What drives us</p>
+          <h2 class="heading h1">Mission &amp; vision.</h2>
+        </div>
+        <div class="mv-cards reveal">
+
+          <div class="mv-card mv-card--mission">
+            <div class="mv-card-icon" aria-hidden="true">
               <svg viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M26 4 L29.5 22.5 L48 26 L29.5 29.5 L26 48 L22.5 29.5 L4 26 L22.5 22.5 Z"/>
                 <path d="M41 10 L42.4 16 L48 17.5 L42.4 19 L41 25 L39.6 19 L34 17.5 L39.6 16 Z"/>
               </svg>
             </div>
-            <div>
-              <p class="eyebrow" style="color:var(--sun-700);margin-bottom:var(--space-2)">Our mission</p>
-              <p style="font-size:var(--text-sm);color:var(--ink-600);line-height:var(--leading-relaxed);max-width:200px">Why we show up every day.</p>
-            </div>
+            <p class="eyebrow mv-card-label">Our mission</p>
+            <blockquote class="mv-card-quote">
+              Professional websites for every naturopath in Canada. Websites that reflect the professional care naturopathic doctors and clinics deliver.
+            </blockquote>
           </div>
-          <blockquote class="mv-quote">
-            Agency-quality websites for every naturopath in Canada — at a price that makes sense for a small practice.
-          </blockquote>
-        </div>
-      </div>
-    </section>
 
-    <!-- ══════════════════════════════════════════════════════
-         VISION — will be polished in next pass
-    ══════════════════════════════════════════════════════ -->
-    <section class="mv-section mv-section--vision" aria-label="Our vision">
-      <div class="mv-bg-letter" aria-hidden="true">V</div>
-      <div class="container" style="position:relative;z-index:1">
-        <div class="mv-inner reveal">
-          <div class="mv-label-col">
-            <div class="mv-doodle" aria-hidden="true" style="border-color:var(--paper-50);color:var(--paper-50)">
+          <div class="mv-card mv-card--vision">
+            <div class="mv-card-icon" aria-hidden="true">
               <svg viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="26" cy="26" r="9"/>
                 <circle cx="26" cy="26" r="3.5" fill="currentColor"/>
@@ -794,14 +668,12 @@
                 <line x1="14.8" y1="37.2" x2="9.8"  y2="42.2"/>
               </svg>
             </div>
-            <div>
-              <p class="eyebrow" style="color:var(--sun-400);margin-bottom:var(--space-2)">Our vision</p>
-              <p style="font-size:var(--text-sm);color:rgba(255,255,255,0.45);line-height:var(--leading-relaxed);max-width:200px">Where we're taking this.</p>
-            </div>
+            <p class="eyebrow mv-card-label">Our vision</p>
+            <blockquote class="mv-card-quote">
+              A strong web presence helps every practice grow. Every naturopath who does great work deserves a website that shows it.
+            </blockquote>
           </div>
-          <blockquote class="mv-quote">
-            Every naturopath who does great work has a website that shows it — so the right patients can find them, trust them, and book.
-          </blockquote>
+
         </div>
       </div>
     </section>
@@ -823,11 +695,11 @@
             </div>
             <p class="team-name">Will Robinson</p>
             <p class="team-role">Design &amp; Strategy</p>
-            <p class="team-bio">Over a decade building digital products across branding, SaaS, and content businesses. Will leads design, client strategy, and makes sure every site looks the way it should — and works the way it needs to.</p>
+            <p class="team-bio">Over a decade building digital products across branding, SaaS, and content businesses. Will leads design, client strategy, and makes sure every site looks the way it should and works the way it needs to.</p>
           </div>
           <div class="team-card team-card--rylan">
             <div class="team-portrait-wrap">
-              <img src="assets/images/rylan-shaver.jpg" alt="Rylan Shaver">
+              <img src="assets/images/rylan_headshot.jpg" alt="Rylan Shaver">
             </div>
             <p class="team-name">Rylan Shaver</p>
             <p class="team-role">Engineering &amp; Systems</p>
@@ -856,7 +728,7 @@
           <div class="card card--sticker step">
             <div class="step-number" aria-hidden="true">2</div>
             <h3>Design</h3>
-            <p>We build a complete site in one sprint — one clean direction, done properly and fast.</p>
+            <p>We build a complete site in one sprint. One clean direction, done properly and fast.</p>
           </div>
           <div class="card card--sticker step">
             <div class="step-number" aria-hidden="true">3</div>
@@ -866,7 +738,7 @@
           <div class="card card--sticker step">
             <div class="step-number" aria-hidden="true">4</div>
             <h3>Ongoing care</h3>
-            <p>Email us changes, new pages, seasonal updates — we handle it, usually same day.</p>
+            <p>Email us changes, new pages, seasonal updates. We handle it, usually same day.</p>
           </div>
         </div>
         <div class="reveal" style="text-align:center;margin-top:var(--space-8)">
@@ -898,7 +770,7 @@
           <div class="card card--sticker" style="padding:var(--space-7)">
             <p class="eyebrow" style="color:var(--sun-500);margin-bottom:var(--space-3)">03</p>
             <h3 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--text-h3);letter-spacing:var(--tracking-tight);margin-bottom:var(--space-3)">Built for what's next</h3>
-            <p style="font-size:var(--text-sm);color:var(--text-muted);line-height:var(--leading-relaxed)">We build for AI search, structured data, and evolving web standards — not just what ranks today.</p>
+            <p style="font-size:var(--text-sm);color:var(--text-muted);line-height:var(--leading-relaxed)">We build for AI search, structured data, and evolving web standards. Not just what ranks today.</p>
           </div>
         </div>
       </div>
@@ -926,7 +798,7 @@
     <div class="footer-newsletter">
       <div class="footer-newsletter-copy">
         <p class="footer-news-heading">Make your good website a great one.</p>
-        <p class="footer-news-sub">Sign up for the monthly newsletter &mdash; free, no spam, unsubscribe anytime.</p>
+        <p class="footer-news-sub">Sign up for the monthly newsletter. Free, no spam, unsubscribe anytime.</p>
       </div>
       <form class="footer-newsletter-form" action="https://formspree.io/f/xwvdgedv" method="post">
         <input type="email" name="email" placeholder="your@email.com" required autocomplete="email">
@@ -979,9 +851,10 @@
   </script>
 
   <script src="js/main.js?v=13" defer></script>
+  <script src="js/vendor/lenis.min.js?v=1" defer></script>
   <script src="js/vendor/gsap.min.js" defer></script>
   <script src="js/vendor/ScrollTrigger.min.js" defer></script>
-  <script src="js/animations.js?v=15" defer></script>
-  <script src="js/about.js?v=5" defer></script>
+  <script src="js/animations.js?v=21" defer></script>
+  <script src="js/about.js?v=11" defer></script>
 </body>
 </html>

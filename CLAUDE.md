@@ -24,8 +24,8 @@ css/base.css?v=13
 css/components.css?v=22
 css/pages.css?v=26
 js/main.js?v=13
-js/animations.js?v=15
-js/about.js?v=5
+js/animations.js?v=21
+js/about.js?v=11
 ```
 (If these drift, trust the versions in index.html over this list.)
 Version bump command pattern:
@@ -98,7 +98,7 @@ take paper-50 text; sun-400 takes ink text. Shadows are always black (--shadow-h
 ├── index.html
 ├── work.html          (Process page — how it works)
 ├── pricing.html
-├── about.html         (Has horizontal scroll timeline)
+├── about.html         (Vertical scroll-scaling timeline + SVG sine-wave path)
 ├── book.html          (Calendly CTA — no newsletter in footer)
 ├── privacy.html
 ├── signup.html / contact.html (start.html now redirects → contact; AI chat parked until ANTHROPIC_API_KEY is set on the worker)

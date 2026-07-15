@@ -1,95 +1,75 @@
-/* About page — neo-brutalist horizontal timeline */
+/* About page — horizontal timeline: single scrubbed timeline per era */
 window.addEventListener('load', function () {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
   gsap.registerPlugin(ScrollTrigger);
 
   var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var isMobile = window.innerWidth <= 800;
+  var isDesktop      = window.matchMedia('(min-width: 801px)').matches;
 
-  /* ── Horizontal scroll (desktop + motion OK) ───────────────────────── */
-  if (!isMobile && !prefersReduced) {
-    var track = document.querySelector('.tl-track');
-    if (!track) return;
+  if (!isDesktop || prefersReduced) return;
 
-    var getScrollDist = function () {
-      return track.scrollWidth - window.innerWidth;
-    };
+  var outer = document.querySelector('.tl-outer');
+  var track = document.querySelector('.tl-track');
+  if (!outer || !track) return;
 
-    /* Master timeline: translate track + progress bar */
-    var masterTL = gsap.timeline({
-      scrollTrigger: {
-        trigger: '#tl-section',
-        pin: true,
-        scrub: 1,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        end: function () { return '+=' + getScrollDist(); },
-      }
-    });
-
-    masterTL
-      .to(track, { x: function () { return -getScrollDist(); }, ease: 'none' }, 0)
-      .to('#tl-progress', { scaleX: 1, ease: 'none' }, 0);
-
-    var mainST = masterTL.scrollTrigger;
-
-    /* Velocity-based skewX — gives the track inertia feel */
-    var proxy    = { skewX: 0 };
-    var setter   = gsap.quickSetter(track, 'skewX', 'deg');
-    var clampVal = gsap.utils.clamp(-5, 5);
-
-    mainST.vars.onUpdate = function () {
-      var v = clampVal(mainST.getVelocity() / 600);
-      if (Math.abs(v - proxy.skewX) > 0.002) {
-        proxy.skewX = v;
-        setter(v);
-        gsap.to(proxy, {
-          skewX: 0,
-          duration: 0.9,
-          ease: 'power3',
-          overwrite: true,
-          onUpdate: function () { setter(proxy.skewX); }
-        });
-      }
-    };
-
-    /* Era cards float up as they enter view */
-    gsap.utils.toArray('.tl-era').forEach(function (era) {
-      gsap.from(era, {
-        opacity: 0,
-        y: 48,
-        duration: 0.7,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: era,
-          containerAnimation: mainST,
-          start: 'left 95%',
-          toggleActions: 'play none none none',
-        }
-      });
-    });
-
-    ScrollTrigger.refresh();
-
-  } else {
-    /* ── Mobile / reduced-motion: vertical stacked fallback ─────────── */
-    document.getElementById('tl-progress').style.transform = 'scaleX(1)';
-
-    if (!prefersReduced) {
-      gsap.utils.toArray('.tl-era').forEach(function (el) {
-        gsap.from(el, {
-          opacity: 0,
-          y: 32,
-          duration: 0.6,
-          ease: 'power2.out',
-          scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none reverse' }
-        });
-      });
+  /* ── Master horizontal scroll ── */
+  var scrollTween = gsap.to(track, {
+    x: function () { return -(track.scrollWidth - outer.clientWidth); },
+    ease: 'none',
+    scrollTrigger: {
+      trigger: outer,
+      start: 'top top',
+      end: function () { return '+=' + (track.scrollWidth - outer.clientWidth); },
+      pin: true,
+      scrub: true,
+      invalidateOnRefresh: true
     }
-  }
+  });
 
-  /* `.reveal` elements are owned by the CSS/IntersectionObserver system in
-     main.js — do not animate them here (one system per element). */
+  /* ── Per-era: single scrubbed timeline (enter → hold → exit) ── */
+  gsap.utils.toArray('.tl-era').forEach(function (era) {
+    var inner = era.querySelector('.tl-era-inner');
+    var year  = era.querySelector('.tl-year');
 
-  ScrollTrigger.refresh();
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: era,
+        containerAnimation: scrollTween,
+        start: 'left right',
+        end: 'right left',
+        scrub: true
+      }
+    });
+
+    /* Scale in + rack-focus blur (35% of journey) */
+    tl.fromTo(inner,
+      { scale: 0.45, autoAlpha: 0.4, filter: 'blur(3px)' },
+      { scale: 1,    autoAlpha: 1,    filter: 'blur(0px)', ease: 'none', duration: 0.35 }
+    );
+    /* Hold at centre (30% of journey) */
+    tl.to(inner, { duration: 0.3 });
+    /* Scale out + blur returns (35% of journey) */
+    tl.to(inner,
+      { scale: 0.45, autoAlpha: 0.4, filter: 'blur(3px)', ease: 'none', duration: 0.35 }
+    );
+
+  });
+
+  /* ── Depth doodles: move at 30% of track speed → parallax background layer ── */
+  gsap.utils.toArray('.tl-depth-doodle').forEach(function (el) {
+    gsap.to(el, {
+      x: function () { return (track.scrollWidth - outer.clientWidth) * 0.3; },
+      ease: 'none',
+      scrollTrigger: {
+        trigger: outer,
+        start: 'top top',
+        end: function () { return '+=' + (track.scrollWidth - outer.clientWidth); },
+        scrub: true,
+        invalidateOnRefresh: true
+      }
+    });
+  });
+
+  /* Ensure footer trigger recalculates after pin spacer is added */
+  requestAnimationFrame(function () { ScrollTrigger.refresh(); });
 });

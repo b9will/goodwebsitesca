@@ -37,7 +37,7 @@
     height: 2.5rem;
     border-radius: 50%;
     background: var(--ink-900);
-    color: var(--ink-0);
+    color: var(--paper-50);
     font-family: var(--font-display);
     font-weight: var(--weight-display);
     font-size: var(--text-lg);
@@ -81,6 +81,62 @@
     background: var(--surface-page);
     flex-shrink: 0;
     display: block;
+  }
+  /* PDF email gate */
+  .pdf-gate {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+    flex-wrap: wrap;
+    padding: var(--space-5) var(--space-6);
+    background: var(--sun-400);
+    border: 2px solid var(--ink-900);
+    border-radius: var(--radius-lg);
+    box-shadow: 4px 4px 0 0 var(--ink-900);
+    margin-bottom: var(--space-8);
+  }
+  .pdf-gate-left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex: 1;
+    min-width: 200px;
+  }
+  .pdf-gate-left svg { flex-shrink: 0; color: var(--ink-900); }
+  .pdf-gate-title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: var(--text-base);
+    color: var(--ink-900);
+    margin: 0 0 2px;
+  }
+  .pdf-gate-sub {
+    font-size: var(--text-sm);
+    color: var(--ink-700);
+    margin: 0;
+  }
+  .pdf-gate-form {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .pdf-gate-input {
+    padding: 10px 14px;
+    border: 2px solid var(--ink-900);
+    border-radius: var(--radius-lg);
+    font-size: var(--text-sm);
+    font-family: var(--font-sans);
+    background: var(--paper-50);
+    color: var(--ink-900);
+    min-width: 220px;
+  }
+  .pdf-gate-input:focus { outline: 3px solid var(--ink-900); outline-offset: 2px; }
+  .pdf-gate-success {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--ink-900);
+    margin: 0;
   }
   .checklist-check:checked {
     background: var(--grass-500);
@@ -141,7 +197,7 @@
             <span>By Will Robinson</span>
           </div>
           <h1>The 10-Out-of-10 Website Checklist for Naturopathic Doctors</h1>
-          <p class="lead">After auditing dozens of ND websites, these are the 10 things that separate a site that quietly generates patients from one that sits there looking nice. Tick them off — or hand this to whoever built your site.</p>
+          <p class="lead">After auditing dozens of ND websites, these are the 10 things that separate a site that quietly generates patients from one that sits there looking nice. Tick them off, or hand this to whoever built your site.</p>
           <img src="../assets/checklist.png" alt="Robot with a checklist" style="width:100%;max-height:380px;object-fit:cover;object-position:center 20%;border-radius:var(--radius-xl);border:2px solid var(--ink-900);display:block;margin-block:var(--space-8);">
           <hr class="article-divider">
         </header>
@@ -149,11 +205,28 @@
         <p>Most naturopath websites were built without a clear brief. A designer made something that looked professional. A developer put it online. The ND paid the invoice. And then… nothing. No new patients. No Google rankings. No momentum.</p>
         <p>This checklist exists because "looks good" and "works well" are different things. A 10-out-of-10 website does both. Use it to score your current site, or use it as a brief for your next one.</p>
 
+        <!-- PDF download gate -->
+        <div class="pdf-gate" id="pdf-gate">
+          <div class="pdf-gate-left">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+            <div>
+              <p class="pdf-gate-title">Get the PDF version</p>
+              <p class="pdf-gate-sub">Print it, share it, or send it to whoever built your site.</p>
+            </div>
+          </div>
+          <form class="pdf-gate-form" id="pdf-gate-form">
+            <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" class="pdf-gate-input">
+            <input type="hidden" name="form-name" value="checklist-pdf">
+            <button type="submit" class="btn btn--dark">Download PDF <span class="arrow">&rarr;</span></button>
+          </form>
+          <p class="pdf-gate-success" id="pdf-gate-success" style="display:none">Downloading now. Check your downloads folder.</p>
+        </div>
+
         <div class="checklist-score" id="score-display" style="display:none">
           <div class="checklist-score-num" id="score-count">0</div>
           <div>
             <div style="font-weight:var(--weight-semibold);font-size:var(--text-base)">out of 10</div>
-            <div class="checklist-score-label" id="score-label">Keep going — check what applies to your site.</div>
+            <div class="checklist-score-label" id="score-label">Keep going. Check what applies to your site.</div>
           </div>
         </div>
 
@@ -163,7 +236,7 @@
             <div class="checklist-number">1</div>
             <div class="checklist-content">
               <h3 id="cta">A clear booking CTA above the fold</h3>
-              <p>Before a visitor scrolls, they should see a button that tells them exactly what to do next — "Book a free intro call," "Request an appointment," or "Check availability." Not a "Contact" link. A real button. If you use Jane App, the button should link directly to your booking page, not a contact form.</p>
+              <p>Before a visitor scrolls, they should see a button that tells them exactly what to do next: "Book a free intro call," "Request an appointment," or "Check availability." Not a "Contact" link. A real button. If you use Jane App, the button should link directly to your booking page, not a contact form.</p>
             </div>
             <input type="checkbox" class="checklist-check" aria-label="Mark item 1 complete">
           </div>
@@ -172,7 +245,7 @@
             <div class="checklist-number">2</div>
             <div class="checklist-content">
               <h3 id="headline">A headline that names who you help and where</h3>
-              <p>Your H1 — the biggest text on the homepage — should answer: who is this for, what do they get, and where are you? "Naturopathic Care for Women's Health in Vancouver" works. "Welcome to Our Practice" does not. Specificity signals to both Google and patients that this page is for them.</p>
+              <p>Your H1 (the biggest text on the homepage) should answer: who is this for, what do they get, and where are you? "Naturopathic Care for Women's Health in Vancouver" works. "Welcome to Our Practice" does not. Specificity signals to both Google and patients that this page is for them.</p>
             </div>
             <input type="checkbox" class="checklist-check" aria-label="Mark item 2 complete">
           </div>
@@ -180,8 +253,8 @@
           <div class="checklist-item" data-n="3">
             <div class="checklist-number">3</div>
             <div class="checklist-content">
-              <h3 id="photo">A real photo of you — the doctor — on the homepage</h3>
-              <p>Health is a high-trust purchase. Patients choose a person, not a logo. A professional photo of you — not a stock photo of a stethoscope, not a green leaf — should appear on the homepage, ideally above the fold or immediately below it. Your name and credentials (ND) should be prominently displayed nearby.</p>
+              <h3 id="photo">A real photo of you (the doctor) on the homepage</h3>
+              <p>Health is a high-trust purchase. Patients choose a person, not a logo. A professional photo of you (not a stock photo of a stethoscope, not a green leaf) should appear on the homepage, ideally above the fold or immediately below it. Your name and credentials (ND) should be prominently displayed nearby.</p>
             </div>
             <input type="checkbox" class="checklist-check" aria-label="Mark item 3 complete">
           </div>
@@ -189,7 +262,7 @@
           <div class="checklist-item" data-n="4">
             <div class="checklist-number">4</div>
             <div class="checklist-content">
-              <h3 id="speed">Passes Core Web Vitals — fast on mobile</h3>
+              <h3 id="speed">Passes Core Web Vitals: fast on mobile</h3>
               <p>More than 60% of health searches happen on mobile. A slow site loses patients before they read a single word. Test your site using <a href="https://pagespeed.web.dev" target="_blank" rel="noopener">PageSpeed Insights</a> and Google Search Console. Prioritize real-world loading speed, responsiveness, and visual stability over a perfect lab score. Images should be WebP, fonts should preload, and there should be zero render-blocking scripts.</p>
             </div>
             <input type="checkbox" class="checklist-check" aria-label="Mark item 4 complete">
@@ -216,8 +289,8 @@
           <div class="checklist-item" data-n="7">
             <div class="checklist-number">7</div>
             <div class="checklist-content">
-              <h3 id="services">Service pages — one per area of focus</h3>
-              <p>If you commonly work with hormonal health, digestive issues, and anxiety, those should each have their own page — not a single "Services" page listing everything. Individual pages rank for specific searches, build topical authority, and let patients see themselves in your content. A patient searching "naturopath for PCOS in Ottawa" should land on a page that speaks directly to that.</p>
+              <h3 id="services">Service pages, one per area of focus</h3>
+              <p>If you commonly work with hormonal health, digestive issues, and anxiety, those should each have their own page, not a single "Services" page listing everything. Individual pages rank for specific searches, build topical authority, and let patients see themselves in your content. A patient searching "naturopath for PCOS in Ottawa" should land on a page that speaks directly to that.</p>
             </div>
             <input type="checkbox" class="checklist-check" aria-label="Mark item 7 complete">
           </div>
@@ -226,7 +299,7 @@
             <div class="checklist-number">8</div>
             <div class="checklist-content">
               <h3 id="ai-search">Optimised for AI search (AEO)</h3>
-              <p>ChatGPT, Google's AI Overviews, and Perplexity are now answering health questions directly. Clear, structured, authoritative content — FAQ sections with real questions patients ask, schema markup (FAQPage, MedicalOrganization), and well-organized service descriptions — gives AI-powered search systems the best foundation for understanding your practice. No agency can guarantee inclusion or citation, but strong content and technical SEO remain your best available foundation.</p>
+              <p>ChatGPT, Google's AI Overviews, and Perplexity are now answering health questions directly. Clear, structured, authoritative content (FAQ sections with real questions patients ask, schema markup like FAQPage and MedicalOrganization, and well-organized service descriptions) gives AI-powered search systems the best foundation for understanding your practice. No agency can guarantee inclusion or citation, but strong content and technical SEO remain your best available foundation.</p>
             </div>
             <input type="checkbox" class="checklist-check" aria-label="Mark item 8 complete">
           </div>
@@ -254,18 +327,18 @@
         <hr class="article-divider">
 
         <h2 id="scoring">What your score means</h2>
-        <p><strong>0–3:</strong> Your site is likely costing you patients right now. The basics — fast load, clear CTA, local SEO — aren't in place. These are fixable within a few weeks.</p>
-        <p><strong>4–6:</strong> You have a foundation. The next step is filling the gaps systematically. Focus on local SEO, service pages, and trust signals first — those have the highest direct ROI.</p>
+        <p><strong>0–3:</strong> Your site is likely costing you patients right now. The basics (fast load, clear CTA, local SEO) aren't in place. These are fixable within a few weeks.</p>
+        <p><strong>4–6:</strong> You have a foundation. The next step is filling the gaps systematically. Focus on local SEO, service pages, and trust signals first. Those have the highest direct ROI.</p>
         <p><strong>7–9:</strong> Your site is performing well above average for ND websites. The remaining items are likely AEO, analytics, or content depth. These compound over time.</p>
         <p><strong>10/10:</strong> Genuinely rare. If your site checks all of these, you're well ahead of most naturopath websites in Canada. Keep publishing content and your position will only strengthen.</p>
 
-        <p style="font-size:var(--text-sm);color:var(--text-muted);font-style:italic">This is a Good Websites self-assessment framework — a practical way to evaluate where your site stands and what to prioritize next. Scores reflect this checklist, not an external industry benchmark.</p>
+        <p style="font-size:var(--text-sm);color:var(--text-muted);font-style:italic">This is a Good Websites self-assessment framework: a practical way to evaluate where your site stands and what to prioritize next. Scores reflect this checklist, not an external industry benchmark.</p>
 
         <h2 id="shortcut">The shortcut</h2>
-        <p>If reviewing this list feels like work — if you'd rather be seeing patients than auditing page titles and schema markup — that's exactly what Good Websites is for. Every site we build is built to this standard, and then some. We handle the build, the hosting, the SEO, the edits, and the ongoing content on a monthly subscription. You get a 10/10 website without spending a week learning what PageSpeed means.</p>
+        <p>If reviewing this list feels like work, and you'd rather be seeing patients than auditing page titles and schema markup, that's exactly what Good Websites is for. Every site we build is built to this standard, and then some. We handle the build, the hosting, the SEO, the edits, and the ongoing content on a monthly subscription. You get a 10/10 website without spending a week learning what PageSpeed means.</p>
 
         <hr class="article-divider">
-        <p style="font-size:var(--text-sm);color:var(--text-muted)">Written by Will Robinson — Design &amp; Strategy at Good Websites.</p>
+        <p style="font-size:var(--text-sm);color:var(--text-muted)">Written by Will Robinson, Design &amp; Strategy at Good Websites.</p>
 
       </article>
 
@@ -297,7 +370,7 @@
     <section class="section cta-section">
       <div class="container">
         <h2 class="heading h1">Ready for a 10/10 site?</h2>
-        <p class="lead">Every Good Websites build hits this checklist and then some — fast, local, trusted, and growing. Book a free call to see what we'd build for your practice.</p>
+        <p class="lead">Every Good Websites build hits this checklist and then some: fast, local, trusted, and growing. Book a free call to see what we'd build for your practice.</p>
         <div style="display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap">
           <a class="btn btn--dark btn--lg" href="../book.html">Book a free call <span class="arrow">&rarr;</span></a>
           <a class="btn btn--secondary btn--lg" href="../pricing.html">See pricing</a>
@@ -310,7 +383,7 @@
     <div class="footer-newsletter">
       <div class="footer-newsletter-copy">
         <p class="footer-news-heading">Make your good website a great one.</p>
-        <p class="footer-news-sub">Sign up for the monthly newsletter &mdash; free, no spam, unsubscribe anytime.</p>
+        <p class="footer-news-sub">Sign up for the monthly newsletter. Free, no spam, unsubscribe anytime.</p>
       </div>
       <form class="footer-newsletter-form" action="https://formspree.io/f/xwvdgedv" method="post">
         <input type="email" name="email" placeholder="your@email.com" required autocomplete="email">
@@ -353,9 +426,10 @@
   </footer>
 
   <script src="../js/main.js?v=13" defer></script>
+  <script src="../js/vendor/lenis.min.js?v=1" defer></script>
   <script src="../js/vendor/gsap.min.js" defer></script>
   <script src="../js/vendor/ScrollTrigger.min.js" defer></script>
-  <script src="../js/animations.js?v=15" defer></script>
+  <script src="../js/animations.js?v=21" defer></script>
 
   <script>
   (function () {
@@ -363,7 +437,7 @@
     var scoreDisplay = document.getElementById('score-display');
     var scoreCount = document.getElementById('score-count');
     var scoreLabel = document.getElementById('score-label');
-    var labels = ['Keep going — check what applies to your site.','1 down — keep going.','2 down — keep going.','3 down. Getting there.','4 out of 10. Solid start.','Halfway there.','6 out of 10. Above average for ND sites.','7 out of 10. Looking good.','8 out of 10. Really strong.','9 out of 10. Almost perfect.','10 out of 10. You\'re in rare company.'];
+    var labels = ['Keep going. Check what applies to your site.','1 down. Keep going.','2 down. Keep going.','3 down. Getting there.','4 out of 10. Solid start.','Halfway there.','6 out of 10. Above average for ND sites.','7 out of 10. Looking good.','8 out of 10. Really strong.','9 out of 10. Almost perfect.','10 out of 10. You\'re in rare company.'];
     function update() {
       var count = document.querySelectorAll('.checklist-check:checked').length;
       scoreCount.textContent = count;
@@ -375,6 +449,42 @@
       });
     }
     document.getElementById('checklist-list').addEventListener('change', update);
+  })();
+
+  // PDF email gate
+  (function () {
+    var form = document.getElementById('pdf-gate-form');
+    var success = document.getElementById('pdf-gate-success');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = form.querySelector('button');
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      fetch('https://formspree.io/f/mrenebnk', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function (res) {
+        if (res.ok) {
+          form.style.display = 'none';
+          success.style.display = 'block';
+          // Trigger download
+          var a = document.createElement('a');
+          a.href = '../assets/downloads/good-websites-10-out-of-10-checklist.pdf';
+          a.download = 'good-websites-10-out-of-10-checklist.pdf';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        } else {
+          btn.disabled = false;
+          btn.textContent = 'Try again';
+        }
+      }).catch(function () {
+        btn.disabled = false;
+        btn.textContent = 'Try again';
+      });
+    });
   })();
   </script>
 
