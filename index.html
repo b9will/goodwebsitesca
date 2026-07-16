@@ -15,9 +15,11 @@
   <meta name="twitter:description" content="Beautiful, fast websites for naturopathic doctors. One monthly price, no big bill up front.">
   <link rel="icon" href="assets/images/icon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
-  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=ranade@400,500,700&display=swap">
+  <link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=ranade@400,500,700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=ranade@400,500,700&display=swap"></noscript>
   <link rel="preload" href="assets/fonts/GetaiGroteskDisplay-Black.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/Lunchtype22-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" href="assets/images/hero-doctor.webp" fetchpriority="high">
   <link rel="stylesheet" href="css/tokens.css?v=13">
   <link rel="stylesheet" href="css/base.css?v=13">
   <link rel="stylesheet" href="css/components.css?v=22">
@@ -120,32 +122,32 @@
       <div class="container">
         <div class="section-header reveal" style="margin-bottom:var(--space-6)">
           <p class="eyebrow">The problem</p>
-          <h2 class="heading h1">Sound familiar? <img class="section-doodle" src="assets/images/doodle-exclaim.webp" width="366" height="951" aria-hidden="true" alt=""></h2>
+          <h2 class="heading h1">Sound familiar? <img class="section-doodle" src="assets/images/doodle-exclaim.webp" width="76" height="200" aria-hidden="true" alt="" loading="lazy" decoding="async"></h2>
         </div>
       </div>
       <div class="problem-list" id="problem-list">
         <div class="problem-row" data-color="var(--coral-400)" data-desc="Patients ask ChatGPT and Google AI for recommendations. Clinics with clear, structured content and strong technical SEO are better positioned to appear in AI-generated results." data-img="assets/images/problem-1.webp">
-          <span class="problem-row-icon" aria-hidden="true"><img src="assets/images/doodle-search.webp" alt="" width="26" height="26"></span>
+          <span class="problem-row-icon" aria-hidden="true"><img src="assets/images/doodle-search.webp" alt="" width="145" height="200" loading="lazy" decoding="async"></span>
           <h3 class="problem-title">Invisible to AI search</h3>
           <button class="problem-row-info" type="button" aria-label="More info" aria-describedby="problem-info-tip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></button>
         </div>
         <div class="problem-row" data-color="var(--sky-500)" data-desc="A dated Squarespace template from 2018 tells patients you do not take your business seriously. First impressions happen online now." data-img="assets/images/problem-2.webp">
-          <span class="problem-row-icon" aria-hidden="true"><img src="assets/images/doodle-trust.webp" alt="" width="26" height="26"></span>
+          <span class="problem-row-icon" aria-hidden="true"><img src="assets/images/doodle-trust.webp" alt="" width="178" height="200" loading="lazy" decoding="async"></span>
           <h3 class="problem-title">Your site erodes trust</h3>
           <button class="problem-row-info" type="button" aria-label="More info" aria-describedby="problem-info-tip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></button>
         </div>
         <div class="problem-row" data-color="var(--sky-500)" data-desc="Patients expect to book in two taps. If your Jane App link is buried three clicks deep, they book with the clinic that makes it easy." data-img="assets/images/problem-3.webp">
-          <span class="problem-row-icon" aria-hidden="true"><img src="assets/images/doodle-broken.webp" alt="" width="26" height="26"></span>
+          <span class="problem-row-icon" aria-hidden="true"><img src="assets/images/doodle-broken.webp" alt="" width="200" height="181" loading="lazy" decoding="async"></span>
           <h3 class="problem-title">Booking is broken</h3>
           <button class="problem-row-info" type="button" aria-label="More info" aria-describedby="problem-info-tip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></button>
         </div>
         <div class="problem-row" data-color="var(--coral-400)" data-desc="'Naturopath Toronto' returns ten results and you are not one of them. No local SEO means no local patients finding you." data-img="assets/images/problem-4.webp">
-          <span class="problem-row-icon" aria-hidden="true"><img src="assets/images/doodle-location.webp" alt="" width="26" height="26"></span>
+          <span class="problem-row-icon" aria-hidden="true"><img src="assets/images/doodle-location.webp" alt="" width="200" height="171" loading="lazy" decoding="async"></span>
           <h3 class="problem-title">Google cannot find you</h3>
           <button class="problem-row-info" type="button" aria-label="More info" aria-describedby="problem-info-tip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></button>
         </div>
         <div class="problem-row" data-color="var(--sky-500)" data-desc="Your site looks like every other clinic. Same template, same stock photos, same layout. Patients cannot tell you apart." data-img="assets/images/problem-5.webp">
-          <span class="problem-row-icon" aria-hidden="true"><img src="assets/images/doodle-mirror.webp" alt="" width="26" height="26"></span>
+          <span class="problem-row-icon" aria-hidden="true"><img src="assets/images/doodle-mirror.webp" alt="" width="82" height="200" loading="lazy" decoding="async"></span>
           <h3 class="problem-title">You look like everyone else</h3>
           <button class="problem-row-info" type="button" aria-label="More info" aria-describedby="problem-info-tip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></button>
         </div>
@@ -229,7 +231,7 @@
       <div class="container">
         <div class="section-header reveal">
           <p class="eyebrow">Our solution</p>
-          <h2 class="heading h1">A solution for any naturopath or clinic. <img class="section-doodle" src="assets/images/doodle-star.webp" width="604" height="671" aria-hidden="true" alt="" style="transform:rotate(15deg)"></h2>
+          <h2 class="heading h1">A solution for any naturopath or clinic. <img class="section-doodle" src="assets/images/doodle-star.webp" width="180" height="200" aria-hidden="true" alt="" loading="lazy" decoding="async" style="transform:rotate(15deg)"></h2>
         </div>
         <div class="proof-showcase reveal">
           <div class="proof-list">
@@ -260,13 +262,13 @@
           </div>
           <div class="proof-panel">
             <div class="proof-panel-card active" data-project="0">
-              <div class="proof-panel-bg" style="background:url('assets/images/screenshot-wholewomanreset.jpg') top center/cover"></div>
+              <div class="proof-panel-bg" style="background:url('assets/images/screenshot-wholewomanreset.webp') top center/cover"></div>
             </div>
             <div class="proof-panel-card" data-project="1">
-              <div class="proof-panel-bg" style="background:url('assets/images/screenshot-annex.jpg') top center/cover"></div>
+              <div class="proof-panel-bg" style="background:url('assets/images/screenshot-annex.webp') top center/cover"></div>
             </div>
             <div class="proof-panel-card" data-project="2">
-              <div class="proof-panel-bg" style="background:url('assets/images/screenshot-village.jpg') top center/cover"></div>
+              <div class="proof-panel-bg" style="background:url('assets/images/screenshot-village.webp') top center/cover"></div>
             </div>
           </div>
         </div>
@@ -278,12 +280,12 @@
       <div class="container">
         <div class="section-header reveal">
           <p class="eyebrow">What our clients say</p>
-          <h2 class="heading h1">Real results. <img class="section-doodle" src="assets/images/doodle-bubble.webp" width="3550" height="2480" aria-hidden="true" alt="" style="transform:rotate(8deg)"></h2>
+          <h2 class="heading h1">Real results. <img class="section-doodle" src="assets/images/doodle-bubble.webp" width="200" height="139" aria-hidden="true" alt="" loading="lazy" decoding="async" style="transform:rotate(8deg)"></h2>
         </div>
       </div>
       <div class="testimonials-stage" id="testimonials-stage">
         <div class="testi-card" style="--card-bg:var(--coral-500)">
-          <img class="testi-photo" src="assets/images/testimonial-michelle.jpg" alt="Dr. Michelle McKee" width="72" height="72" loading="lazy">
+          <img class="testi-photo" src="assets/images/testimonial-michelle.webp" alt="Dr. Michelle McKee" width="72" height="72" loading="lazy" decoding="async">
           <blockquote class="testi-quote">"As soon as my new website launched, people started booking!"</blockquote>
           <div class="testi-float">
             <strong class="testi-name">Dr. Michelle McKee, ND</strong>
@@ -291,7 +293,7 @@
           </div>
         </div>
         <div class="testi-card" style="--card-bg:var(--sky-500)">
-          <img class="testi-photo" src="assets/images/testimonial-margot.jpg" alt="Dr. Margot Lattanzi" width="72" height="72" loading="lazy">
+          <img class="testi-photo" src="assets/images/testimonial-margot.webp" alt="Dr. Margot Lattanzi" width="72" height="72" loading="lazy" decoding="async">
           <blockquote class="testi-quote">"I followed the content and SEO recommendations. I've been steadily climbing the Google ranks."</blockquote>
           <div class="testi-float">
             <strong class="testi-name">Dr. Margot Lattanzi, ND</strong>
@@ -299,7 +301,7 @@
           </div>
         </div>
         <div class="testi-card" style="--card-bg:var(--grass-500)">
-          <img class="testi-photo" src="assets/images/testimonial-heather.jpg" alt="Dr. Heather Robinson" width="72" height="72" loading="lazy">
+          <img class="testi-photo" src="assets/images/testimonial-heather.webp" alt="Dr. Heather Robinson" width="72" height="72" loading="lazy" decoding="async">
           <blockquote class="testi-quote">"It's so easy to keep my website up-to-date!"</blockquote>
           <div class="testi-float">
             <strong class="testi-name">Dr. Heather Robinson</strong>
@@ -316,7 +318,7 @@
       <div class="container">
         <div class="section-header reveal">
           <p class="eyebrow">Plans</p>
-          <h2 class="heading h1">Simple, honest pricing. <img class="section-doodle" src="assets/images/doodle-calendar.webp" width="1410" height="1120" aria-hidden="true" alt="" style="transform:rotate(-8deg)"></h2>
+          <h2 class="heading h1">Simple, honest pricing. <img class="section-doodle" src="assets/images/doodle-calendar.webp" width="200" height="158" aria-hidden="true" alt="" loading="lazy" decoding="async" style="transform:rotate(-8deg)"></h2>
           <p class="lead" style="margin-inline:auto">One monthly price. Everything included.</p>
         </div>
 
@@ -381,7 +383,7 @@
       <div class="container">
         <div class="section-header reveal">
           <p class="eyebrow">Questions</p>
-          <h2 class="heading h1">Honest answers. <img class="section-doodle" src="assets/images/doodle-search.webp" width="490" height="675" aria-hidden="true" alt="" style="transform:rotate(12deg)"></h2>
+          <h2 class="heading h1">Honest answers. <img class="section-doodle" src="assets/images/doodle-search.webp" width="145" height="200" aria-hidden="true" alt="" loading="lazy" decoding="async" style="transform:rotate(12deg)"></h2>
         </div>
         <div class="faq-list reveal">
           <div class="faq-item">
