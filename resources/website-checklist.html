@@ -16,9 +16,9 @@
   <link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=ranade@400,500,700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=ranade@400,500,700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=ranade@400,500,700&display=swap"></noscript></noscript>
   <link rel="stylesheet" href="../css/tokens.css?v=13">
-  <link rel="stylesheet" href="../css/base.css?v=13">
-  <link rel="stylesheet" href="../css/components.css?v=22">
-  <link rel="stylesheet" href="../css/pages.css?v=26">
+  <link rel="stylesheet" href="../css/base.css?v=15">
+  <link rel="stylesheet" href="../css/components.css?v=26">
+  <link rel="stylesheet" href="../css/pages.css?v=30">
   <noscript><style>.reveal { opacity:1!important; transform:none!important; }</style></noscript>
   <style>
   .checklist-item {
@@ -199,7 +199,7 @@
           </div>
           <h1>The 10-Out-of-10 Website Checklist for Naturopathic Doctors</h1>
           <p class="lead">After auditing dozens of ND websites, these are the 10 things that separate a site that quietly generates patients from one that sits there looking nice. Tick them off, or hand this to whoever built your site.</p>
-          <img src="../assets/checklist.png" alt="Robot with a checklist" style="width:100%;max-height:380px;object-fit:cover;object-position:center 20%;border-radius:var(--radius-xl);border:2px solid var(--ink-900);display:block;margin-block:var(--space-8);">
+          <img src="../assets/checklist.webp" alt="Robot with a checklist" style="width:100%;max-height:380px;object-fit:cover;object-position:center 20%;border-radius:var(--radius-xl);border:2px solid var(--ink-900);display:block;margin-block:var(--space-8);">
           <hr class="article-divider">
         </header>
 
@@ -216,9 +216,9 @@
             </div>
           </div>
           <form class="pdf-gate-form" id="pdf-gate-form">
-            <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" class="pdf-gate-input">
+            <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" aria-label="Email address" class="pdf-gate-input">
             <input type="hidden" name="form-name" value="checklist-pdf">
-            <button type="submit" class="btn btn--dark">Download PDF <span class="arrow">&rarr;</span></button>
+            <button type="submit" class="btn btn--grass">Download PDF <span class="arrow">&rarr;</span></button>
           </form>
           <p class="pdf-gate-success" id="pdf-gate-success" style="display:none">Downloading now. Check your downloads folder.</p>
         </div>
@@ -345,7 +345,7 @@
 
       <aside class="article-sidebar">
         <nav class="article-toc" aria-label="Table of contents">
-          <p class="eyebrow" style="color:var(--sun-500);margin-bottom:var(--space-3)">The 10 items</p>
+          <p class="eyebrow" style="margin-bottom:var(--space-3)">The 10 items</p>
           <ol>
             <li><a href="#cta">Booking CTA above the fold</a></li>
             <li><a href="#headline">Headline names who &amp; where</a></li>
@@ -360,7 +360,7 @@
           </ol>
         </nav>
         <div class="article-cta card card--sticker" style="background:var(--surface-sun)">
-          <p class="eyebrow" style="color:var(--sun-700)">Want us to score your site?</p>
+          <p class="eyebrow">Want us to score your site?</p>
           <p style="font-size:var(--text-sm);margin-bottom:var(--space-4)">Book a free 20-minute call. We'll run through this checklist together with your actual site on screen and tell you exactly what to fix first.</p>
           <a class="btn btn--dark btn--sm" href="../book.html">Book a free call &rarr;</a>
         </div>
@@ -387,7 +387,7 @@
         <p class="footer-news-sub">Sign up for the monthly newsletter. Free, no spam, unsubscribe anytime.</p>
       </div>
       <form class="footer-newsletter-form" action="https://formspree.io/f/xwvdgedv" method="post">
-        <input type="email" name="email" placeholder="your@email.com" required autocomplete="email">
+        <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" aria-label="Email address">
         <button class="btn btn--dark btn--lg" type="submit">Subscribe &rarr;</button>
       </form>
     </div>

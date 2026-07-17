@@ -64,7 +64,7 @@ p, li, blockquote { text-wrap: pretty; }
   font-size: var(--text-2xs);
   letter-spacing: var(--tracking-eyebrow);
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--coral-500);
 }
 
 .lead {
@@ -124,6 +124,11 @@ p, li, blockquote { text-wrap: pretty; }
   font-weight: var(--weight-bold); font-size: var(--text-sm);
 }
 .skip-link:focus { left: 12px; top: 12px; }
+
+/* ---- Mobile: disable reveal animation so FCP isn't blocked by IntersectionObserver ---- */
+@media (max-width: 900px) {
+  .reveal { opacity: 1 !important; transform: none !important; }
+}
 
 /* ---- Reduced motion ---- */
 @media (prefers-reduced-motion: reduce) {

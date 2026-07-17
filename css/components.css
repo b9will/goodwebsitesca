@@ -78,6 +78,18 @@
   box-shadow: var(--shadow-hard-lg);
 }
 
+/* Grass */
+.btn--grass {
+  background: var(--grass-500);
+  color: var(--paper-50);
+  border-color: var(--ink-900);
+  box-shadow: var(--shadow-hard);
+}
+.btn--grass:hover {
+  background: var(--grass-600, #1a8f3c);
+  box-shadow: var(--shadow-hard-lg);
+}
+
 /* Ghost */
 .btn--ghost {
   background: transparent;
@@ -515,4 +527,47 @@ body.footer-fixed main {
     color: var(--text-strong);
     text-decoration: none;
   }
+}
+
+/* ---- OAND Partner Section ---- */
+.oand-partner-section {
+  background: var(--paper-50);
+  position: relative;
+}
+.oand-partner-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('../assets/textures/stardust-2.png') repeat;
+  background-size: 400px;
+  opacity: 0.18;
+  pointer-events: none;
+}
+.oand-partner-inner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+  border: 2px solid var(--ink-900);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-hard-xl);
+  padding: clamp(2rem, 4vw, 3.5rem);
+  background: var(--paper-50);
+}
+.oand-logo-block {
+  background: var(--grass-500);
+  border: 2px solid var(--ink-900);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 180px;
+}
+.oand-logo-block img { width: 180px; height: auto; display: block; }
+.oand-partner-copy h2 { margin-block: var(--space-2) var(--space-3); }
+.oand-partner-ctas { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-5); }
+@media (max-width: 700px) {
+  .oand-partner-inner { grid-template-columns: 1fr; }
+  .oand-logo-block { min-width: unset; width: 100%; }
 }

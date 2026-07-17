@@ -49,14 +49,17 @@
 .retro-text .retro-layer:nth-child(1) {
   -webkit-text-stroke-color: var(--accent);
   transform: translate(0, 0);
+  z-index: -1;
 }
 .retro-text .retro-layer:nth-child(2) {
   -webkit-text-stroke-color: var(--coral-400);
   transform: translate(0, 0);
+  z-index: -2;
 }
 .retro-text .retro-layer:nth-child(3) {
   -webkit-text-stroke-color: var(--sky-400);
   transform: translate(0, 0);
+  z-index: -3;
 }
 /* Expand on hover */
 .retro-text:hover .retro-layer { opacity: 1; }
@@ -730,14 +733,14 @@
 .step-number {
   display: inline-flex; align-items: center; justify-content: center;
   width: 44px; height: 44px;
-  background: var(--surface-sun);
+  background: var(--grass-500);
   border: 2px solid var(--ink-900);
   border-radius: var(--radius-circle);
   box-shadow: var(--shadow-hard-sm);
   font-family: var(--font-display);
   font-weight: var(--weight-medium);
   font-size: var(--text-lg);
-  color: var(--text-strong);
+  color: var(--paper-50);
   margin-bottom: var(--space-4);
 }
 .step h3 {
@@ -861,6 +864,7 @@
   padding: 3px 8px;
   border-radius: var(--radius-pill);
 }
+.billing-toggle .save-badge { color: var(--paper-50); }
 
 /* ---- Yearly pricing strikethrough ---- */
 .price-was {

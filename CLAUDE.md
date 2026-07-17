@@ -22,7 +22,7 @@ assetsignored and never deploys.
 css/tokens.css?v=13
 css/base.css?v=13
 css/components.css?v=22
-css/pages.css?v=26
+css/pages.css?v=28
 js/main.js?v=13
 js/animations.js?v=21
 js/about.js?v=11

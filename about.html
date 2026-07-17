@@ -18,9 +18,9 @@
   <link rel="preload" href="assets/fonts/GetaiGroteskDisplay-Black.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/Lunchtype22-Medium.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/tokens.css?v=13">
-  <link rel="stylesheet" href="css/base.css?v=13">
-  <link rel="stylesheet" href="css/components.css?v=22">
-  <link rel="stylesheet" href="css/pages.css?v=26">
+  <link rel="stylesheet" href="css/base.css?v=15">
+  <link rel="stylesheet" href="css/components.css?v=26">
+  <link rel="stylesheet" href="css/pages.css?v=30">
   <noscript><style>.reveal,.tl-era-inner,.tl-year,.tl-text{opacity:1!important;transform:none!important}</style></noscript>
 
   <style>
@@ -34,7 +34,6 @@
     ───────────────────────────────────────────────────────────────── */
     .ab-hero {
       padding: clamp(100px, 14vw, 180px) 0 clamp(3rem, 6vw, 6rem);
-      border-bottom: 2px solid var(--ink-900);
     }
     .ab-hero-inner {
       display: grid;
@@ -82,34 +81,37 @@
       text-transform: uppercase;
       color: var(--ink-600);
     }
-    .ab-stamp--sun   { background: var(--sun-400); }
+    .ab-stamp--sun   { background: var(--grass-500); }
     .ab-stamp--coral { background: var(--coral-500); }
     .ab-stamp--sky   { background: var(--sky-500); }
     .ab-stamp--grass { background: var(--grass-500); }
-    .ab-stamp--coral .ab-stamp-num, .ab-stamp--sky .ab-stamp-num, .ab-stamp--grass .ab-stamp-num { color: var(--paper-50); }
-    .ab-stamp--coral .ab-stamp-label, .ab-stamp--sky .ab-stamp-label, .ab-stamp--grass .ab-stamp-label { color: var(--paper-100); }
+    .ab-stamp--sun .ab-stamp-num, .ab-stamp--coral .ab-stamp-num, .ab-stamp--sky .ab-stamp-num, .ab-stamp--grass .ab-stamp-num { color: var(--paper-50); }
+    .ab-stamp--sun .ab-stamp-label, .ab-stamp--coral .ab-stamp-label, .ab-stamp--sky .ab-stamp-label, .ab-stamp--grass .ab-stamp-label { color: var(--paper-100); }
 
     /* ─────────────────────────────────────────────────────────────────
-       HORIZONTAL TIMELINE
+       VERTICAL TIMELINE
     ───────────────────────────────────────────────────────────────── */
     #tl-section {
-      border-bottom: 2px solid var(--ink-900);
-    }
-    /* ── intro header (scrolls naturally before pin kicks in) ── */
-    .tl-intro {
       background: var(--paper-50);
-      padding: var(--space-8) 0 var(--space-7);
       position: relative;
       overflow: hidden;
     }
-    .tl-intro::before {
+    #tl-section::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: url('assets/textures/crissxcross.webp') repeat;
-      background-size: 200px;
-      opacity: 0.055;
+      background: url('assets/textures/natural-paper.png') repeat;
+      background-size: 320px;
+      opacity: 0.07;
       pointer-events: none;
+      z-index: 0;
+    }
+    /* ── intro header ── */
+    .tl-intro {
+      padding: var(--space-5) 0 var(--space-4);
+      position: relative;
+      z-index: 1;
+      text-align: center;
     }
     .tl-intro-inner {
       position: relative;
@@ -132,122 +134,88 @@
       .tl-doodle--a { top: 0;    right: 18%; transform: rotate(20deg);  width: 60px; }
       .tl-doodle--b { bottom: 0; right: 32%; transform: rotate(-10deg); width: 44px; }
     }
-    /* ── pinned horizontal scroll area ── */
-    .tl-outer {
-      position: relative;
-      height: 100vh;
-      overflow: hidden;
-      background: var(--paper-50);
-    }
-    .tl-outer::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url('assets/textures/crissxcross.webp') repeat;
-      background-size: 200px;
-      opacity: 0.055;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .tl-track {
+
+    /* ── vertical era list ── */
+    .tl-list {
       position: relative;
       z-index: 1;
       display: flex;
-      align-items: flex-start;
-      gap: 8vw;
-      height: 100%;
-      padding-left: 90svw;
-      padding-right: 0;
-      will-change: transform;
+      flex-direction: column;
+      gap: clamp(7rem, 11vw, 10rem);
+      padding-block: clamp(4.5rem, 7vw, 6rem) var(--section-y);
     }
     .tl-era {
-      position: relative;
-      flex-shrink: 0;
-      width: 420px;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      padding-top: var(--tl-y, 15%);
+      display: grid;
+      grid-template-columns: clamp(180px, 28vw, 340px) 1fr;
+      gap: clamp(1.5rem, 3vw, 2.5rem);
+      align-items: center;
     }
-    .tl-era:nth-child(1) { --tl-y: 8vh;  }
-    .tl-era:nth-child(2) { --tl-y: 40vh; }
-    .tl-era:nth-child(3) { --tl-y: 6vh;  }
-    .tl-era:nth-child(4) { --tl-y: 44vh; }
-    .tl-era:nth-child(5) { --tl-y: 18vh; }
-    .tl-era:nth-child(6) { --tl-y: 4vh;  }
-    .tl-era:nth-child(7) { --tl-y: 32vh; }
-    .tl-era-inner {
+    /* alternate: even eras flip media to the right */
+    .tl-era:nth-child(even) { grid-template-columns: 1fr clamp(180px, 28vw, 340px); }
+    .tl-era:nth-child(even) .tl-era-media { order: 2; }
+    .tl-era:nth-child(even) .tl-card      { order: 1; }
+
+    /* ── media column (gif + floating year badge) ── */
+    .tl-era-media {
       position: relative;
-      transform-origin: center center;
+    }
+    .tl-gif-wrap {
+      border-radius: var(--radius-xl);
+      border: 2px solid var(--ink-900);
+      box-shadow: var(--shadow-hard);
+      overflow: hidden;
       will-change: transform;
     }
-    /* ── Year badge + GIF float above card ── */
+    .tl-gif-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ── Year badge floats above gif ── */
+    @keyframes badge-float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-7px); }
+    }
     .tl-year {
+      display: inline-block;
       position: absolute;
-      top: -22px;
-      left: var(--space-5);
-      z-index: 2;
+      top: -14px;
+      left: -8px;
+      z-index: 3;
       background: var(--year-bg, var(--coral-500));
       color: var(--paper-50);
       border: 2px solid var(--ink-900);
       border-radius: var(--radius-pill);
       font-family: var(--font-poster);
       font-weight: 900;
-      font-size: 2.25rem;
+      font-size: 1.75rem;
       letter-spacing: -0.03em;
-      padding: 8px 28px;
+      padding: 4px 18px;
       white-space: nowrap;
       box-shadow: 4px 4px 0 0 var(--ink-900);
       line-height: 1.1;
+      animation: badge-float 3.5s ease-in-out infinite;
     }
-    .tl-gif-wrap {
-      position: absolute;
-      top: -32px;
-      right: var(--space-5);
-      z-index: 2;
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      border: 2px solid var(--ink-900);
-      box-shadow: 3px 3px 0 0 var(--ink-900);
-      overflow: hidden;
-      background: var(--ink-900);
-    }
-    .tl-gif-wrap img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center;
-      display: block;
-    }
-    /* ── Card: text content only ── */
+    .tl-era:nth-child(2) .tl-year { animation-delay: -1.3s; }
+    .tl-era:nth-child(3) .tl-year { animation-delay: -0.6s; }
+    .tl-era:nth-child(4) .tl-year { animation-delay: -2.1s; }
+    .tl-era:nth-child(5) .tl-year { animation-delay: -0.9s; }
+    .tl-era:nth-child(6) .tl-year { animation-delay: -1.8s; }
+    .tl-era:nth-child(7) .tl-year { animation-delay: -0.4s; }
+
+    /* ── Card ── */
     .tl-card {
-      position: relative;
-      z-index: 1;
-      background: var(--paper-0);
+      background: var(--paper-50);
       border: 2px solid var(--ink-900);
       border-radius: var(--radius-xl);
       box-shadow: 6px 6px 0 0 var(--ink-900);
-      padding: 1.5rem;
-      padding-top: 3.5rem;
-    }
-    .tl-gif-wrap {
-      width: 88px;
-      height: 88px;
-      border-radius: 50%;
-      border: 2px solid var(--ink-900);
-      box-shadow: 3px 3px 0 0 var(--ink-900);
-      overflow: hidden;
-      flex-shrink: 0;
-      background: var(--ink-900);
-    }
-    .tl-gif-wrap img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center;
-      display: block;
+      padding: 1.75rem;
     }
     .tl-headline {
       font-family: var(--font-ui);
       font-weight: 500;
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       letter-spacing: -0.015em;
       line-height: 1.3;
       color: var(--text-strong);
@@ -262,28 +230,26 @@
     .tl-tags {
       display: flex; gap: var(--space-2); flex-wrap: wrap;
     }
-    .tl-end-spacer {
-      flex-shrink: 0;
-      width: calc(50svw - 210px);
-      height: 1px;
+
+    /* ── floating depth doodles ── */
+    .tl-depth-doodle {
+      position: absolute;
       pointer-events: none;
+      z-index: 0;
     }
+
     @media (prefers-reduced-motion: reduce) {
-      .tl-era-inner { transform: none !important; opacity: 1 !important; }
+      .tl-year { animation: none; }
+      .tl-gif-wrap { transform: none !important; }
     }
     @media (max-width: 800px) {
-      .tl-outer { height: auto; overflow: visible; border-bottom: none; }
-      .tl-track {
-        flex-direction: column;
-        width: 100% !important;
-        transform: none !important;
-        padding: var(--section-y) var(--gutter);
-        gap: clamp(3rem, 8vw, 5rem);
+      .tl-era {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
       }
-      .tl-era { width: 100%; height: auto; padding-top: 0 !important; }
-      .tl-era-inner { transform: none !important; opacity: 1 !important; }
-      .tl-gif-wrap { width: 72px; height: 72px; }
-      .tl-year { font-size: 1.1rem; padding: 4px 14px; }
+      .tl-era:nth-child(even) .tl-era-media { order: 0; }
+      .tl-era:nth-child(even) .tl-card      { order: 0; }
+      .tl-year { font-size: 1.4rem; padding: 4px 16px; }
     }
 
         /* ─────────────────────────────────────────────────────────────────
@@ -291,15 +257,14 @@
     ───────────────────────────────────────────────────────────────── */
     .mv-section {
       background: var(--surface-page-alt);
-      border-bottom: 2px solid var(--ink-900);
       padding-block: var(--section-y);
     }
     .mv-cards {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: var(--space-7);
+      gap: clamp(2rem, 5vw, 4rem);
       align-items: start;
-      margin-top: var(--space-8);
+      margin-top: var(--space-10);
     }
     .mv-card {
       border: 2px solid var(--ink-900);
@@ -316,7 +281,7 @@
       background: var(--sky-500);
       color: var(--paper-50);
       transform: rotate(1.5deg);
-      margin-top: var(--space-7);
+      margin-top: clamp(5rem, 10vw, 8rem);
     }
     .mv-card-icon {
       width: 52px; height: 52px;
@@ -347,8 +312,8 @@
     ───────────────────────────────────────────────────────────────── */
     .team-section {
       background: var(--paper-50);
-      border-bottom: 2px solid var(--ink-900);
       padding: var(--space-11) 0;
+      position: relative;
     }
     .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); margin-top: var(--space-8); }
     .team-card {
@@ -363,7 +328,7 @@
       aspect-ratio: 3/4;
       border: 2px solid var(--ink-900);
       box-shadow: var(--shadow-hard);
-      background: var(--sun-400);
+      background: var(--paper-200);
       overflow: hidden;
       display: flex; align-items: center; justify-content: center;
       margin-bottom: var(--space-6);
@@ -461,7 +426,7 @@
 
           <!-- Type column -->
           <div class="ab-hero-copy">
-            <p class="eyebrow ab-hero-eyebrow" style="color:var(--sun-600)">We've been at this a while</p>
+            <p class="eyebrow ab-hero-eyebrow">We've been at this a while</p>
             <h1 class="display display-lg ab-hero-h1">
               We built our first website before the iPhone existed.
             </h1>
@@ -506,128 +471,127 @@
       <!-- intro scrolls out before the horizontal pin takes over -->
       <div class="tl-intro">
         <div class="container tl-intro-inner">
-          <p class="eyebrow">Our journey</p>
-          <h2 class="tl-label-title">18 years building<br>the web.</h2>
+          <p class="eyebrow">Our time on the web</p>
+          <h2 class="tl-label-title">Since 2007.</h2>
           <img src="assets/accents/sparkle.webp" class="tl-doodle tl-doodle--a" aria-hidden="true" width="60" height="60" loading="lazy">
           <img src="assets/accents/star.webp"    class="tl-doodle tl-doodle--b" aria-hidden="true" width="44" height="44" loading="lazy">
         </div>
       </div>
 
-      <!-- pinned horizontal scroll -->
-      <div class="tl-outer">
-        <div class="tl-track">
+      <!-- vertical era list -->
+      <div class="container">
+        <div class="tl-list">
 
-          <div class="tl-era">
-            <div class="tl-era-inner">
+          <div class="tl-era reveal">
+            <div class="tl-era-media">
               <span class="tl-year" style="--year-bg:var(--coral-500)">2007</span>
               <div class="tl-gif-wrap">
-                <img src="assets/timeline_images/tobey-dans-2007.gif" alt="" loading="lazy">
+                <img src="assets/timeline_images/aladdin-mclovin2007gif.gif" alt="" loading="lazy">
               </div>
-              <div class="tl-card">
-                <h3 class="tl-headline">Before the iPhone. Every site was built for a 1024px screen.</h3>
-                <p class="tl-body">Sites were designed for big monitors and mouse clicks. Mobile wasn't a concern yet.</p>
-                <div class="tl-tags"><span class="badge badge--coral">WordPress</span><span class="badge badge--coral">Flash</span><span class="badge badge--coral">Desktop</span></div>
-              </div>
+            </div>
+            <div class="tl-card">
+              <h3 class="tl-headline">I built my first site before the iPhone existed.</h3>
+              <p class="tl-body">Set up WordPress for a local small business. Everything was built for desktops: big screens, mouse clicks, Flash animations. That first project changed how I thought about building things.</p>
+              <div class="tl-tags"><span class="badge badge--coral">WordPress</span><span class="badge badge--coral">Small Business</span><span class="badge badge--coral">Desktop</span></div>
             </div>
           </div>
 
-          <div class="tl-era">
-            <div class="tl-era-inner">
-              <span class="tl-year" style="--year-bg:var(--sky-500)">2012</span>
-              <div class="tl-gif-wrap">
-                <img src="assets/timeline_images/lightning-bolt-pose-usain-bolt_2012.gif" alt="" loading="lazy">
-              </div>
-              <div class="tl-card">
-                <h3 class="tl-headline">Responsive design landed. One URL, every screen size.</h3>
-                <p class="tl-body">Mobile traffic exploded. Sites that didn't adapt got penalised in search. A new discipline was born overnight.</p>
-                <div class="tl-tags"><span class="badge badge--sky">Responsive</span><span class="badge badge--sky">Bootstrap</span><span class="badge badge--sky">Mobile</span></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="tl-era">
-            <div class="tl-era-inner">
-              <span class="tl-year" style="--year-bg:var(--grass-500)">2014</span>
+          <div class="tl-era reveal">
+            <div class="tl-era-media">
+              <span class="tl-year" style="--year-bg:var(--sky-500)">2014</span>
               <div class="tl-gif-wrap">
                 <img src="assets/timeline_images/hoda-kotb-ice-bucket-challenge_2014.gif" alt="" loading="lazy">
               </div>
-              <div class="tl-card">
-                <h3 class="tl-headline">Wix. Squarespace. Suddenly anyone could have a website.</h3>
-                <p class="tl-body">Templates lowered the barrier. "Good enough" became the goal. Most sites looked identical, and ranked accordingly.</p>
-                <div class="tl-tags"><span class="badge badge--grass">Squarespace</span><span class="badge badge--grass">Wix</span><span class="badge badge--grass">Templates</span></div>
-              </div>
+            </div>
+            <div class="tl-card">
+              <h3 class="tl-headline">Built a Wix site for a friend's wedding. Fell down a creative rabbit hole.</h3>
+              <p class="tl-body">Design. Photography. Video. Illustration. Every creative medium I touched taught me something new about communication. The web was becoming a canvas and I wanted to understand all of it.</p>
+              <div class="tl-tags"><span class="badge badge--sky">Wix</span><span class="badge badge--sky">Design</span><span class="badge badge--sky">Creative</span></div>
             </div>
           </div>
 
-          <div class="tl-era">
-            <div class="tl-era-inner">
-              <span class="tl-year" style="--year-bg:var(--coral-500)">2016</span>
+          <div class="tl-era reveal">
+            <div class="tl-era-media">
+              <span class="tl-year" style="--year-bg:var(--grass-500)">2016</span>
               <div class="tl-gif-wrap">
                 <img src="assets/timeline_images/pokemon)gif.gif" alt="" loading="lazy">
               </div>
-              <div class="tl-card">
-                <h3 class="tl-headline">Speed became a ranking signal. Slow sites started disappearing.</h3>
-                <p class="tl-body">Google started penalising slow pages. Sites that had always been lazy about performance began paying the price.</p>
-                <div class="tl-tags"><span class="badge badge--coral">PageSpeed</span><span class="badge badge--coral">UX</span><span class="badge badge--coral">Conversion</span></div>
-              </div>
+            </div>
+            <div class="tl-card">
+              <h3 class="tl-headline">The social media craze hit. I learned how to ride it.</h3>
+              <p class="tl-body">Everyone was building an audience on Facebook and Instagram. I got into audio, podcasting, and content strategy, learning how people actually use the internet, not just how to build for it.</p>
+              <div class="tl-tags"><span class="badge badge--grass">Social Media</span><span class="badge badge--grass">Podcasting</span><span class="badge badge--grass">Content</span></div>
             </div>
           </div>
 
-          <div class="tl-era">
-            <div class="tl-era-inner">
-              <span class="tl-year" style="--year-bg:var(--sky-500)">2019</span>
+          <div class="tl-era reveal">
+            <div class="tl-era-media">
+              <span class="tl-year" style="--year-bg:var(--coral-500)">2019</span>
               <div class="tl-gif-wrap">
                 <img src="assets/timeline_images/kawhi-kawhi-leonard_shot-gif.gif" alt="" loading="lazy">
               </div>
-              <div class="tl-card">
-                <h3 class="tl-headline">Google switched to mobile-first indexing. Desktop traffic kept falling.</h3>
-                <p class="tl-body">If your site wasn't fast on a phone, it didn't rank. Most small-practice sites weren't close.</p>
-                <div class="tl-tags"><span class="badge badge--sky">Mobile-first</span><span class="badge badge--sky">Core Web Vitals</span><span class="badge badge--sky">Local SEO</span></div>
-              </div>
+            </div>
+            <div class="tl-card">
+              <h3 class="tl-headline">Went all in. Full-stack bootcamp: front-end, back-end, Node.js.</h3>
+              <p class="tl-body">Built sites and brands with static HTML and CSS. Moved to WordPress for handoff ease, then Squarespace. Each platform taught me its limits. Every project sharpened the instinct for what actually works.</p>
+              <div class="tl-tags"><span class="badge badge--coral">Node.js</span><span class="badge badge--coral">Static HTML</span><span class="badge badge--coral">Full-stack</span></div>
             </div>
           </div>
 
-          <div class="tl-era">
-            <div class="tl-era-inner">
+          <div class="tl-era reveal">
+            <div class="tl-era-media">
+              <span class="tl-year" style="--year-bg:var(--sky-500)">2020</span>
+              <div class="tl-gif-wrap">
+                <img src="assets/timeline_images/billie_gif2020.gif" alt="" loading="lazy">
+              </div>
+            </div>
+            <div class="tl-card">
+              <h3 class="tl-headline">Found Webflow. Built a startup's marketing site and app front-end.</h3>
+              <p class="tl-body">More control than any template, less friction than custom code. Webflow clicked immediately. Solved problems across every system: Shopify, custom apps, integrations. Launched B9 Digital in 2021.</p>
+              <div class="tl-tags"><span class="badge badge--sky">Webflow</span><span class="badge badge--sky">Shopify</span><span class="badge badge--sky">B9 Digital</span></div>
+            </div>
+          </div>
+
+          <div class="tl-era reveal">
+            <div class="tl-era-media">
               <span class="tl-year" style="--year-bg:var(--grass-500)">2023</span>
               <div class="tl-gif-wrap">
                 <img src="assets/timeline_images/barbienheimer-barbie_gif.gif" alt="" loading="lazy">
               </div>
-              <div class="tl-card">
-                <h3 class="tl-headline">AI started answering questions directly. Search changed overnight.</h3>
-                <p class="tl-body">ChatGPT. Perplexity. Google AI Overviews. Sites structured for machines, not just humans, got cited. The rest didn't.</p>
-                <div class="tl-tags"><span class="badge badge--grass">ChatGPT</span><span class="badge badge--grass">AI Search</span><span class="badge badge--grass">Perplexity</span></div>
-              </div>
+            </div>
+            <div class="tl-card">
+              <h3 class="tl-headline">Started building Good Websites. AI arrived and changed the pace.</h3>
+              <p class="tl-body">The idea had been building for a while. Then ChatGPT showed up and research that took days took hours. We pushed the concept forward faster than expected, moving quicker without cutting corners.</p>
+              <div class="tl-tags"><span class="badge badge--grass">Webflow</span><span class="badge badge--grass">AI</span><span class="badge badge--grass">Good Websites</span></div>
             </div>
           </div>
 
-          <div class="tl-era">
-            <div class="tl-era-inner">
+          <div class="tl-era reveal">
+            <div class="tl-era-media">
               <span class="tl-year" style="--year-bg:var(--coral-500)">2025</span>
               <div class="tl-gif-wrap">
                 <img src="assets/timeline_images/katy-perry-katy-perry-space_gif.gif" alt="" loading="lazy">
               </div>
-              <div class="tl-card">
-                <h3 class="tl-headline">The bar is higher than it's ever been. We built a studio to clear it.</h3>
-                <p class="tl-body">Fast, structured, credible sites at a price that makes sense for a solo practice.</p>
-                <div class="tl-tags"><span class="badge badge--coral">AI-native</span><span class="badge badge--coral">Structured Data</span><span class="badge badge--coral">Good Websites</span></div>
-              </div>
+            </div>
+            <div class="tl-card">
+              <h3 class="tl-headline">The bar is higher than it's ever been. We built a studio to clear it.</h3>
+              <p class="tl-body">Design, development, and business knowledge combined. Helping small businesses build a digital presence that actually works: fast, structured, and built to grow.</p>
+              <div class="tl-tags"><span class="badge badge--coral">AI-native</span><span class="badge badge--coral">Structured Data</span><span class="badge badge--coral">Good Websites</span></div>
             </div>
           </div>
-          <!-- Trailing spacer — flex item so scrollWidth includes it (padding-right doesn't count in Chrome) -->
-          <div class="tl-end-spacer" aria-hidden="true"></div>
 
-          <!-- Depth doodles after eras so nth-child on .tl-era is unaffected -->
-          <img class="tl-depth-doodle" src="assets/accents/sparkle.webp" aria-hidden="true" loading="lazy"
-               style="position:absolute;top:14%;left:480px;width:52px;opacity:0.22;pointer-events:none;z-index:0">
-          <img class="tl-depth-doodle" src="assets/accents/star.webp" aria-hidden="true" loading="lazy"
-               style="position:absolute;bottom:22%;left:1150px;width:42px;opacity:0.18;pointer-events:none;z-index:0">
-          <img class="tl-depth-doodle" src="assets/accents/sparkle.webp" aria-hidden="true" loading="lazy"
-               style="position:absolute;top:28%;left:2000px;width:38px;opacity:0.15;pointer-events:none;z-index:0">
-          <img class="tl-depth-doodle" src="assets/accents/star.webp" aria-hidden="true" loading="lazy"
-               style="position:absolute;bottom:15%;left:2700px;width:46px;opacity:0.20;pointer-events:none;z-index:0">
-        </div><!-- /tl-track -->
-      </div><!-- /tl-outer -->
+        </div><!-- /tl-list -->
+      </div><!-- /container -->
+
+      <!-- floating depth doodles -->
+      <img class="tl-depth-doodle" src="assets/accents/sparkle.webp" aria-hidden="true" loading="lazy"
+           style="top:12%;right:6%;width:52px;opacity:0.20;transform:rotate(15deg)">
+      <img class="tl-depth-doodle" src="assets/accents/star.webp" aria-hidden="true" loading="lazy"
+           style="top:38%;left:3%;width:40px;opacity:0.15;transform:rotate(-8deg)">
+      <img class="tl-depth-doodle" src="assets/accents/sparkle.webp" aria-hidden="true" loading="lazy"
+           style="top:62%;right:4%;width:36px;opacity:0.18;transform:rotate(25deg)">
+      <img class="tl-depth-doodle" src="assets/accents/star.webp" aria-hidden="true" loading="lazy"
+           style="top:82%;left:5%;width:44px;opacity:0.14;transform:rotate(-12deg)">
     </section>
 
         <!-- ══════════════════════════════════════════════════════
@@ -683,11 +647,17 @@
          TEAM
     ══════════════════════════════════════════════════════ -->
     <section class="team-section">
+      <img src="assets/images/hero-balloon.webp" alt="" aria-hidden="true" class="accent accent--float" width="58" height="58" loading="lazy" style="position:absolute;top:8%;left:3%;--accent-rot:-12deg;opacity:0.5;animation-delay:-0.8s">
+      <img src="assets/accents/peace-sign.webp" alt="" aria-hidden="true" class="accent accent--float" width="48" height="48" loading="lazy" style="position:absolute;top:14%;right:4%;--accent-rot:20deg;opacity:0.45;animation-delay:-2.1s">
+      <img src="assets/accents/speech-bubble.webp" alt="" aria-hidden="true" class="accent accent--float" width="52" height="52" loading="lazy" style="position:absolute;bottom:22%;left:5%;--accent-rot:-8deg;opacity:0.4;animation-delay:-1.4s">
+      <img src="assets/accents/sparkle.webp" alt="" aria-hidden="true" class="accent accent--float" width="40" height="40" loading="lazy" style="position:absolute;bottom:18%;right:6%;--accent-rot:15deg;opacity:0.4;animation-delay:-3s">
+      <img src="assets/accents/star.webp" alt="" aria-hidden="true" class="accent accent--float" width="36" height="36" loading="lazy" style="position:absolute;top:50%;left:8%;--accent-rot:30deg;opacity:0.35;animation-delay:-1s">
+      <img src="assets/accents/crown.webp" alt="" aria-hidden="true" class="accent accent--float" width="44" height="44" loading="lazy" style="position:absolute;top:38%;right:3%;--accent-rot:-22deg;opacity:0.35;animation-delay:-2.7s">
       <div class="container">
         <div class="section-header reveal">
           <p class="eyebrow">The team</p>
-          <h2 class="heading h1">Two people. Both obsessed.</h2>
-          <p class="lead">We're small by design. Every site we build gets our full attention.</p>
+          <h2 class="heading h1">Two people who've been building together for years.</h2>
+          <p class="lead" style="max-width:58ch">We both came up as Webflow pros, built across WordPress to custom code, and did full-stack boot camps separately before finding each other. Rylan took off in Webflow. Will leaned into design and strategy. We've always talked about a website system that works for small businesses without big upfront capital, and now with the AI tools we have, we can actually deliver it.</p>
         </div>
         <div class="team-grid reveal">
           <div class="team-card team-card--will">
@@ -696,15 +666,15 @@
             </div>
             <p class="team-name">Will Robinson</p>
             <p class="team-role">Design &amp; Strategy</p>
-            <p class="team-bio">Over a decade building digital products across branding, SaaS, and content businesses. Will leads design, client strategy, and makes sure every site looks the way it should and works the way it needs to.</p>
+            <p class="team-bio">Leaned into design and strategy after years building across every major web platform. Will shapes how every Good Websites site looks, feels, and positions the practice online.</p>
           </div>
           <div class="team-card team-card--rylan">
             <div class="team-portrait-wrap">
               <img src="assets/images/rylan_headshot.webp" alt="Rylan Shaver" width="800" height="1421" loading="lazy" decoding="async">
             </div>
             <p class="team-name">Rylan Shaver</p>
-            <p class="team-role">Engineering &amp; Systems</p>
-            <p class="team-bio">Full-stack engineer with deep roots in performance, tooling, and automation. Rylan built the AI-assisted workflows and component systems that let us move at agency speed without the agency overhead.</p>
+            <p class="team-role">Engineering &amp; Webflow</p>
+            <p class="team-bio">Rylan's Webflow prowess is the engine behind our build speed. Combined with deep engineering skills, he's built the systems that let us deliver high-quality work fast and affordably.</p>
           </div>
         </div>
       </div>
@@ -751,7 +721,10 @@
     <!-- ══════════════════════════════════════════════════════
          VALUES — will be polished in next pass
     ══════════════════════════════════════════════════════ -->
-    <section class="section" style="background:var(--surface-page-alt)">
+    <section class="section" style="background:var(--surface-page-alt);position:relative;overflow:hidden">
+      <img src="assets/accents/sparkle.webp" alt="" aria-hidden="true" class="accent accent--float" width="44" height="44" loading="lazy" style="position:absolute;top:10%;right:5%;--accent-rot:18deg;opacity:0.3;animation-delay:-1.2s">
+      <img src="assets/accents/zigzag-arrow.webp" alt="" aria-hidden="true" class="accent" width="52" height="52" loading="lazy" style="position:absolute;bottom:15%;left:3%;opacity:0.25;transform:rotate(-15deg)">
+      <img src="assets/accents/star.webp" alt="" aria-hidden="true" class="accent accent--float" width="36" height="36" loading="lazy" style="position:absolute;top:55%;right:8%;--accent-rot:-12deg;opacity:0.28;animation-delay:-2.3s">
       <div class="container">
         <div class="section-header reveal">
           <p class="eyebrow">What we believe</p>
@@ -759,19 +732,19 @@
         </div>
         <div class="reveal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-5)">
           <div class="card card--sticker" style="padding:var(--space-7)">
-            <p class="eyebrow" style="color:var(--sun-500);margin-bottom:var(--space-3)">01</p>
-            <h3 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--text-h3);letter-spacing:var(--tracking-tight);margin-bottom:var(--space-3)">Honest pricing</h3>
-            <p style="font-size:var(--text-sm);color:var(--text-muted);line-height:var(--leading-relaxed)">One price. Everything in. No upsells, no hidden fees, no surprises on invoice day.</p>
-          </div>
-          <div class="card card--sticker" style="background:var(--surface-sun);padding:var(--space-7)">
-            <p class="eyebrow" style="color:var(--sun-700);margin-bottom:var(--space-3)">02</p>
-            <h3 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--text-h3);letter-spacing:var(--tracking-tight);margin-bottom:var(--space-3)">Speed without shortcuts</h3>
-            <p style="font-size:var(--text-sm);color:var(--ink-600);line-height:var(--leading-relaxed)">We're fast because of our systems, not because we cut corners. Every site gets the same care.</p>
+            <p class="eyebrow" style="margin-bottom:var(--space-3)">01</p>
+            <h3 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--text-h3);letter-spacing:var(--tracking-tight);margin-bottom:var(--space-3)">Thoughtful work only</h3>
+            <p style="font-size:var(--text-sm);color:var(--text-muted);line-height:var(--leading-relaxed)">We deliver high-quality sites that actively help your practice grow. Every decision is made to bring real value, not just fill a template.</p>
           </div>
           <div class="card card--sticker" style="padding:var(--space-7)">
-            <p class="eyebrow" style="color:var(--sun-500);margin-bottom:var(--space-3)">03</p>
-            <h3 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--text-h3);letter-spacing:var(--tracking-tight);margin-bottom:var(--space-3)">Built for what's next</h3>
-            <p style="font-size:var(--text-sm);color:var(--text-muted);line-height:var(--leading-relaxed)">We build for AI search, structured data, and evolving web standards. Not just what ranks today.</p>
+            <p class="eyebrow" style="margin-bottom:var(--space-3)">02</p>
+            <h3 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--text-h3);letter-spacing:var(--tracking-tight);margin-bottom:var(--space-3)">No corners cut</h3>
+            <p style="font-size:var(--text-sm);color:var(--text-muted);line-height:var(--leading-relaxed)">Sites that work bring value. We don't rush, we don't shortcut. Everything is done right because your reputation is on the line.</p>
+          </div>
+          <div class="card card--sticker" style="padding:var(--space-7)">
+            <p class="eyebrow" style="margin-bottom:var(--space-3)">03</p>
+            <h3 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--text-h3);letter-spacing:var(--tracking-tight);margin-bottom:var(--space-3)">Partners for growth</h3>
+            <p style="font-size:var(--text-sm);color:var(--text-muted);line-height:var(--leading-relaxed)">We're your web-presence partners. As your practice grows, we grow with you: new services, new pages, new strategies.</p>
           </div>
         </div>
       </div>
@@ -787,7 +760,7 @@
         <h2 class="heading h1">Want to work with us?</h2>
         <p class="lead">Book a 20-minute call. We'll look at your current site and talk about what a good one could do for your practice.</p>
         <div style="display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap">
-          <a class="btn btn--dark btn--lg" href="contact.html">Get in touch <span class="arrow">&rarr;</span></a>
+          <a class="btn btn--primary btn--lg" href="contact.html">Get in touch <span class="arrow">&rarr;</span></a>
           <a class="btn btn--secondary btn--lg" href="book.html">Book a call instead</a>
         </div>
       </div>
@@ -802,7 +775,7 @@
         <p class="footer-news-sub">Sign up for the monthly newsletter. Free, no spam, unsubscribe anytime.</p>
       </div>
       <form class="footer-newsletter-form" action="https://formspree.io/f/xwvdgedv" method="post">
-        <input type="email" name="email" placeholder="your@email.com" required autocomplete="email">
+        <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" aria-label="Email address">
         <button class="btn btn--dark btn--lg" type="submit">Subscribe &rarr;</button>
       </form>
     </div>
@@ -856,6 +829,6 @@
   <script src="js/vendor/gsap.min.js" defer></script>
   <script src="js/vendor/ScrollTrigger.min.js" defer></script>
   <script src="js/animations.js?v=21" defer></script>
-  <script src="js/about.js?v=11" defer></script>
+  <script src="js/about.js?v=15" defer></script>
 </body>
 </html>

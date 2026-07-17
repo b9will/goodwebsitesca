@@ -20,9 +20,9 @@
   <link rel="preload" href="assets/fonts/GetaiGroteskDisplay-Black.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/Lunchtype22-Medium.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/tokens.css?v=13">
-  <link rel="stylesheet" href="css/base.css?v=13">
-  <link rel="stylesheet" href="css/components.css?v=22">
-  <link rel="stylesheet" href="css/pages.css?v=26">
+  <link rel="stylesheet" href="css/base.css?v=15">
+  <link rel="stylesheet" href="css/components.css?v=26">
+  <link rel="stylesheet" href="css/pages.css?v=30">
   <noscript><style>.reveal { opacity:1!important; transform:none!important; }</style></noscript>
   <style>.price-upfront-note{display:none;font-size:var(--text-xs);color:var(--text-muted);margin-bottom:var(--space-3)}.is-yearly .price-upfront-note{display:block}</style>
   <meta property="og:image" content="https://goodwebsites.ca/assets/images/og-card.jpg">
@@ -67,7 +67,7 @@
     <!-- Hero -->
     <section class="hero hero--textured">
       <div class="hero-center">
-        <p class="eyebrow" style="color:var(--sun-500)">Plans</p>
+        <p class="eyebrow">Plans</p>
         <h1 class="display display-md">One price.<br>Everything included.</h1>
         <p class="lead">No setup fees. No big agency bill. No surprises. Your subscription covers design, hosting, and ongoing edits. Everything your practice needs.</p>
         <div class="hero-actions">
@@ -90,7 +90,7 @@
         <div class="pricing-grid reveal">
           <div class="card card--sticker price-card">
             <span class="price-name">Launch</span>
-            <div class="price-amount" data-monthly="99" data-yearly="59">$99<span>/mo</span></div>
+            <del class="price-was" aria-hidden="true">$99/mo</del><div class="price-amount" data-monthly="99" data-yearly="59">$99<span>/mo</span></div>
             <p class="price-upfront-note">Billed as $708 upfront yearly</p>
             <p class="price-desc">A site you're proud to send people to. Clean, fast, built around Jane. Looks like you mean business. Because you do.</p>
             <ul class="price-features">
@@ -105,7 +105,7 @@
           </div>
           <div class="card card--sticker price-card price-card--featured" style="position:relative">
             <span class="price-name">Practice</span>
-            <div class="price-amount" data-monthly="199" data-yearly="119">$199<span>/mo</span></div>
+            <del class="price-was" aria-hidden="true">$199/mo</del><div class="price-amount" data-monthly="199" data-yearly="119">$199<span>/mo</span></div>
             <p class="price-upfront-note">Billed as $1,428 upfront yearly</p>
             <p class="price-desc">Your website starts bringing in patients. Full site, local SEO, Google Business. The kind of online presence that works while you're with patients.</p>
             <ul class="price-features">
@@ -120,7 +120,7 @@
           </div>
           <div class="card card--sticker price-card">
             <span class="price-name">Authority</span>
-            <div class="price-amount" data-monthly="349" data-yearly="209">$349<span>/mo</span></div>
+            <del class="price-was" aria-hidden="true">$349/mo</del><div class="price-amount" data-monthly="349" data-yearly="209">$349<span>/mo</span></div>
             <p class="price-upfront-note">Billed as $2,508 upfront yearly</p>
             <p class="price-desc">You become the go-to ND in your city. Content strategy, blog, condition pages. Everything it takes to own your corner of the internet.</p>
             <ul class="price-features">
@@ -266,26 +266,26 @@
           <p class="lead">We handle everything so you can focus on your patients.</p>
         </div>
         <div class="reveal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-5)">
-          <div class="card card--sticker">
-            <div class="value-card-icon" style="margin-bottom:var(--space-4)">
+          <div class="card card--sticker" style="background:var(--coral-500);color:var(--paper-50)">
+            <div class="value-card-icon" style="margin-bottom:var(--space-4);color:var(--paper-50)">
               <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
             </div>
-            <h3 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--text-h3);letter-spacing:var(--tracking-tight);margin-bottom:var(--space-2)">Custom design</h3>
-            <p style="font-size:var(--text-sm);color:var(--text-muted);line-height:var(--leading-relaxed)">Built from scratch to match your practice. No templates, no Squarespace. Yours looks nothing like anyone else's.</p>
+            <h3 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--text-h3);letter-spacing:var(--tracking-tight);margin-bottom:var(--space-2);color:var(--paper-50)">Custom design</h3>
+            <p style="font-size:var(--text-sm);color:rgba(255,255,255,0.8);line-height:var(--leading-relaxed)">Built from scratch to match your practice. No templates, no Squarespace. Yours looks nothing like anyone else's.</p>
           </div>
-          <div class="card card--sticker" style="background:var(--surface-sun)">
-            <div class="value-card-icon" style="margin-bottom:var(--space-4)">
+          <div class="card card--sticker" style="background:var(--grass-500);color:var(--paper-50)">
+            <div class="value-card-icon" style="margin-bottom:var(--space-4);color:var(--paper-50)">
               <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
             </div>
-            <h3 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--text-h3);letter-spacing:var(--tracking-tight);margin-bottom:var(--space-2)">Hosting + support</h3>
-            <p style="font-size:var(--text-sm);color:var(--ink-600);line-height:var(--leading-relaxed)">Fast, reliable hosting with SSL. We handle updates, backups, and anything technical. Email us, we handle it.</p>
+            <h3 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--text-h3);letter-spacing:var(--tracking-tight);margin-bottom:var(--space-2);color:var(--paper-50)">Hosting + support</h3>
+            <p style="font-size:var(--text-sm);color:rgba(255,255,255,0.8);line-height:var(--leading-relaxed)">Fast, reliable hosting with SSL. We handle updates, backups, and anything technical. Email us, we handle it.</p>
           </div>
-          <div class="card card--sticker">
-            <div class="value-card-icon" style="margin-bottom:var(--space-4)">
+          <div class="card card--sticker" style="background:var(--sky-500);color:var(--paper-50)">
+            <div class="value-card-icon" style="margin-bottom:var(--space-4);color:var(--paper-50)">
               <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             </div>
-            <h3 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--text-h3);letter-spacing:var(--tracking-tight);margin-bottom:var(--space-2)">Ongoing edits</h3>
-            <p style="font-size:var(--text-sm);color:var(--text-muted);line-height:var(--leading-relaxed)">Your practice evolves. Email us a change and it's done. No extra fees, no hourly billing, no waiting weeks.</p>
+            <h3 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--text-h3);letter-spacing:var(--tracking-tight);margin-bottom:var(--space-2);color:var(--paper-50)">Ongoing edits</h3>
+            <p style="font-size:var(--text-sm);color:rgba(255,255,255,0.8);line-height:var(--leading-relaxed)">Your practice evolves. Email us a change and it's done. No extra fees, no hourly billing, no waiting weeks.</p>
           </div>
         </div>
       </div>
@@ -347,7 +347,7 @@
         <p class="footer-news-sub">Sign up for the monthly newsletter. Free, no spam, unsubscribe anytime.</p>
       </div>
       <form class="footer-newsletter-form" action="https://formspree.io/f/xwvdgedv" method="post">
-        <input type="email" name="email" placeholder="your@email.com" required autocomplete="email">
+        <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" aria-label="Email address">
         <button class="btn btn--dark btn--lg" type="submit">Subscribe &rarr;</button>
       </form>
     </div>

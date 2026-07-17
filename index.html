@@ -21,9 +21,9 @@
   <link rel="preload" href="assets/fonts/Lunchtype22-Medium.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" href="assets/images/hero-doctor.webp" fetchpriority="high">
   <link rel="stylesheet" href="css/tokens.css?v=13">
-  <link rel="stylesheet" href="css/base.css?v=13">
-  <link rel="stylesheet" href="css/components.css?v=22">
-  <link rel="stylesheet" href="css/pages.css?v=26">
+  <link rel="stylesheet" href="css/base.css?v=15">
+  <link rel="stylesheet" href="css/components.css?v=26">
+  <link rel="stylesheet" href="css/pages.css?v=30">
   <noscript><style>.reveal { opacity:1!important; transform:none!important; }</style></noscript>
   <meta property="og:image" content="https://goodwebsites.ca/assets/images/og-card.jpg">
   <meta property="og:image:width" content="1200">
@@ -72,7 +72,7 @@
         <!-- Left: value prop directly on texture -->
         <div class="hero-copy">
           <img class="hero-doodle hero-doodle--sparkle accent--sun" src="assets/accents/sparkle.webp" width="181" height="200" aria-hidden="true" alt="">
-          <p class="eyebrow" style="color:var(--sun-500)">Websites for naturopaths</p>
+          <p class="eyebrow">Websites for naturopaths</p>
           <h1 class="display display-md">Your next client is booking on a <span class="retro-text">good website.<span class="retro-layer" aria-hidden="true">good website.</span><span class="retro-layer" aria-hidden="true">good website.</span><span class="retro-layer" aria-hidden="true">good website.</span></span></h1>
           <p class="lead">Beautifully designed, fast on every device, and handled for you. One monthly price, no big bill up front.</p>
           <div class="hero-actions">
@@ -170,7 +170,7 @@
       <div class="solution-inner container">
         <!-- Left: sticky pill rail -->
         <div class="solution-rail">
-          <p class="eyebrow" style="color:var(--sun-500);margin-bottom:var(--space-4)">The fix</p>
+          <p class="eyebrow" style="margin-bottom:var(--space-4)">The fix</p>
           <div class="solution-nav" id="solution-nav">
             <button class="solution-nav-item active" type="button" data-index="0" aria-current="true">
               <div class="solution-nav-fill"></div>
@@ -311,6 +311,26 @@
       </div>
     </section>
 
+    <!-- OAND Official Partner — hidden until live on OAND site -->
+    <section class="section oand-partner-section" style="display:none">
+      <div class="container">
+        <div class="oand-partner-inner reveal">
+          <div class="oand-logo-block">
+            <img src="assets/images/OAND-white-Logo.png" alt="OAND Ontario Association of Naturopathic Doctors" width="200" height="auto" loading="lazy">
+          </div>
+          <div class="oand-partner-copy">
+            <p class="eyebrow">Official Partner</p>
+            <h2 class="heading h2">Good Websites is an approved partner of the OAND.</h2>
+            <p class="lead" style="font-size:var(--text-md);max-width:46ch">OAND members get access to our resource library and member pricing.</p>
+            <div class="oand-partner-ctas">
+              <a class="btn btn--grass btn--lg" href="oand.html">Member resources <span class="arrow">&rarr;</span></a>
+              <a class="btn btn--dark btn--lg" href="https://oand.org" target="_blank" rel="noopener">Visit OAND</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- 8. Pricing / Offer — Conversion -->
     <section class="section" style="position:relative">
       <img src="assets/accents/stethoscope.webp" alt="" aria-hidden="true" class="accent accent--ink accent--faint" width="90" height="70" loading="lazy" style="top:30px;left:5%;transform:rotate(12deg)">
@@ -437,7 +457,7 @@
         <p class="footer-news-sub">Sign up for the monthly newsletter. Free, no spam, unsubscribe anytime.</p>
       </div>
       <form class="footer-newsletter-form" action="https://formspree.io/f/xwvdgedv" method="post">
-        <input type="email" name="email" placeholder="your@email.com" required autocomplete="email">
+        <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" aria-label="Email address">
         <button class="btn btn--dark btn--lg" type="submit">Subscribe &rarr;</button>
       </form>
     </div>
