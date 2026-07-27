@@ -1709,7 +1709,7 @@ body.is-yearly .price-annual-note { display: block; }
 
 .chat-input {
   flex: 1; border: none; background: transparent; outline: none;
-  font-family: var(--font-body); font-size: var(--text-md);
+  font-family: var(--font-sans); font-size: var(--text-md);
   color: var(--text-body); resize: none;
   min-height: 44px; max-height: 140px; line-height: var(--leading-relaxed);
   padding: var(--space-1) 0;

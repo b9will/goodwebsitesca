@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="../css/tokens.css?v=13">
   <link rel="stylesheet" href="../css/base.css?v=15">
   <link rel="stylesheet" href="../css/components.css?v=26">
-  <link rel="stylesheet" href="../css/pages.css?v=30">
+  <link rel="stylesheet" href="../css/pages.css?v=31">
   <noscript><style>.reveal { opacity:1!important; transform:none!important; }</style></noscript>
   <style>
   .breadcrumb { display:flex; align-items:center; gap:.375rem; font-size:var(--text-sm); color:var(--text-muted); margin-bottom:var(--space-6); flex-wrap:wrap; }
@@ -134,7 +134,7 @@
           <hr class="article-divider">
         </header>
 
-        <p>ChatGPT, Google's AI Overviews, and Perplexity cite sources directly in their answers. For naturopathic doctors, that means original, expert-led content that passes a basic credibility check is the most valuable thing you can publish. This checklist is about producing articles that a skeptical AI — or a skeptical patient — would feel confident citing. No agency can guarantee inclusion, but strong fundamentals are the only foundation that works.</p>
+        <p>ChatGPT, Google's AI Overviews, and Perplexity cite sources directly in their answers. For naturopathic doctors, that means original, expert-led content that passes a basic credibility check is the most valuable thing you can publish. This checklist is about producing articles that a skeptical AI, or a skeptical patient, would feel confident citing. No agency can guarantee inclusion, but strong fundamentals are the only foundation that works.</p>
 
         <div class="pdf-gate" id="pdf-gate">
           <div class="pdf-gate-left">
@@ -389,13 +389,13 @@
         <h2 id="scoring">What your score means</h2>
         <p><strong>0–3:</strong> Foundation missing. Without a clear question, qualified author, and traceable claims, AI systems have little to work with. Start with checks 1–3.</p>
         <p><strong>4–6:</strong> Credible start. The article has a foundation but is likely missing original value, citation discipline, or technical eligibility.</p>
-        <p><strong>7–9:</strong> Strong authority content. Close the remaining gaps — usually structure or monitoring — and the article will compound in both search and AI systems.</p>
+        <p><strong>7–9:</strong> Strong authority content. Close the remaining gaps, usually structure or monitoring, and the article will compound in both search and AI systems.</p>
         <p><strong>10/10:</strong> Citation-ready. Maintain accuracy, keep sources current, and monitor what's happening in AI search reporting.</p>
 
         <p style="font-size:var(--text-sm);color:var(--text-muted);font-style:italic">Guidance used: Google AI optimization guide; Google People-first content guidelines; Google Generative AI content guidance.</p>
 
         <h2 id="next-step">Your first improvement sprint</h2>
-        <p>Pick your most important health article — the one that should be driving qualified traffic — and run it through this checklist. Fixing one article properly is worth more than publishing three new ones that fail check 3.</p>
+        <p>Pick your most important health article, the one that should be driving qualified traffic, and run it through this checklist. Fixing one article properly is worth more than publishing three new ones that fail check 3.</p>
         <p>If you'd like help assessing your content for AI readiness, <a href="../book.html">book a free 20-minute call</a>.</p>
 
         <hr class="article-divider">
@@ -440,7 +440,7 @@
     <section class="section cta-section">
       <div class="container">
         <h2 class="heading h1">More free resources</h2>
-        <p class="lead">The full resource library for naturopathic doctors — checklists, guides, and practical audits across SEO, authority, and website performance.</p>
+        <p class="lead">The full resource library for naturopathic doctors: checklists, guides, and practical audits across SEO, authority, and website performance.</p>
         <div style="display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap">
           <a class="btn btn--dark btn--lg" href="../resources/">Browse the library <span class="arrow">&rarr;</span></a>
           <a class="btn btn--secondary btn--lg" href="../book.html">Book a free website review</a>
@@ -486,7 +486,7 @@
     var scoreDisplay = document.getElementById('score-display');
     var scoreCount = document.getElementById('score-count');
     var scoreLabel = document.getElementById('score-label');
-    var labels = ['Tick each item you can confidently confirm today.','1 down. Keep going.','2 down. Keep going.','3 — authority solid.','4 out of 10.','5 out of 10 — halfway.','6 out of 10. Credible article.','7 out of 10. Strong content.','8 out of 10. Really good.','9 out of 10. One gap left.','10 out of 10. Citation-ready.'];
+    var labels = ['Tick each item you can confidently confirm today.','1 down. Keep going.','2 down. Keep going.','3: authority solid.','4 out of 10.','5 out of 10, halfway.','6 out of 10. Credible article.','7 out of 10. Strong content.','8 out of 10. Really good.','9 out of 10. One gap left.','10 out of 10. Citation-ready.'];
     function update() {
       var count = document.querySelectorAll('.checklist-check:checked').length;
       scoreCount.textContent = count; scoreLabel.textContent = labels[count] || '';
