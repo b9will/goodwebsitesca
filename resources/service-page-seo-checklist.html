@@ -15,13 +15,13 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://goodwebsites.ca/assets/images/og-card.jpg">
-  <link rel="icon" href="../assets/images/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/logos/gw-icon-black.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=ranade@400,500,700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=ranade@400,500,700&display=swap"></noscript>
   <link rel="stylesheet" href="../css/tokens.css?v=13">
   <link rel="stylesheet" href="../css/base.css?v=15">
-  <link rel="stylesheet" href="../css/components.css?v=26">
-  <link rel="stylesheet" href="../css/pages.css?v=31">
+  <link rel="stylesheet" href="../css/components.css?v=29">
+  <link rel="stylesheet" href="../css/pages.css?v=36">
   <noscript><style>.reveal { opacity:1!important; transform:none!important; }</style></noscript>
   <style>
   .breadcrumb { display:flex; align-items:center; gap:.375rem; font-size:var(--text-sm); color:var(--text-muted); margin-bottom:var(--space-6); flex-wrap:wrap; }
@@ -87,7 +87,7 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header" id="site-header">
     <nav class="nav">
-      <a class="nav-brand" href="/"><img src="../assets/images/goodwebsites_logo-icon.png" alt="" width="30" height="30"> Good Websites</a>
+      <a class="nav-brand" href="/"><img src="../assets/logos/gw-lockup-black.svg" alt="Good Websites" class="nav-logo"></a>
       <div class="nav-tabs" id="nav-tabs">
         <div class="nav-slider" id="nav-slider" aria-hidden="true"></div>
         <a href="../work.html">Process</a>
@@ -148,7 +148,7 @@
           </div>
           <form class="pdf-gate-form" id="pdf-gate-form">
             <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" aria-label="Email address" class="pdf-gate-input">
-            <input type="hidden" name="resource" value="service-page-seo-checklist">
+            <input type="hidden" name="resource" value="service-page-seo-v1.1">
             <button type="submit" class="btn btn--grass">Download PDF <span class="arrow">&rarr;</span></button>
           </form>
           <p class="pdf-gate-success" id="pdf-gate-success" style="display:none">Downloading now. Check your downloads folder.</p>
@@ -464,12 +464,12 @@
     </div>
     <div class="footer-inner">
       <div class="footer-brand">
-        <a class="nav-brand" href="/" style="font-size:var(--text-sm)"><img src="../assets/images/goodwebsites_logo-icon.png" alt="" width="24" height="24"> Good Websites</a>
+        <a class="nav-brand" href="/" style="font-size:var(--text-sm)"><img src="../assets/logos/gw-icon-black.svg" alt="" width="24" height="24"> Good Websites</a>
         <p>Websites for naturopaths. Beautifully made, fast on every device, handled for you.</p>
       </div>
       <div class="footer-col"><span class="footer-col-title">Pages</span><a href="../work.html">Process</a><a href="../pricing.html">Pricing</a><a href="../about.html">About</a><a href="../book.html">Book a call</a></div>
       <div class="footer-col"><span class="footer-col-title">Learn</span><a href="../blog/">Blog</a><a href="../resources/">Free resources</a><a href="../naturopath-websites/">Naturopath websites</a></div>
-      <div class="footer-col"><span class="footer-col-title">Connect</span><a href="../contact.html">Contact</a><a href="mailto:hello@goodwebsites.ca">hello@goodwebsites.ca</a><a href="https://www.instagram.com/goodwebsites.ca" target="_blank" rel="noopener noreferrer">Instagram</a></div>
+      <div class="footer-col"><span class="footer-col-title">Connect</span><a href="../contact.html">Contact</a><button class="footer-email-copy" type="button" data-email="hello@goodwebsites.ca">hello@goodwebsites.ca</button><a href="https://www.instagram.com/goodwebsites.ca" target="_blank" rel="noopener noreferrer">Instagram</a></div>
     </div>
     <div class="footer-bottom">
       <span>&copy; 2026 Good Websites &middot; <a href="https://b9.digital" target="_blank" rel="noopener noreferrer">B9 Digital</a></span>
@@ -477,11 +477,11 @@
     </div>
   </footer>
 
-  <script src="../js/main.js?v=13" defer></script>
+  <script src="../js/main.js?v=15" defer></script>
   <script src="../js/vendor/lenis.min.js?v=1" defer></script>
   <script src="../js/vendor/gsap.min.js" defer></script>
   <script src="../js/vendor/ScrollTrigger.min.js" defer></script>
-  <script src="../js/animations.js?v=21" defer></script>
+  <script src="../js/animations.js?v=22" defer></script>
   <script>
   (function () {
     var items = document.querySelectorAll('.checklist-item');
@@ -508,7 +508,7 @@
         .then(function(res) {
           if (res.ok) {
             form.style.display = 'none'; success.style.display = 'block';
-            var a = document.createElement('a'); a.href = '../assets/downloads/good-websites-service-page-seo-checklist.pdf'; a.download = 'good-websites-service-page-seo-checklist.pdf'; document.body.appendChild(a); a.click(); document.body.removeChild(a);
+            var a = document.createElement('a'); a.href = '../assets/downloads/resources/03-service-page-seo-aeo-checklist.pdf'; a.download = '03-service-page-seo-aeo-checklist.pdf'; document.body.appendChild(a); a.click(); document.body.removeChild(a);
           } else { btn.disabled = false; btn.textContent = 'Try again'; }
         }).catch(function() { btn.disabled = false; btn.textContent = 'Try again'; });
     });

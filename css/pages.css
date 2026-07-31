@@ -433,11 +433,16 @@
   padding: var(--section-y) 0;
   background: var(--surface-page);
 }
-.problem-list {
+.problems-layout {
   max-width: var(--container-max);
   margin-inline: auto;
   padding-inline: var(--gutter);
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: clamp(2rem, 4vw, 3rem);
+  align-items: start;
 }
+.problem-list { min-width: 0; }
 .problem-row {
   display: flex;
   align-items: center;
@@ -500,37 +505,40 @@
 .problem-row:hover .problem-row-info { opacity: 0.45; }
 .problem-row-info:hover { opacity: 0.8 !important; transform: scale(1.1); }
 
-/* Pure image hover card — no padding, nothing inside but the photo */
-.problem-card {
-  position: fixed;
-  top: 0;
-  left: 0;
-  --card-x: 0px;
-  --card-y: 0px;
-  opacity: 0;
-  will-change: transform;
-  transform: translate(var(--card-x), var(--card-y)) translateY(8px) scale(0.97);
-  pointer-events: none;
-  width: 390px;
-  aspect-ratio: 4/3;
-  overflow: hidden;
+/* Sticky right preview panel */
+.problem-preview {
+  position: sticky;
+  top: clamp(5rem, 12vh, 7rem);
+  width: 100%;
+  aspect-ratio: 3/2;
   border: 2px solid var(--ink-900);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-hard-lg);
-  transition: opacity 0.45s var(--ease-out),
-              transform 0.45s var(--ease-spring);
-  z-index: 10;
+  overflow: hidden;
+  opacity: 0;
+  --preview-shift: 0px;
+  transform: translateY(calc(var(--preview-shift) + 10px));
+  transition: opacity 0.2s ease, transform 0.3s var(--ease-out);
+  pointer-events: none;
 }
-.problem-card.visible {
+.problem-preview.active {
   opacity: 1;
-  transform: translate(var(--card-x), var(--card-y)) translateY(0) scale(1);
+  transform: translateY(var(--preview-shift));
 }
-#problem-card-photo {
+.problem-preview-inner {
+  position: relative;
+  width: 100%; height: 100%;
+}
+.preview-img {
+  position: absolute;
+  inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
   display: block;
-  transition: opacity 0.18s ease;
+  opacity: 0;
+  transition: opacity 0.15s ease;
 }
+.preview-img.active { opacity: 1; }
 
 /* Tooltip that appears near the info icon */
 .problem-info-tip {
@@ -554,7 +562,8 @@
 
 @media (max-width: 900px) {
   .problem-title { font-size: var(--text-h2); }
-  .problem-card { display: none; }
+  .problems-layout { display: block; }
+  .problem-preview { display: none; }
   .problems.has-hover .problem-row { opacity: 1; }
   .problem-info-tip { display: none; }
 }
@@ -894,6 +903,7 @@ body.is-yearly .price-annual-note { display: block; }
   border-bottom: 1px solid var(--border-soft);
 }
 .faq-question {
+  width: 100%;
   display: flex; align-items: center; justify-content: space-between;
   padding: var(--space-5) 0;
   cursor: pointer;
@@ -991,7 +1001,7 @@ body.is-yearly .price-annual-note { display: block; }
 .proof-panel {
   position: sticky;
   top: 90px;
-  aspect-ratio: 4/3;
+  aspect-ratio: 16/9;
   border: 2px solid var(--ink-900);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-hard-lg);
@@ -2035,4 +2045,82 @@ body.is-yearly .price-annual-note { display: block; }
   z-index: 0;
 }
 .section--textured > * { position: relative; z-index: 1; }
+
+/* ---- Resource Library index ---- */
+.section-label-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+.eyebrow-rule {
+  flex: 1;
+  border: none;
+  border-top: 2px solid var(--ink-900);
+  opacity: 0.12;
+  margin: 0;
+}
+.blog-grid--2 {
+  grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 700px) {
+  .blog-grid--2 { grid-template-columns: 1fr; }
+}
+.bundle-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+}
+@media (max-width: 700px) {
+  .bundle-grid { grid-template-columns: 1fr; }
+}
+.bundle-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  border: 2px solid var(--ink-900);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-hard);
+  background: var(--surface-card);
+}
+.bundle-card-title {
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  font-weight: var(--weight-display);
+  color: var(--text-strong);
+  margin: 0;
+}
+.bundle-card-desc {
+  font-size: var(--text-sm);
+  color: var(--text-body);
+  margin: 0;
+  flex: 1;
+}
+
+/* ---- Breadcrumb (blog posts + resource pages) ---- */
+.breadcrumb { display:flex; align-items:center; gap:.375rem; font-size:var(--text-sm); color:var(--text-muted); margin-bottom:var(--space-6); flex-wrap:wrap; }
+.breadcrumb a { color:var(--text-muted); text-decoration:underline; text-underline-offset:2px; }
+.breadcrumb a:hover { color:var(--ink-900); }
+.breadcrumb-sep { color:var(--ink-300); }
+
+/* ---- Blog controls (search + view toggle) ---- */
+.blog-controls { display:flex; align-items:center; gap:var(--space-4); margin-bottom:var(--space-8); flex-wrap:wrap; }
+.blog-search-input { flex:1; min-width:200px; padding:10px 16px; border:2px solid var(--ink-900); border-radius:var(--radius-pill); font-size:var(--text-sm); font-family:var(--font-sans); background:var(--paper-50); color:var(--ink-900); outline:none; }
+.blog-search-input:focus { box-shadow:0 0 0 3px rgba(0,0,0,0.12); }
+.blog-view-toggle { display:flex; gap:var(--space-2); }
+.blog-view-btn { width:38px; height:38px; display:flex; align-items:center; justify-content:center; border:2px solid var(--ink-900); border-radius:var(--radius-md); background:transparent; cursor:pointer; opacity:0.4; transition:opacity .2s, background .2s, color .2s; color:var(--ink-900); }
+.blog-view-btn.active { background:var(--ink-900); color:var(--paper-50); opacity:1; }
+.blog-no-results { display:none; padding:var(--space-12) 0; text-align:center; color:var(--text-muted); font-size:var(--text-md); }
+.blog-no-results.visible { display:block; }
+
+/* ---- Blog list view ---- */
+.blog-grid--list { grid-template-columns:1fr !important; }
+.blog-grid--list .blog-card { flex-direction:row; }
+.blog-grid--list .blog-card-img-wrap { width:180px; min-width:180px; flex-shrink:0; aspect-ratio:1; }
+@media (max-width:600px) { .blog-grid--list .blog-card { flex-direction:column; } .blog-grid--list .blog-card-img-wrap { width:100%; min-width:unset; } }
+
+/* ---- Flap dots — clickable ---- */
+.flap-dots i { cursor:pointer; transition:opacity .15s; }
+.flap-dots i:hover { opacity:0.6; }
 

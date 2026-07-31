@@ -7,14 +7,14 @@
   <meta name="description" content="Good Websites privacy policy. How we collect, use, and protect your information.">
   <link rel="canonical" href="https://goodwebsites.ca/privacy.html">
   <meta name="robots" content="noindex">
-  <link rel="icon" href="assets/images/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/logos/gw-icon-black.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=ranade@400,500,700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=ranade@400,500,700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=ranade@400,500,700&display=swap"></noscript></noscript>
   <link rel="stylesheet" href="css/tokens.css?v=13">
   <link rel="stylesheet" href="css/base.css?v=15">
-  <link rel="stylesheet" href="css/components.css?v=26">
-  <link rel="stylesheet" href="css/pages.css?v=31">
+  <link rel="stylesheet" href="css/components.css?v=29">
+  <link rel="stylesheet" href="css/pages.css?v=36">
   <meta property="og:image" content="https://goodwebsites.ca/assets/images/og-card.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -26,8 +26,7 @@
   <header class="site-header" id="site-header">
     <nav class="nav">
       <a class="nav-brand" href="/">
-        <img src="assets/images/goodwebsites_logo-icon.png" alt="" width="30" height="30">
-        Good Websites
+        <img src="assets/logos/gw-lockup-black.svg" alt="Good Websites" class="nav-logo">
       </a>
       <div class="nav-tabs" id="nav-tabs">
         <div class="nav-slider" id="nav-slider" aria-hidden="true"></div>
@@ -55,7 +54,7 @@
   </header>
 
   <main id="main">
-    <section class="section" style="padding-top:var(--space-20)">
+    <section class="section" style="padding-top:clamp(6rem,14vw,10rem)">
       <div class="container" style="max-width:760px">
 
         <h1 class="display display-sm" style="margin-bottom:var(--space-3)">Privacy Policy</h1>
@@ -63,7 +62,7 @@
 
         <h2>Who we are</h2>
         <p>Good Websites is a web design subscription service for naturopathic practices, operated by B9 Digital Inc. ("we," "us," or "our"). Our website is <a href="https://goodwebsites.ca">goodwebsites.ca</a>.</p>
-        <p>Questions about this policy can be directed to <a href="mailto:hello@goodwebsites.ca">hello@goodwebsites.ca</a>.</p>
+        <p>Questions about this policy can be directed to our <a href="contact.html">contact page</a>.</p>
 
         <h2>What information we collect</h2>
         <p>We collect information in the following ways:</p>
@@ -101,7 +100,7 @@
           <li>A clear description of why you are receiving the message</li>
           <li>A working unsubscribe link</li>
         </ul>
-        <p>To unsubscribe at any time, use the unsubscribe link in any email we send or contact us at <a href="mailto:hello@goodwebsites.ca">hello@goodwebsites.ca</a>. We will process your unsubscribe request promptly.</p>
+        <p>To unsubscribe at any time, use the unsubscribe link in any email we send or contact us at <button class="footer-email-copy" type="button" data-email="hello@goodwebsites.ca">hello@goodwebsites.ca</button>. We will process your unsubscribe request promptly.</p>
         <p>We do not share your email address with other organizations for their marketing purposes.</p>
 
         <h2>Third-party services</h2>
@@ -125,7 +124,7 @@
         </ul>
 
         <h2>Your rights</h2>
-        <p>If you are located in Canada, you have rights under PIPEDA (Personal Information Protection and Electronic Documents Act) including the right to access, correct, and request deletion of personal information we hold about you. To exercise these rights, contact us at <a href="mailto:hello@goodwebsites.ca">hello@goodwebsites.ca</a>.</p>
+        <p>If you are located in Canada, you have rights under PIPEDA (Personal Information Protection and Electronic Documents Act) including the right to access, correct, and request deletion of personal information we hold about you. To exercise these rights, contact us at <button class="footer-email-copy" type="button" data-email="hello@goodwebsites.ca">hello@goodwebsites.ca</button>.</p>
 
         <h2>Security</h2>
         <p>We take reasonable technical and organizational measures to protect the information we collect. Our website is served over HTTPS. Access to client data is restricted to authorized personnel.</p>
@@ -134,7 +133,7 @@
         <p>We may update this privacy policy from time to time. We will post the updated policy on this page with a revised "last updated" date. Material changes affecting how we use your information will be communicated by email to subscribers.</p>
 
         <h2>Contact</h2>
-        <p>If you have questions about this privacy policy or how we handle your information, please contact us at <a href="mailto:hello@goodwebsites.ca">hello@goodwebsites.ca</a> or by mail at:</p>
+        <p>If you have questions about this privacy policy or how we handle your information, please contact us at <button class="footer-email-copy" type="button" data-email="hello@goodwebsites.ca">hello@goodwebsites.ca</button> or by mail at:</p>
         <p>B9 Digital Inc.<br>Toronto, Ontario, Canada</p>
 
       </div>
@@ -155,7 +154,7 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <a class="nav-brand" href="/" style="font-size:var(--text-sm)">
-          <img src="assets/images/goodwebsites_logo-icon.png" alt="" width="24" height="24">
+          <img src="assets/logos/gw-icon-black.svg" alt="" width="24" height="24">
           Good Websites
         </a>
         <p>Websites for naturopaths. Beautifully made, fast on every device, handled for you.</p>
@@ -176,7 +175,7 @@
       <div class="footer-col">
         <span class="footer-col-title">Connect</span>
         <a href="contact.html">Contact</a>
-        <a href="mailto:hello@goodwebsites.ca">hello@goodwebsites.ca</a>
+        <button class="footer-email-copy" type="button" data-email="hello@goodwebsites.ca">hello@goodwebsites.ca</button>
         <a href="https://www.instagram.com/goodwebsites.ca" target="_blank" rel="noopener noreferrer">Instagram</a>
       </div>
     </div>
@@ -186,6 +185,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=13" defer></script>
+  <script src="js/main.js?v=15" defer></script>
 </body>
 </html>

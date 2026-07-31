@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Annex Naturopathy — Hero v2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Cedarville Cursive';
+      src: url('assets/fonts/CedarvilleCursive-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-display: swap;
+    }
+  </style>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --amber: #F3A84A;
+      --green: #2E4A36;
+      --cream: #FDFAF4;
+      --gutter: clamp(24px, 5vw, 56px);
+      --font-cursive: 'Cedarville Cursive', cursive;
+    }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--cream);
+    }
+
+    /* ── HERO ────────────────────────────────────────────
+       position:relative so doctor portrait can be
+       absolutely positioned within and overflow below.
+       No overflow:hidden — everything must bleed freely.
+    ─────────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 100%, rgba(220,135,30,0.22) 0%, transparent 60%),
+        var(--amber);
+    }
+
+    /* ── Nav ─────────────────────────────────────────── */
+    .nav {
+      display: flex;
+      align-items: stretch;
+      padding: 16px var(--gutter);
+      position: relative;
+      z-index: 3;
+    }
+
+    .nav-col {
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+    .nav-col--center { justify-content: center; }
+    .nav-col--right  { justify-content: flex-end; }
+
+    .nav-brand img {
+      height: 72px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: rgba(255,255,255,0.78);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: opacity .15s;
+    }
+    .nav-link:hover { opacity: 0.55; }
+
+    .nav-link--book {
+      background: var(--green);
+      color: rgba(255,255,255,0.95) !important;
+      opacity: 1 !important;
+      padding: 10px 22px;
+      border-radius: 100px;
+      transition: background .15s;
+    }
+    .nav-link--book:hover { background: #223a28; opacity: 1 !important; }
+
+    /* ── Hero copy ───────────────────────────────────── */
+    .hero-copy {
+      padding: 48px var(--gutter) 36px;
+      /* leave right side open for doctor — she fills that zone */
+      max-width: 55%;
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.58);
+      margin-bottom: 14px;
+    }
+
+    .hero-sub {
+      font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+      color: rgba(255,255,255,0.86);
+      line-height: 1.5;
+      margin-bottom: 26px;
+      white-space: nowrap; /* one long line */
+    }
+
+    .btn-book {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green);
+      color: rgba(255,255,255,0.95);
+      text-decoration: none;
+      padding: 13px 28px;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      transition: background .15s;
+    }
+    .btn-book:hover { background: #223a28; }
+
+    /* ── Headline — edge to edge ─────────────────────── */
+    .hero-headline-wrap {
+      padding: 20px 0 0;       /* no side gutter — fills full width */
+      position: relative;
+      z-index: 2;
+      margin-bottom: -80px;   /* bleed into flower photo */
+    }
+
+    .hero-headline {
+      font-family: var(--font-cursive);
+      font-size: clamp(80px, 14vw, 210px);
+      font-weight: 400;
+      color: white;
+      line-height: 0.88;
+      white-space: nowrap;
+    }
+
+    /* ── Doctor portrait ─────────────────────────────── */
+    /*
+      Fills top-right corner of the hero and bleeds into
+      the flower photo below. z-index: 2 matches the
+      headline BUT doctor is earlier in DOM, so headline
+      renders on top of her (DOM order tiebreak).
+      Mask fades her left edge into the amber.
+    */
+    .hero-doctor {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: -240px;          /* bleeds into flower photo */
+      width: clamp(300px, 42%, 640px);
+      z-index: 2;              /* behind headline (same z, earlier in DOM) */
+      overflow: hidden;
+      /* Fade left edge into amber so she "emerges" naturally */
+      -webkit-mask-image:
+        linear-gradient(to right, transparent 0%, rgba(0,0,0,0.7) 12%, black 28%),
+        linear-gradient(to bottom, black 65%, transparent 100%);
+      -webkit-mask-composite: destination-in;
+      mask-image:
+        linear-gradient(to right, transparent 0%, rgba(0,0,0,0.7) 12%, black 28%),
+        linear-gradient(to bottom, black 65%, transparent 100%);
+      mask-composite: intersect;
+    }
+
+    .hero-doctor img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top; /* show face from the top */
+      display: block;
+    }
+
+    /* ── Flower photo ────────────────────────────────── */
+    /*
+      z-index: 1 — below headline (z:2) and doctor (z:4).
+      Extra padding-right ensures flower photo doesn't
+      show through behind the doctor on the right side.
+    */
+    .hero-photo-wrap {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-photo {
+      width: 100%;
+      height: clamp(320px, 56vh, 540px);
+      display: block;
+      background: url('assets/images/annex-hero.png') center 75% / cover no-repeat;
+    }
+
+    /* ── Rest of page ────────────────────────────────── */
+    .below-hero {
+      background: var(--cream);
+      padding: 100px var(--gutter) 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .below-note {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #bbb;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+
+    <nav class="nav">
+      <div class="nav-col">
+        <div class="nav-links">
+          <a class="nav-link" href="#">About</a>
+          <a class="nav-link" href="#">Services</a>
+          <a class="nav-link" href="#">Blog</a>
+        </div>
+      </div>
+      <div class="nav-col nav-col--center">
+        <a class="nav-brand" href="#">
+          <img src="assets/images/annex-logo.png" alt="Annex Naturopathy">
+        </a>
+      </div>
+      <div class="nav-col nav-col--right">
+        <a class="nav-link nav-link--book" href="#">Book Now</a>
+      </div>
+    </nav>
+
+    <div class="hero-copy">
+      <p class="eyebrow">Naturopathic medicine &middot; Toronto Annex</p>
+      <p class="hero-sub">A naturopathic clinic where you'll feel genuinely heard — and leave with a plan.</p>
+      <a class="btn-book" href="#">Book a visit <span aria-hidden="true">→</span></a>
+    </div>
+
+    <!-- Doctor portrait: straddles the amber/photo boundary -->
+    <div class="hero-doctor">
+      <img src="assets/images/annex-doctor.png" alt="Dr. [Name], ND">
+    </div>
+
+    <!-- Headline: edge to edge, bleeds into photo below -->
+    <div class="hero-headline-wrap">
+      <h1 class="hero-headline">Feel heard</h1>
+    </div>
+
+  </section>
+
+  <div class="hero-photo-wrap">
+    <div class="hero-photo" role="img" aria-label="Wildflower garden in soft light"></div>
+  </div>
+
+  <div class="below-hero">
+    <p class="below-note">↑ below this would be services / social proof / etc</p>
+  </div>
+
+</body>
+</html>

@@ -13,7 +13,7 @@
   <meta name="twitter:card"        content="summary">
   <meta name="twitter:title"       content="Contact — Good Websites">
   <meta name="twitter:description" content="Email hello@goodwebsites.ca or book a free 20-minute call.">
-  <link rel="icon" href="assets/images/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/logos/gw-icon-black.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=ranade@400,500,700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=ranade@400,500,700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=ranade@400,500,700&display=swap"></noscript></noscript>
@@ -21,8 +21,8 @@
   <link rel="preload" href="assets/fonts/Lunchtype22-Medium.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/tokens.css?v=13">
   <link rel="stylesheet" href="css/base.css?v=15">
-  <link rel="stylesheet" href="css/components.css?v=26">
-  <link rel="stylesheet" href="css/pages.css?v=31">
+  <link rel="stylesheet" href="css/components.css?v=29">
+  <link rel="stylesheet" href="css/pages.css?v=36">
   <noscript><style>.reveal { opacity:1!important; transform:none!important; }</style></noscript>
   <meta property="og:image" content="https://goodwebsites.ca/assets/images/og-card.jpg">
   <meta property="og:image:width" content="1200">
@@ -35,8 +35,7 @@
   <header class="site-header" id="site-header">
     <nav class="nav">
       <a class="nav-brand" href="/">
-        <img src="assets/images/goodwebsites_logo-icon.png" alt="" width="30" height="30">
-        Good Websites
+        <img src="assets/logos/gw-lockup-black.svg" alt="Good Websites" class="nav-logo">
       </a>
       <div class="nav-tabs" id="nav-tabs">
         <div class="nav-slider" id="nav-slider" aria-hidden="true"></div>
@@ -71,10 +70,10 @@
         <p class="lead">Tell us about your practice, your current site, or just ask a question. A real person reads every email and replies within 24 hours.</p>
 
         <div class="hero-actions">
-          <a class="btn btn--primary btn--lg" href="mailto:hello@goodwebsites.ca?subject=Hello%20from%20my%20practice">
-            Email hello@goodwebsites.ca
+          <button class="btn btn--primary btn--lg" type="button" data-email="hello@goodwebsites.ca">
+            Copy email address
             <span class="arrow" aria-hidden="true">&rarr;</span>
-          </a>
+          </button>
           <a class="btn btn--secondary btn--lg" href="book.html">Book a free call</a>
         </div>
 
@@ -89,7 +88,7 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <a class="nav-brand" href="/" style="font-size:var(--text-sm)">
-          <img src="assets/images/goodwebsites_logo-icon.png" alt="" width="24" height="24">
+          <img src="assets/logos/gw-icon-black.svg" alt="" width="24" height="24">
           Good Websites
         </a>
         <p>Websites for naturopaths. Beautifully made, fast on every device, handled for you.</p>
@@ -110,7 +109,7 @@
       <div class="footer-col">
         <span class="footer-col-title">Connect</span>
         <a href="contact.html">Contact</a>
-        <a href="mailto:hello@goodwebsites.ca">hello@goodwebsites.ca</a>
+        <button class="footer-email-copy" type="button" data-email="hello@goodwebsites.ca">hello@goodwebsites.ca</button>
         <a href="https://www.instagram.com/goodwebsites.ca" target="_blank" rel="noopener noreferrer">Instagram</a>
       </div>
     </div>
@@ -120,10 +119,10 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=13" defer></script>
+  <script src="js/main.js?v=15" defer></script>
   <script src="js/vendor/lenis.min.js?v=1" defer></script>
   <script src="js/vendor/gsap.min.js" defer></script>
   <script src="js/vendor/ScrollTrigger.min.js" defer></script>
-  <script src="js/animations.js?v=21" defer></script>
+  <script src="js/animations.js?v=22" defer></script>
 </body>
 </html>

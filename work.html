@@ -13,7 +13,7 @@
   <meta name="twitter:card"        content="summary_large_image">
   <meta name="twitter:title"       content="How We Work — Good Websites">
   <meta name="twitter:description" content="From discovery call to live site. No templates. No page builders. Done for you.">
-  <link rel="icon" href="assets/images/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/logos/gw-icon-black.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=ranade@400,500,700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=ranade@400,500,700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=ranade@400,500,700&display=swap"></noscript></noscript>
@@ -21,8 +21,8 @@
   <link rel="preload" href="assets/fonts/Lunchtype22-Medium.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/tokens.css?v=13">
   <link rel="stylesheet" href="css/base.css?v=15">
-  <link rel="stylesheet" href="css/components.css?v=26">
-  <link rel="stylesheet" href="css/pages.css?v=31">
+  <link rel="stylesheet" href="css/components.css?v=29">
+  <link rel="stylesheet" href="css/pages.css?v=36">
   <noscript><style>.reveal { opacity:1!important; transform:none!important; }</style></noscript>
   <meta property="og:image" content="https://goodwebsites.ca/assets/images/og-card.jpg">
   <meta property="og:image:width" content="1200">
@@ -35,8 +35,7 @@
   <header class="site-header" id="site-header">
     <nav class="nav">
       <a class="nav-brand" href="/">
-        <img src="assets/images/goodwebsites_logo-icon.png" alt="" width="30" height="30">
-        Good Websites
+        <img src="assets/logos/gw-lockup-black.svg" alt="Good Websites" class="nav-logo">
       </a>
       <div class="nav-tabs" id="nav-tabs">
         <div class="nav-slider" id="nav-slider" aria-hidden="true"></div>
@@ -210,7 +209,7 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <a class="nav-brand" href="/" style="font-size:var(--text-sm)">
-          <img src="assets/images/goodwebsites_logo-icon.png" alt="" width="24" height="24">
+          <img src="assets/logos/gw-icon-black.svg" alt="" width="24" height="24">
           Good Websites
         </a>
         <p>Websites for naturopaths. Beautifully made, fast on every device, handled for you.</p>
@@ -231,7 +230,7 @@
       <div class="footer-col">
         <span class="footer-col-title">Connect</span>
         <a href="contact.html">Contact</a>
-        <a href="mailto:hello@goodwebsites.ca">hello@goodwebsites.ca</a>
+        <button class="footer-email-copy" type="button" data-email="hello@goodwebsites.ca">hello@goodwebsites.ca</button>
         <a href="https://www.instagram.com/goodwebsites.ca" target="_blank" rel="noopener noreferrer">Instagram</a>
       </div>
     </div>
@@ -241,11 +240,11 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=13" defer></script>
+  <script src="js/main.js?v=15" defer></script>
   <script src="js/vendor/lenis.min.js?v=1" defer></script>
   <script src="js/vendor/gsap.min.js" defer></script>
   <script src="js/vendor/ScrollTrigger.min.js" defer></script>
-  <script src="js/animations.js?v=21" defer></script>
+  <script src="js/animations.js?v=22" defer></script>
 
   <!-- Split-flap build-features board -->
   <script defer>
@@ -363,10 +362,12 @@
     var desc = document.getElementById('flap-desc');
     var counter = document.getElementById('flap-counter');
     var activeIdx = -1;
+    var currentIdx = 0;
 
     function show(idx) {
       if (idx === activeIdx) return;
       activeIdx = idx;
+      currentIdx = idx;
       var f = FEATURES[idx];
 
       card.style.backgroundColor = f.bg;
@@ -406,6 +407,27 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
     show(0);
+
+    dots.forEach(function (dot, i) {
+      dot.addEventListener('click', function () {
+        var total = track.offsetHeight - window.innerHeight;
+        var targetScroll = track.getBoundingClientRect().top + window.scrollY
+          + (i / FEATURES.length) * total;
+        window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+      });
+    });
+
+    var stage = document.querySelector('.flap-stage');
+    if (stage) {
+      var touchStartY = 0;
+      stage.addEventListener('touchstart', function (e) { touchStartY = e.touches[0].clientY; }, { passive: true });
+      stage.addEventListener('touchend', function (e) {
+        var dy = touchStartY - e.changedTouches[0].clientY;
+        if (Math.abs(dy) < 40) return;
+        var next = Math.min(Math.max(currentIdx + (dy > 0 ? 1 : -1), 0), FEATURES.length - 1);
+        dots[next].click();
+      });
+    }
   });
   </script>
 

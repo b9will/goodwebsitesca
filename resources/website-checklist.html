@@ -11,14 +11,14 @@
   <meta property="og:title"       content="The 10-Out-of-10 Website Checklist for Naturopathic Doctors">
   <meta property="og:description" content="10 things every ND website needs to rank, convert, and compete. Free from Good Websites.">
   <meta name="twitter:card"        content="summary_large_image">
-  <link rel="icon" href="../assets/images/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/logos/gw-icon-black.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=ranade@400,500,700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=ranade@400,500,700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=ranade@400,500,700&display=swap"></noscript></noscript>
   <link rel="stylesheet" href="../css/tokens.css?v=13">
   <link rel="stylesheet" href="../css/base.css?v=15">
-  <link rel="stylesheet" href="../css/components.css?v=26">
-  <link rel="stylesheet" href="../css/pages.css?v=31">
+  <link rel="stylesheet" href="../css/components.css?v=29">
+  <link rel="stylesheet" href="../css/pages.css?v=36">
   <noscript><style>.reveal { opacity:1!important; transform:none!important; }</style></noscript>
   <style>
   .checklist-item {
@@ -157,8 +157,7 @@
   <header class="site-header" id="site-header">
     <nav class="nav">
       <a class="nav-brand" href="/">
-        <img src="../assets/images/goodwebsites_logo-icon.png" alt="" width="30" height="30">
-        Good Websites
+        <img src="../assets/logos/gw-lockup-black.svg" alt="Good Websites" class="nav-logo">
       </a>
       <div class="nav-tabs" id="nav-tabs">
         <div class="nav-slider" id="nav-slider" aria-hidden="true"></div>
@@ -217,7 +216,7 @@
           </div>
           <form class="pdf-gate-form" id="pdf-gate-form">
             <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" aria-label="Email address" class="pdf-gate-input">
-            <input type="hidden" name="form-name" value="checklist-pdf">
+            <input type="hidden" name="form-name" value="website-checklist-v1.1">
             <button type="submit" class="btn btn--grass">Download PDF <span class="arrow">&rarr;</span></button>
           </form>
           <p class="pdf-gate-success" id="pdf-gate-success" style="display:none">Downloading now. Check your downloads folder.</p>
@@ -394,7 +393,7 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <a class="nav-brand" href="/" style="font-size:var(--text-sm)">
-          <img src="../assets/images/goodwebsites_logo-icon.png" alt="" width="24" height="24">
+          <img src="../assets/logos/gw-icon-black.svg" alt="" width="24" height="24">
           Good Websites
         </a>
         <p>Websites for naturopaths. Beautifully made, fast on every device, handled for you.</p>
@@ -416,7 +415,7 @@
       <div class="footer-col">
         <span class="footer-col-title">Connect</span>
         <a href="../contact.html">Contact</a>
-        <a href="mailto:hello@goodwebsites.ca">hello@goodwebsites.ca</a>
+        <button class="footer-email-copy" type="button" data-email="hello@goodwebsites.ca">hello@goodwebsites.ca</button>
         <a href="https://www.instagram.com/goodwebsites.ca" target="_blank" rel="noopener noreferrer">Instagram</a>
       </div>
     </div>
@@ -426,11 +425,11 @@
     </div>
   </footer>
 
-  <script src="../js/main.js?v=13" defer></script>
+  <script src="../js/main.js?v=15" defer></script>
   <script src="../js/vendor/lenis.min.js?v=1" defer></script>
   <script src="../js/vendor/gsap.min.js" defer></script>
   <script src="../js/vendor/ScrollTrigger.min.js" defer></script>
-  <script src="../js/animations.js?v=21" defer></script>
+  <script src="../js/animations.js?v=22" defer></script>
 
   <script>
   (function () {
@@ -472,8 +471,8 @@
           success.style.display = 'block';
           // Trigger download
           var a = document.createElement('a');
-          a.href = '../assets/downloads/good-websites-10-out-of-10-checklist.pdf';
-          a.download = 'good-websites-10-out-of-10-checklist.pdf';
+          a.href = '../assets/downloads/resources/00-10-out-of-10-website-checklist.pdf';
+          a.download = '00-10-out-of-10-website-checklist.pdf';
           document.body.appendChild(a);
           a.click();
           document.body.removeChild(a);

@@ -21,19 +21,19 @@
   var solutionNav = document.getElementById('solution-nav');
   if (solutionNav) {
     var navItems = solutionNav.querySelectorAll('.solution-nav-item');
+    function setSolutionActive(i) {
+      navItems.forEach(function (item, j) {
+        item.classList.toggle('active', j === i);
+        item.classList.toggle('done', j < i);
+        item.setAttribute('aria-current', j === i ? 'true' : 'false');
+      });
+    }
     gsap.utils.toArray('.solution-block').forEach(function (block, i) {
       ScrollTrigger.create({
         trigger: block,
-        start: 'top 50%',
-        end: 'bottom 50%',
-        onToggle: function (self) {
-          if (!self.isActive) return;
-          navItems.forEach(function (item, j) {
-            item.classList.toggle('active', j === i);
-            item.classList.toggle('done', j < i);
-            item.setAttribute('aria-current', j === i ? 'true' : 'false');
-          });
-        }
+        start: 'top 30%',
+        onEnter: function () { setSolutionActive(i); },
+        onLeaveBack: function () { setSolutionActive(i - 1); }
       });
     });
   }

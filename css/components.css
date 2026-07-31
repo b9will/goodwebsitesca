@@ -212,7 +212,8 @@
   color: var(--text-strong);
   text-decoration: none;
 }
-.nav-brand img { width: 30px; height: 30px; }
+.nav-brand img:not(.nav-logo) { width: 30px; height: 30px; }
+.nav-brand .nav-logo { height: 36px; width: auto; display: block; }
 .nav-end {
   display: flex; align-items: center; justify-content: flex-end; gap: var(--space-3);
 }
@@ -553,6 +554,8 @@ body.footer-fixed main {
   box-shadow: var(--shadow-hard-xl);
   padding: clamp(2rem, 4vw, 3.5rem);
   background: var(--paper-50);
+  max-width: 860px;
+  margin-inline: auto;
 }
 .oand-logo-block {
   background: var(--grass-500);
@@ -571,3 +574,7 @@ body.footer-fixed main {
   .oand-partner-inner { grid-template-columns: 1fr; }
   .oand-logo-block { min-width: unset; width: 100%; }
 }
+
+/* ---- Footer email copy button ---- */
+.footer-email-copy { background:none; border:none; font:inherit; color:inherit; cursor:pointer; padding:0; text-decoration:underline; text-underline-offset:2px; text-align:left; }
+.footer-email-copy:hover { opacity:0.7; }

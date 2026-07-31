@@ -99,43 +99,18 @@
     });
   }
 
-  // Problem section — hover-driven color change + floating image card
+  // Problem section — sticky right preview panel
   var problemSection = document.getElementById("problems");
-  var problemCard = document.getElementById("problem-card");
-  var problemCardPhoto = document.getElementById("problem-card-photo");
+  var problemPreview = document.getElementById("problem-preview");
   var problemInfoTip = document.getElementById("problem-info-tip");
 
-  if (problemSection && problemCard) {
+  if (problemSection && problemPreview) {
     var rows = problemSection.querySelectorAll(".problem-row");
-
-    // Cursor-following card
-    var cardCurX = 0, cardCurY = 0, cardTgtX = 0, cardTgtY = 0, cardRaf = null;
-    var CARD_W = 390, CARD_H = Math.round(390 * 3 / 4);
-    var activeRowIdx = 0;
-    var photoSwapTimer = null;
-
-    function tickCard() {
-      cardCurX += (cardTgtX - cardCurX) * 0.1;
-      cardCurY += (cardTgtY - cardCurY) * 0.1;
-      var x = Math.min(Math.max(8, cardCurX), window.innerWidth - CARD_W - 8);
-      // top 2: top-left at cursor; middle: centred; bottom 2: bottom-left at cursor
-      var offset = activeRowIdx <= 1 ? 0 : activeRowIdx === 2 ? CARD_H / 2 : CARD_H;
-      var y = Math.min(Math.max(8, cardCurY - offset), window.innerHeight - CARD_H - 8);
-      // Transform-only positioning (compositor); CSS composes translate(--card-x, --card-y)
-      problemCard.style.setProperty("--card-x", x + "px");
-      problemCard.style.setProperty("--card-y", y + "px");
-      cardRaf = requestAnimationFrame(tickCard);
-    }
-
-    problemSection.addEventListener("mousemove", function (e) {
-      cardTgtX = e.clientX + 28;
-      cardTgtY = e.clientY;
-      if (!cardRaf) cardRaf = requestAnimationFrame(tickCard);
-    });
+    var previewImgs = problemPreview.querySelectorAll(".preview-img");
+    var darkFills = ["var(--sky-500)", "var(--grass-500)"];
 
     rows.forEach(function (row, idx) {
       row.addEventListener("mouseenter", function () {
-        activeRowIdx = idx;
         problemSection.classList.add("has-hover");
         rows.forEach(function (r) {
           r.classList.remove("active");
@@ -148,30 +123,9 @@
         row.style.borderColor = "var(--ink-900)";
         row.style.boxShadow = "4px 4px 0 0 var(--ink-900)";
         row.style.background = row.dataset.color;
-        var darkFills = ["var(--sky-500)", "var(--grass-500)"];
         row.style.color = darkFills.indexOf(row.dataset.color) !== -1 ? "#FFFFFF" : "var(--ink-900)";
-        if (problemCardPhoto && row.dataset.img) {
-          clearTimeout(photoSwapTimer);
-          var newSrc = row.dataset.img;
-          if (problemCard.classList.contains("visible")) {
-            problemCardPhoto.style.opacity = '0';
-            photoSwapTimer = setTimeout(function () {
-              problemCardPhoto.src = newSrc;
-              problemCardPhoto.style.opacity = '1';
-            }, 120);
-          } else {
-            var _preload = new Image();
-            _preload.onload = function () {
-              problemCardPhoto.src = newSrc;
-              problemCardPhoto.style.opacity = '1';
-              problemCard.classList.add("visible");
-            };
-            problemCardPhoto.style.opacity = '0';
-            _preload.src = newSrc;
-          }
-        } else {
-          problemCard.classList.add("visible");
-        }
+        problemPreview.classList.add("active");
+        previewImgs.forEach(function (img, i) { img.classList.toggle("active", i === idx); });
       });
     });
 
@@ -184,8 +138,15 @@
         r.style.background = "";
         r.style.color = "";
       });
-      problemCard.classList.remove("visible");
-      if (cardRaf) { cancelAnimationFrame(cardRaf); cardRaf = null; }
+      problemPreview.classList.remove("active");
+      previewImgs.forEach(function (img) { img.classList.remove("active"); });
+    });
+
+    // Subtle parallax: cursor Y within section shifts preview panel ±6px
+    problemSection.addEventListener("mousemove", function (e) {
+      var rect = problemSection.getBoundingClientRect();
+      var progress = Math.min(1, Math.max(0, (e.clientY - rect.top) / rect.height));
+      problemPreview.style.setProperty("--preview-shift", ((progress - 0.5) * 12) + "px");
     });
 
     // Info icon tooltip
@@ -299,6 +260,22 @@
       showToast('Opening Calendly in a new tab ↗');
     });
   }
+
+  // Click-to-copy email (contact page button + footer)
+  document.querySelectorAll('[data-email]').forEach(function (el) {
+    el.addEventListener('click', function () {
+      var addr = el.dataset.email;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(addr).then(function () {
+          showToast('Email copied ✓');
+        }).catch(function () {
+          showToast(addr);
+        });
+      } else {
+        showToast(addr);
+      }
+    });
+  });
 
   // Cookie consent (once per browser; footer "Cookies" link reopens it)
   function showCookieBanner() {

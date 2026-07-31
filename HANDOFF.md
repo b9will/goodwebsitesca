@@ -4,7 +4,7 @@
 > `*.md` files are assetsignored — this never deploys.
 
 ## Deploy status: LIVE ✅
-- Deployed: `npx wrangler deploy` — eb7b81e3-9caa-4a87-b70f-3c108aabb6ee
+- Deployed: `npx wrangler deploy` — 0f832e49-b89b-45a2-bdbe-79ab6ca1de9e (2026-07-29)
 - **Gotcha:** `git push` 403s when active gh account is `goodwebsitesca` — always:
   `gh auth switch -u b9will && git push origin main`
 
@@ -12,9 +12,9 @@
 ```
 css/tokens.css?v=13
 css/base.css?v=15
-css/components.css?v=26
-css/pages.css?v=31
-js/main.js?v=13
+css/components.css?v=28
+css/pages.css?v=34
+js/main.js?v=14
 js/animations.js?v=21
 js/about.js?v=15
 js/vendor/lenis.min.js?v=1
@@ -22,7 +22,54 @@ js/vendor/lenis.min.js?v=1
 
 ---
 
-## What shipped this session (2026-07-27 — pre-OAND launch polish)
+## What shipped this session (2026-07-29 — resource library integration)
+
+### Resource library — full rebuild
+- `resources/index.html` rebuilt as proper library hub with 14 resource cards grouped by category
+- 8 new Phase Two HTML pages created:
+  - `resources/connect-your-website-to-jane.html` (PDF 06, badge--sky)
+  - `resources/jane-account-structure-online-booking.html` (PDF 07, badge--sky)
+  - `resources/analytics-search-console-sitemap-setup.html` (PDF 08, badge--ink)
+  - `resources/website-data-interpretation.html` (PDF 09, badge--ink)
+  - `resources/patient-question-content-research.html` (PDF 10, badge--grass)
+  - `resources/seo-aeo-content-writing.html` (PDF 11, badge--grass)
+  - `resources/website-photography-personal-brand.html` (PDF 12, badge--coral)
+  - `resources/traffic-google-ads-fundamentals.html` (PDF 13, badge--grass)
+- 6 existing pages updated: PDF paths → `assets/downloads/resources/[NN]-[slug].pdf`, resource fields updated to v1.1
+- All 16 PDFs + 2 bundles at `assets/downloads/resources/`, 13 PNGs at `assets/images/resources/`
+- PDF gate uses Formspree `mrenebnk` on all 14 resource pages
+- `pages.css` v33 → v34: added `.section-label-row`, `.eyebrow-rule`, `.blog-grid--2`, `.bundle-grid`, `.bundle-card` classes
+- Problem section aspect ratio: `3/4` → `3/2` (matches native 1536×1024 image dimensions)
+
+---
+
+## What shipped this session (2026-07-27 — logo set implementation)
+
+### 1. New logo set — `assets/logos/`
+- 6 SVGs copied from Downloads with professional naming convention:
+  - `gw-lockup-black.svg` — icon + wordmark (navbar primary)
+  - `gw-lockup-white.svg` — white variant (dark bg / future dark mode nav)
+  - `gw-wordmark-black.svg` — wordmark only, light bg
+  - `gw-wordmark-white.svg` — wordmark only, white
+  - `gw-icon-black.svg` — icon only (favicon + footer)
+  - `gw-icon-white.svg` — icon only, white (for dark fills)
+- All HTML pages updated: navbar uses `gw-lockup-black.svg` (text node removed, wordmark in SVG); footer uses `gw-icon-black.svg`; `<link rel="icon">` updated sitewide
+- JSON-LD `"logo"` in index.html updated to `assets/logos/gw-icon-black.svg`
+- `components.css` v26 → v27: added `.nav-logo { height: 28px; width: auto; display: block; }`
+- Dark mode: assessed at 1–2 days effort, deferred post-OAND launch; plan as dedicated session
+
+### 2. Problem section redesign — sticky preview panel
+- Replaced cursor-following `position:fixed` card with a `position:sticky` right-column panel
+- `.problems-layout` two-column grid (1fr 300px), sticky panel at `top: clamp(5rem, 12vh, 7rem)`
+- 5 images pre-loaded stacked in DOM as `.preview-img` elements — crossfade via CSS opacity (0.15s), no src-swapping
+- Entrance transition: 0.2s (snappier); `--preview-shift` CSS var drives ±6px parallax from mousemove
+- Row hover: fills correct color, white text on dark fills (sky-500/grass-500), dark text on light fills
+- Mobile: `display: block` layout, preview panel hidden via `display: none`
+- pages.css v31 → v32, main.js v13 → v14
+
+---
+
+## What shipped previously (2026-07-27 — pre-OAND launch polish)
 
 ### 1. OAND section live on homepage
 - Removed `style="display:none"` from `.oand-partner-section`
