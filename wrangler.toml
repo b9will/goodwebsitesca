@@ -2,6 +2,14 @@ name = "goodwebsitesca"
 main = "worker.js"
 compatibility_date = "2024-09-23"
 
+routes = [
+  { pattern = "goodwebsites.ca", custom_domain = true },
+  { pattern = "www.goodwebsites.ca", custom_domain = true }
+]
+
+workers_dev = false
+preview_urls = false
+
 [assets]
 directory = "."
 binding = "ASSETS"

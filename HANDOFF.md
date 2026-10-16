@@ -1,4 +1,17 @@
-# Good Websites — Session Handoff (2026-07-27)
+# Good Websites — Session Handoff (2026-10-16)
+
+> Read alongside `CLAUDE.md` (authoritative for conventions). `*.md` files are assetsignored.
+
+## 2026-10-16 session (SEO hygiene + www)
+- **Deployed** `npx wrangler deploy` -> version 5c3f49c0-736e-4f32-a4a4-8cb57f77f776. Site had been stale since 2026-07-31.
+- **www fixed:** `wrangler.toml` now declares `routes` (custom domains `goodwebsites.ca` + `www.goodwebsites.ca`); www previously had no DNS and did not load. (Mac DNS may cache the negative answer; verify with `dig @1.1.1.1` / `curl --resolve`.)
+- **Canonical/URL normalisation:** Cloudflare 307s `/x.html` -> `/x`, but canonicals, og:url, JSON-LD and sitemap pointed at `.html`. All absolute `https://goodwebsites.ca/...html` refs (42 files) now use clean extensionless URLs (dir index -> trailing slash). **Convention going forward: absolute URLs in meta/JSON-LD/sitemap are extensionless.** ~855 relative internal `href="...html"` links were NOT changed (they work via redirect; optional cleanup, but local `python -m http.server` needs the `.html`).
+- **Sitemap:** added `/resources/` + 14 resource pages (were missing). All 38 URLs return a clean 200.
+- `workers_dev = false`, `preview_urls = false` set explicitly (workers.dev URL is off; use the live domain).
+- **Still open:** the Cloudflare dashboard "deployment issue" (error text not yet seen; if it is a red Workers Build, GitHub integration token probably needs reconnecting, same as good-websites-os in July). Untracked: `assets/images/default.jpg`, `assets/images/wnbf_canada_blk_copy_480x480.webp`.
+- **Plan agreed:** (1) lead->call pipeline on the existing Good Websites OS (Supabase + Worker), NOT Airtable/n8n/Webflow; (2) Fox Fitness + Ranger Films case studies (get Robin/Megan OK first; both sites already carry a "This is a good website" backlink credit); (3) no site redesign.
+
+---
 
 > Read alongside `CLAUDE.md` (authoritative for conventions).
 > `*.md` files are assetsignored — this never deploys.

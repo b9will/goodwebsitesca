@@ -3,31 +3,48 @@
 
   <!-- Core pages -->
   <url><loc>https://goodwebsites.ca/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://goodwebsites.ca/work.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://goodwebsites.ca/pricing.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://goodwebsites.ca/about.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://goodwebsites.ca/book.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://goodwebsites.ca/work</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://goodwebsites.ca/pricing</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://goodwebsites.ca/about</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://goodwebsites.ca/book</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- Blog -->
   <url><loc>https://goodwebsites.ca/blog/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://goodwebsites.ca/blog/chatgpt-recommending-other-naturopaths.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://goodwebsites.ca/blog/why-naturopath-website-not-getting-patients.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://goodwebsites.ca/blog/naturopath-seo-google-first-page.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://goodwebsites.ca/blog/jane-app-vs-website.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://goodwebsites.ca/blog/high-converting-naturopath-website-2026.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://goodwebsites.ca/blog/naturopath-google-business-profile-guide.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://goodwebsites.ca/blog/chatgpt-recommending-other-naturopaths</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://goodwebsites.ca/blog/why-naturopath-website-not-getting-patients</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://goodwebsites.ca/blog/naturopath-seo-google-first-page</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://goodwebsites.ca/blog/jane-app-vs-website</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://goodwebsites.ca/blog/high-converting-naturopath-website-2026</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://goodwebsites.ca/blog/naturopath-google-business-profile-guide</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
   <!-- City landing pages -->
   <url><loc>https://goodwebsites.ca/naturopath-websites/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://goodwebsites.ca/naturopath-websites/toronto.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://goodwebsites.ca/naturopath-websites/vancouver.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://goodwebsites.ca/naturopath-websites/calgary.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://goodwebsites.ca/naturopath-websites/ottawa.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://goodwebsites.ca/naturopath-websites/edmonton.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://goodwebsites.ca/naturopath-websites/winnipeg.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://goodwebsites.ca/naturopath-websites/hamilton.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://goodwebsites.ca/naturopath-websites/victoria.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://goodwebsites.ca/naturopath-websites/halifax.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://goodwebsites.ca/naturopath-websites/saskatoon.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://goodwebsites.ca/naturopath-websites/toronto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://goodwebsites.ca/naturopath-websites/vancouver</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://goodwebsites.ca/naturopath-websites/calgary</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://goodwebsites.ca/naturopath-websites/ottawa</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://goodwebsites.ca/naturopath-websites/edmonton</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://goodwebsites.ca/naturopath-websites/winnipeg</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://goodwebsites.ca/naturopath-websites/hamilton</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://goodwebsites.ca/naturopath-websites/victoria</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://goodwebsites.ca/naturopath-websites/halifax</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://goodwebsites.ca/naturopath-websites/saskatoon</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
+
+  <!-- Resources -->
+  <url><loc>https://goodwebsites.ca/resources/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://goodwebsites.ca/resources/ai-citation-checklist</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://goodwebsites.ca/resources/analytics-search-console-sitemap-setup</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://goodwebsites.ca/resources/connect-your-website-to-jane</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://goodwebsites.ca/resources/eeat-content-checklist</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://goodwebsites.ca/resources/google-business-profile-checklist</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://goodwebsites.ca/resources/jane-account-structure-online-booking</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://goodwebsites.ca/resources/patient-question-content-research</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://goodwebsites.ca/resources/seo-aeo-content-writing</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://goodwebsites.ca/resources/service-page-seo-checklist</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://goodwebsites.ca/resources/technical-seo-checklist</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://goodwebsites.ca/resources/traffic-google-ads-fundamentals</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://goodwebsites.ca/resources/website-checklist</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://goodwebsites.ca/resources/website-data-interpretation</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://goodwebsites.ca/resources/website-photography-personal-brand</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>
